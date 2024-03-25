@@ -1,0 +1,22 @@
+@import "./login.css";
+
+html, body {
+	margin: 0;
+	font-family: Arial;
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+#body-wrapper {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	flex-direction: column;
+}
+
+#logo {
+	margin: 10px 0 10px 10px;
+	height: 87px;
+	width: 214px;
+}
