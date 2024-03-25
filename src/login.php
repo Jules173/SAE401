@@ -2,6 +2,11 @@
 
 session_start();
 
+if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
+	header("Location: ./index.php");
+	exit();
+}
+
 if (isset($_POST['login'])) {
 	$_SESSION['username'] = $_POST['username'];
 	$_SESSION['password'] = $_POST['password'];

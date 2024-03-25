@@ -2,12 +2,35 @@
 
 session_start();
 
+require_once "./fc.inc.php";
+
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 	header("Location: ./login.php");
 	exit();
 }
 
-if (isset($_POST['deconnect'])) {
+if (isset($_POST['full-view'])) {
+	$html = "<h1>TEXT</h1>";
+}
+
+if (isset($_POST['visualization'])) {
+	$html = var_dump_ret($_SESSION);
+}
+
+if (isset($_POST['import'])) {
+	$html = "
+	<div id='import-form-container'>
+		<form id='inport-form' method='POST'>
+			
+		</form>
+	</div>";
+}
+
+if (isset($_POST['export'])) {
+	$html = "";
+}
+
+if (isset($_POST['disconnect'])) {
 	session_destroy();
 	header("Location: ./login.php");
 	exit();
@@ -31,23 +54,30 @@ if (isset($_POST['deconnect'])) {
 				</div>
 				<div class="white-space"></div>
 				<div class="white-space"></div>
-				<button class="nav-button">Vue d'ensemble</button>
+				<form method="POST" class="ghost-element">
+					<button class="nav-button" name="full-view">Vue d'ensemble</button>
+				</form>
 				<div class="half-white-space"></div>
-				<button class="nav-button">Visualisation</button>
-				<div class="white-space"></div>
-				<button class="nav-button">Importer</button>
-				<div class="half-white-space"></div>
-				<button class="nav-button">Exporter</button>
+				<form method="POST" class="ghost-element">
+					<button class="nav-button" name="visualization">Visualisation</button>
+				</form>
 				<div class="white-space"></div>
 				<form method="POST" class="ghost-element">
-					<button class="nav-button" name="deconnect">Déconnection</button>
+					<button class="nav-button" name="import">Importer</button>
+				</form>
+				<div class="half-white-space"></div>
+				<form method="POST" class="ghost-element">
+					<button class="nav-button" name="export">Exporter</button>
+				</form>
+				<div class="white-space"></div>
+				<form method="POST" class="ghost-element">
+					<button class="nav-button" name="disconnect">Déconnection</button>
 				</form>
 			</nav>
+			<div id="page-content">
+			<?php echo $html; ?>
+			</div>
 		</div>
 		<script src="./script/all.js"></script>
 	</body>
 </html>
-
-<?php
-var_dump($_SESSION);
-?>
