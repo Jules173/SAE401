@@ -1,0 +1,58 @@
+#body-container {
+	display: grid;
+	height: 100%;
+	width: 100%;
+	grid-template-areas:
+		"nav body";
+	grid-template-columns: 250px 1fr;
+}
+
+#index-nav {
+	grid-area: nav;
+	background-image: linear-gradient(180deg, #505BF3, #2E3490);
+	height: 100%;
+	width: 250px;
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+}
+
+#logo-container > #logo {
+	margin: 10px auto;
+	position: relative;
+}
+
+#logo-container {
+	width: 100%;
+	height: 111px;
+	position: relative;
+	display: flex;
+}
+
+.nav-button {
+	border: none;
+	background-color: #d9d9d95c;
+	height: 30px;
+	width: 100%;
+	cursor: pointer;
+}
+
+.nav-button:hover {
+	background-color: #d9d9d994;
+}
+
+.white-space,
+.half-white-space {
+	width: 100%;
+	height: 30px;
+	background-color: transparent;
+}
+
+.half-white-space {
+	height: 15px;
+}
+
+#index-nav form.ghost-element {
+	width: inherit;
+}
