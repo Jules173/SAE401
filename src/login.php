@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+
+if (isset($_POST['login'])) {
+	$_SESSION['username'] = $_POST['username'];
+	$_SESSION['password'] = $_POST['password'];
+	header("Location: ./index.php");
+	exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -13,7 +25,7 @@
 			</header>
 			<div id="form-container">
 				<div id="form-wrapper">
-					<form id="login-form">
+					<form method="POST" id="login-form">
 						<div id="username-wrapper">
 							<label for="username">Nom d'utilisateur</label>
 							<input type="text" id="username" name="username" placeholder="Nom d'utilisateur...">
