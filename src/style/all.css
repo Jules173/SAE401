@@ -14,10 +14,17 @@ html, body {
 	height: 100%;
 	width: 100%;
 	flex-direction: column;
+	align-items: flex-start;
 }
 
 #logo {
 	margin: 10px 0 10px 10px;
-	height: 87px;
+	height: auto;
 	width: 214px;
+}
+
+@media screen and (max-width: 214px) {
+	#logo {
+		width: 100%;
+	}
 }

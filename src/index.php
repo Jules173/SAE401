@@ -10,7 +10,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 }
 
 if (isset($_POST['full-view'])) {
-	$html = "<h1>TEXT</h1>";
+	$html = var_dump_ret($_SERVER);
 }
 
 if (isset($_POST['visualization'])) {
@@ -20,8 +20,17 @@ if (isset($_POST['visualization'])) {
 if (isset($_POST['import'])) {
 	$html = "
 	<div id='import-form-container'>
-		<form id='inport-form' method='POST'>
-			
+		<form id='import-form' method='POST'>
+			<div id='form-content-wrapper'>
+				<div id='grades-import-container'>
+					<label for='grade-input-file'>Fichier Excel des moyennes :</label>
+					<input type='file' id='grade-input-file' name='grades'>
+				</div>
+				<div id='jury-import-container'>
+					<label for='jury-input-file'>Fichier Excel des jury :</label>
+					<input type='file' id='jury-input-file' name='jury'>
+				</div>
+			</div>
 		</form>
 	</div>";
 }
@@ -62,16 +71,22 @@ if (isset($_POST['disconnect'])) {
 					<button class="nav-button" name="visualization">Visualisation</button>
 				</form>
 				<div class="white-space"></div>
-				<form method="POST" class="ghost-element">
-					<button class="nav-button" name="import">Importer</button>
-				</form>
-				<div class="half-white-space"></div>
+				<?php
+				
+				if ($_SESSION['isAdmin'] === true) {
+					echo '<form method="POST" class="ghost-element">
+							<button class="nav-button" name="import">Importer</button>
+						</form>
+						<div class="half-white-space"></div>';
+				}
+				
+				?>
 				<form method="POST" class="ghost-element">
 					<button class="nav-button" name="export">Exporter</button>
 				</form>
 				<div class="white-space"></div>
 				<form method="POST" class="ghost-element">
-					<button class="nav-button" name="disconnect">Déconnection</button>
+					<button class="nav-button" name="disconnect">Déconnexion</button>
 				</form>
 			</nav>
 			<div id="page-content">

@@ -2,16 +2,38 @@
 
 session_start();
 
+$users = [
+	[ "username"=>"toto", "password"=>"zuzu", "admin"=>false ],
+	[ "username"=>"tata", "password"=>"yoyo", "admin"=>false ],
+	[ "username"=>"admin", "password"=>"toor", "admin"=>true ]
+];
+
 if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
 	header("Location: ./index.php");
 	exit();
 }
 
+$userMsg = "";
+$passwordMsg = "";
+
 if (isset($_POST['login'])) {
-	$_SESSION['username'] = $_POST['username'];
-	$_SESSION['password'] = $_POST['password'];
-	header("Location: ./index.php");
-	exit();
+	$accountExists = false;
+	foreach ($users as $user) {
+		if ($user['username'] === $_POST['username'] && $user['password'] === $_POST['password']) {
+			$_SESSION['username'] = $user['username'];
+			$_SESSION['password'] = $user['password'];
+			$_SESSION['isAdmin'] = $user['admin'];
+			header("Location: ./index.php");
+			exit();
+		} else if ($user['username'] === $_POST['username']) {
+			$accountExists = true;
+		}
+	}
+	if ($accountExists) {
+		$passwordMsg = "<div class='login-failure'>Mot de passe incorrect</div>";
+	} else {
+		$userMsg = "<div class='login-failure'>Ce compte n'existe pas !</div>";
+	}
 }
 
 ?>
@@ -24,22 +46,25 @@ if (isset($_POST['login'])) {
 	</head>
 	<body>
 		<div id="body-wrapper">
-			<header id="login-header">
-				<img id="logo" src="./images/ulhn.png">
-				<hr>
-			</header>
 			<div id="form-container">
 				<div id="form-wrapper">
 					<form method="POST" id="login-form">
+						<div id="form-header">
+							<span>
+								<h2>Connexion</h2>
+							</span>
+						</div>
 						<div id="username-wrapper">
-							<label for="username">Nom d'utilisateur</label>
-							<input type="text" id="username" name="username" placeholder="Nom d'utilisateur...">
+							<input type="text" id="username" name="username" placeholder="Nom d'utilisateur" autocomplete="username">
 						</div>
+						<?php echo $userMsg; ?>
 						<div id="password-wrapper">
-							<label for="password">Mot de passe</label>
-							<input type="password" id="password" name="password" placeholder="Mot de passe...">
+							<input type="password" id="password" name="password" placeholder="Mot de passe" autocomplete="current-password">
 						</div>
-						<input type="submit" id="submit" name="login" value="Se Connecter">
+						<?php echo $passwordMsg; ?>
+						<div id="submit-wrapper">
+							<input type="submit" id="submit" name="login" value="Se Connecter">
+						</div>
 					</form>
 				</div>
 			</div>

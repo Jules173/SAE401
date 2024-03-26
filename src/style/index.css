@@ -63,10 +63,23 @@
 	display: flex;
 }
 
-#inport-form {
+#import-form {
 	margin: auto;
 	height: 300px;
 	width: 500px;
 	background-color: #505BF3;
 	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+#form-content-wrapper > div {
+	display: flex;
+	flex-direction: column;
+	height: 50px;
+	width: 100%;
 }
