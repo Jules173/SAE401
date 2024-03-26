@@ -11,32 +11,32 @@ INSERT into Semestre VALUES
 	(6, "S6");
 
 INSERT into Competence VALUES
-	(1, "C1", 1),
-	(2, "C2", 1),
-	(3, "C3", 1),
-	(4, "C4", 1),
-	(5, "C5", 1),
-	(6, "C6", 1),
-	(7, "C1", 2),
-	(8, "C2", 2),
-	(9, "C3", 2),
-	(10, "C4", 2),
-	(11, "C5", 2),
-	(12, "C6", 2);
+	(1, "BIN11", 1),
+	(2, "BIN12", 1),
+	(3, "BIN13", 1),
+	(4, "BIN14", 1),
+	(5, "BIN15", 1),
+	(6, "BIN16", 1),
+	(7, "BIN21", 2),
+	(8, "BIN22", 2),
+	(9, "BIN23", 2),
+	(10, "BIN24", 2),
+	(11, "BIN25", 2),
+	(12, "BIN26", 2);
 
 INSERT into Bin VALUES
-	(1, "BIN11BIN21", 1),
-	(2, "BIN12BIN22", 1),
-	(3, "BIN13BIN23", 1),
-	(4, "BIN14BIN24", 1),
-	(5, "BIN15BIN25", 1),
-	(6, "BIN16BIN26", 1),
-	(7, "BIN11", 1),
-	(8, "BIN12", 1),
-	(9, "BIN13", 1),
-	(10, "BIN14", 1),
-	(11, "BIN15", 1),
-	(12, "BIN16", 1);
+	(1, "BINR101", 1, 1),
+	(2, "BINR102", 2, 1),
+	(3, "BINR112", 3, 1),
+	(4, "BINR204", 4, 2),
+	(5, "BINR307", 5, 3),
+	(6, "BINR406", 6, 4),
+	(7, "BINR206", 7, 2),
+	(8, "BINR106", 8, 1),
+	(9, "BINS411", 9, 4),
+	(10, "BINS411", 10, 4),
+	(11, "BINS401", 11, 4),
+	(12, "BINP401", 12, 4);
 
 INSERT into Etudiant (etu_id, codenip, civ, nom, prenom, grpTD, grpTP, cursus, bac, passage, decision) VALUES 
 	(8860, 8860, "M.", "ROCHE", "Pierre", "A", "A1", "S1 S2 S3 S4 S5 S6", "NBGE", "S2", "ADM"),
@@ -45,5 +45,21 @@ INSERT into Etudiant (etu_id, codenip, civ, nom, prenom, grpTD, grpTP, cursus, b
 	(8811, 8811, "Mme.", "FONTAINE", "Ondine", "B", "B2", "S1 S2 S3 S4", "NBGE", "S2", "ADM");
 
 INSERT into Etudiant (etu_id, codenip, rang, civ, nom, prenom, grpTD, grpTP, cursus, bac, specialite, passage, decision) VALUES
-	(8884, 8884, "Mme.", "PASDECEINTURE", "Jean-Michel", "B", "B2", "S1 S2 S1", "S", "SCIENCES","S2", "NAR");
-	(8874, 8874, "Mme.", "AFEE", "Mack", "B", "B2", "S1 S2", "S", "SCIENCES","S2", "NAR");
+	(8884, 8884, "Mme.", "PASDECEINTURE", "Jean-Michel", "B", "B2", "S1 S2 S1", "S", "SCIENCES","S2", "ADM"),
+	(8874, 8874, "Mme.", "AFEE", "Mack", "B", "B2", "S1 S2", "S", "SCIENCES","S2", "ADM");
+
+INSERT into moyene_competence VALUES
+	(8860, 8860, 1, 14.65),
+	(8860, 8860, 2, 17.05),
+	(8860, 8860, 3, 17.23),
+	(8860, 8860, 4, 18.23),
+	(8810, 8810, 4, 15.54),
+	(8810, 8810, 6, 11.74);
+	
+INSERT into moyenne_eleve VALUES
+	(8860, 8860, 1, 14.65, 0.16),
+	(8810, 8810, 1, 16.52);
+
+INSERT into validation VALUES
+	(8860,8860, 1, 6, "ADM",16.03, 3, 0),
+	(8811,8811, 1, 6, "ADM",14.69, 2, 0);

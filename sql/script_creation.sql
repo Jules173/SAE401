@@ -36,7 +36,7 @@ CREATE TABLE Competence(
    nom_comp VARCHAR(50) NOT NULL,
    id_semestre INT NOT NULL,
    PRIMARY KEY(id_competence),
-   FOREIGN KEY(id_semestre) REFERENCES Semestre(id_semestre)
+   FOREIGN KEY(id_semestre) REFERENCES Semestre(id_semestre)(8860, 8860, 1, 14.65, ),
 );
 
 CREATE TABLE Bin(
@@ -62,10 +62,9 @@ CREATE TABLE moyene_competence(
 CREATE TABLE moyenne_eleve(
    etu_id INT,
    codenip INT,
-   id_bin INT,
+   id_competence INT,
    moyenne DECIMAL(4,2) NOT NULL,
-   decision VARCHAR(50) NOT NULL,
-   bonus DECIMAL(4,2) NOT NULL DEFAULT ,
+   bonus DECIMAL(4,2) NOT NULL DEFAULT 0,
    PRIMARY KEY(etu_id, codenip, id_bin),
    FOREIGN KEY(etu_id, codenip) REFERENCES Etudiant(etu_id, codenip),
    FOREIGN KEY(id_bin) REFERENCES Bin(id_bin)
@@ -76,6 +75,7 @@ CREATE TABLE validation(
    codenip INT,
    id_semestre INT,
    uevalide VARCHAR(50) NOT NULL,
+   decision VARCHAR(50),
    moyenne DECIMAL(4,2) NOT NULL,
    absence INT NOT NULL DEFAULT 0,
    nb_justif_absence INT NOT NULL DEFAULT 0,
