@@ -1,2 +1,2 @@
 ### THE TITLE
-K.A.K.A : LE TITRE
+A.K.A : LE TITRE
