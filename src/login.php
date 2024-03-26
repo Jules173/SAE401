@@ -4,7 +4,6 @@ session_start();
 
 $users = [
 	[ "username"=>"toto", "password"=>"zuzu", "admin"=>false ],
-	[ "username"=>"tata", "password"=>"yoyo", "admin"=>false ],
 	[ "username"=>"admin", "password"=>"toor", "admin"=>true ]
 ];
 

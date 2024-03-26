@@ -9,7 +9,7 @@
 
 #index-nav {
 	grid-area: nav;
-	background-image: linear-gradient(180deg, #505BF3, #2E3490);
+	background-color: #BE4F23;
 	height: 100%;
 	width: 250px;
 	position: relative;
@@ -25,32 +25,22 @@
 
 #logo-container {
 	width: 100%;
-	height: 111px;
+	height: 120px;
 	position: relative;
 	display: flex;
 }
 
 .nav-button {
 	border: none;
-	background-color: #d9d9d95c;
-	height: 30px;
+	background-color: #BE4F23;
+	height: 46px;
 	width: 100%;
+	color: white;
 	cursor: pointer;
 }
 
-.nav-button:hover {
+.nav-button:hover:not(.selected) {
 	background-color: #d9d9d994;
-}
-
-.white-space,
-.half-white-space {
-	width: 100%;
-	height: 30px;
-	background-color: transparent;
-}
-
-.half-white-space {
-	height: 15px;
 }
 
 #index-nav form.ghost-element {
@@ -82,4 +72,9 @@
 	flex-direction: column;
 	height: 50px;
 	width: 100%;
+}
+
+.selected {
+	background-color: white;
+	color: #BE4F23;
 }

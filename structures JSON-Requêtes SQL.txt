@@ -1,0 +1,19 @@
+Connexion:
+Site->DB
+$_POST = [ "username"=>"<data>", "password"=>"<data>" ]
+SELECT username, mdp FROM users WHERE username = '{$_POST['username']}';
+DB->Site
+{username: "<data>", accepted: true, isAdmin: false}
+
+Changement de mot de passe:
+Site->DB
+$_POST = [ "username"=>"<data>", "currentpassword"=>"<data>", "newpassword"=>"<data>" ]
+SELECT username, mdp FROM users WHERE username = '{$_POST['username']}';
+UPDATE users SET mdp = '{hash($_POST['newpassword'])}' WHERE username = '{$_POST['username']}';
+DB->Site
+{username: "<data>", accepted: true}
+
+Récupération des données:
+DB->Site
+Table Etudiant:
+{annee: "<data>", etu_id: "<data>", codenip: "<data>", rang: "<data>", civ: "<data>", nom: "<data>", prenom: "<data>", grpTD: "<data>", grpTP: "<data>", cursus: "<data>", bac: "<data>", specialite: "<data>", passage: "<data>", decision: "<data>", motif: "<data>", type_adm: "<data>", rang_adm: "<data>"}

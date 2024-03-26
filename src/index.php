@@ -9,12 +9,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 	exit();
 }
 
-if (isset($_POST['full-view'])) {
+if (isset($_POST['display'])) {
 	$html = var_dump_ret($_SERVER);
-}
-
-if (isset($_POST['visualization'])) {
-	$html = var_dump_ret($_SESSION);
 }
 
 if (isset($_POST['import'])) {
@@ -33,10 +29,6 @@ if (isset($_POST['import'])) {
 			</div>
 		</form>
 	</div>";
-}
-
-if (isset($_POST['export'])) {
-	$html = "";
 }
 
 if (isset($_POST['disconnect'])) {
@@ -59,32 +51,20 @@ if (isset($_POST['disconnect'])) {
 		<div id="body-container">
 			<nav id="index-nav">
 				<div id="logo-container">
-					<img id="logo" src="./images/ulhn.png">
+					<img id="logo" src="./images/ulhn.png" style="display: none">
 				</div>
-				<div class="white-space"></div>
-				<div class="white-space"></div>
 				<form method="POST" class="ghost-element">
-					<button class="nav-button" name="full-view">Vue d'ensemble</button>
+					<button class="nav-button <?php echo isset($_POST['display']) ? "selected" : ""; ?>" name="display">Affichage</button>
 				</form>
-				<div class="half-white-space"></div>
-				<form method="POST" class="ghost-element">
-					<button class="nav-button" name="visualization">Visualisation</button>
-				</form>
-				<div class="white-space"></div>
 				<?php
 				
 				if ($_SESSION['isAdmin'] === true) {
-					echo '<form method="POST" class="ghost-element">
-							<button class="nav-button" name="import">Importer</button>
-						</form>
-						<div class="half-white-space"></div>';
+					echo '<form method="POST" class="ghost-element ">
+							<button class="nav-button ' . (isset($_POST['import']) ? "selected" : "") . '" name="import">Importer</button>
+						</form>';
 				}
 				
 				?>
-				<form method="POST" class="ghost-element">
-					<button class="nav-button" name="export">Exporter</button>
-				</form>
-				<div class="white-space"></div>
 				<form method="POST" class="ghost-element">
 					<button class="nav-button" name="disconnect">Déconnexion</button>
 				</form>
