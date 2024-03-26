@@ -54,6 +54,7 @@ CREATE TABLE moyene_competence(
    codenip INT,
    id_competence INT,
    moyenne DECIMAL(4,2) NOT NULL,
+   bonus DECIMAL(4,2) NOT NULL DEFAULT 0,
    PRIMARY KEY(etu_id, codenip, id_competence),
    FOREIGN KEY(etu_id, codenip) REFERENCES Etudiant(etu_id, codenip),
    FOREIGN KEY(id_competence) REFERENCES Competence(id_competence)
@@ -62,9 +63,8 @@ CREATE TABLE moyene_competence(
 CREATE TABLE moyenne_eleve(
    etu_id INT,
    codenip INT,
-   id_competence INT,
+   id_bin INT,
    moyenne DECIMAL(4,2) NOT NULL,
-   bonus DECIMAL(4,2) NOT NULL DEFAULT 0,
    PRIMARY KEY(etu_id, codenip, id_bin),
    FOREIGN KEY(etu_id, codenip) REFERENCES Etudiant(etu_id, codenip),
    FOREIGN KEY(id_bin) REFERENCES Bin(id_bin)
