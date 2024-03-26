@@ -1,3 +1,12 @@
+DROP TABLE IF EXISTS validation;
+DROP TABLE IF EXISTS moyenne_eleve;
+DROP TABLE IF EXISTS moyene_competence;
+DROP TABLE IF EXISTS Bin;
+DROP TABLE IF EXISTS Competence;
+DROP TABLE IF EXISTS Users;
+DROP TABLE IF EXISTS Semestre;
+DROP TABLE IF EXISTS Etudiant;
+
 CREATE TABLE Etudiant(
    etu_id INT,
    codenip INT NOT NULL UNIQUE,
@@ -55,6 +64,7 @@ CREATE TABLE moyene_competence(
    id_competence INT,
    moyenne DECIMAL(4,2) NOT NULL,
    bonus DECIMAL(4,2) NOT NULL DEFAULT 0,
+   decision VARCHAR(50) NOT NULL DEFAULT 'TRUE',
    PRIMARY KEY(etu_id, codenip, id_competence),
    FOREIGN KEY(etu_id, codenip) REFERENCES Etudiant(etu_id, codenip),
    FOREIGN KEY(id_competence) REFERENCES Competence(id_competence)
