@@ -6,11 +6,12 @@ DROP TABLE IF EXISTS Competence;
 DROP TABLE IF EXISTS Users;
 DROP TABLE IF EXISTS Semestre;
 DROP TABLE IF EXISTS Etudiant;
+DROP TABLE IF EXISTS Annee;
 
 CREATE TABLE Etudiant(
    etu_id INT,
-   codenip INT NOT NULL UNIQUE,
-   rang SERIAL NOT NULL,
+   codenip INT NOT NULL,
+   rang INT NOT NULL,
    civ VARCHAR(4) NOT NULL,
    nom VARCHAR(50) NOT NULL,
    prenom VARCHAR(50) NOT NULL,
@@ -21,75 +22,95 @@ CREATE TABLE Etudiant(
    specialite VARCHAR(50),
    passage VARCHAR(50) NOT NULL,
    decision VARCHAR(50),
-   motif VARCHAR(50) DEFAULT 'modifier décisions',
+   motif VARCHAR(50) DEFAULT 'Modifier decision',
    type_adm VARCHAR(50),
    rang_adm VARCHAR(50),
-   PRIMARY KEY(etu_id) 
+   id_annee INT NOT NULL,
+   PRIMARY KEY(etu_id),
+   UNIQUE(codenip),
+   FOREIGN KEY(id_annee) REFERENCES Annee(id_annee)
 );
 
-CREATE TABLE Semestre(
-   id_semestre INT,
-   nom_semestre VARCHAR(50) NOT NULL,
-   PRIMARY KEY(id_semestre)
-);
 
 CREATE TABLE Users(
    id_compte INT,
    username VARCHAR(50) NOT NULL,
    mdp VARCHAR(50) NOT NULL,
+   admin LOGICAL NOT NULL DEFAULT FALSE,
    PRIMARY KEY(id_compte)
 );
 
+CREATE TABLE Annee(
+   id_annee INT,
+   nom_annee VARCHAR(50),
+   PRIMARY KEY(id_annee),
+   UNIQUE(nom_annee)
+);
+
+CREATE TABLE Semestre(
+   id_semestre INT,
+   nom_semestre VARCHAR(50) NOT NULL,
+   id_annee INT NOT NULL,
+   PRIMARY KEY(id_semestre),
+   FOREIGN KEY(id_annee) REFERENCES Annee(id_annee)
+);
+
 CREATE TABLE Competence(
-   id_competence VARCHAR(50),
+   id_competence INT,
    nom_comp VARCHAR(50) NOT NULL,
+   id_annee INT NOT NULL,
    id_semestre INT NOT NULL,
    PRIMARY KEY(id_competence),
-   FOREIGN KEY(id_semestre) REFERENCES Semestre(id_semestre)(8860, 8860, 1, 14.65, ),
+   FOREIGN KEY(id_annee) REFERENCES Annee(id_annee),
+   FOREIGN KEY(id_semestre) REFERENCES Semestre(id_semestre)
 );
 
 CREATE TABLE Bin(
    id_bin INT,
    nom_bin VARCHAR(50),
-   id_competence INT
-   id_semestre VARCHAR(50) NOT NULL,
+   id_annee INT NOT NULL,
+   id_competence INT NOT NULL,
    PRIMARY KEY(id_bin),
-   FOREIGN KEY(id_semestre) REFERENCES Semestre(id_semestre),
-   FOREIGN KEY(id_competence) REFERENCES Competence(id_competence)
+   FOREIGN KEY(id_annee) REFERENCES Annee(id_annee),
+   FOREIGN KEY(id_competence) REFERENCES Competence(id_competence),
+   FOREIGN KEY(id_semestre) REFERENCES Semestre(id_semestre)
 );
 
 CREATE TABLE moyene_competence(
    etu_id INT,
-   codenip INT,
    id_competence INT,
+   id_annee INT,
    moyenne DECIMAL(4,2) NOT NULL,
    bonus DECIMAL(4,2) NOT NULL DEFAULT 0,
-   decision VARCHAR(50) NOT NULL DEFAULT 'TRUE',
-   PRIMARY KEY(etu_id, codenip, id_competence),
-   FOREIGN KEY(etu_id, codenip) REFERENCES Etudiant(etu_id, codenip),
-   FOREIGN KEY(id_competence) REFERENCES Competence(id_competence)
-);
-
-CREATE TABLE moyenne_eleve(
-   etu_id INT,
-   codenip INT,
-   id_bin INT,
-   moyenne DECIMAL(4,2) NOT NULL,
-   PRIMARY KEY(etu_id, codenip, id_bin),
-   FOREIGN KEY(etu_id, codenip) REFERENCES Etudiant(etu_id, codenip),
-   FOREIGN KEY(id_bin) REFERENCES Bin(id_bin)
+   decision VARCHAR(50) NOT NULL DEFAULT 'ADM',
+   PRIMARY KEY(etu_id, id_competence, id_annee),
+   FOREIGN KEY(etu_id) REFERENCES Etudiant(etu_id),
+   FOREIGN KEY(id_competence) REFERENCES Competence(id_competence),
+   FOREIGN KEY(id_annee) REFERENCES Annee(id_annee)
 );
 
 CREATE TABLE validation(
    etu_id INT,
-   codenip INT,
    id_semestre INT,
+   id_annee INT,
    uevalide VARCHAR(50) NOT NULL,
-   decision VARCHAR(50),
+   decision VARCHAR(50) NOT NULL DEFAULT 'ADM',
    moyenne DECIMAL(4,2) NOT NULL,
    absence INT NOT NULL DEFAULT 0,
    nb_justif_absence INT NOT NULL DEFAULT 0,
-   PRIMARY KEY(etu_id, codenip, id_semestre),
-   FOREIGN KEY(etu_id, codenip) REFERENCES Etudiant(etu_id, codenip),
-   FOREIGN KEY(id_semestre) REFERENCES Semestre(id_semestre)
+   PRIMARY KEY(etu_id, id_semestre, id_annee),
+   FOREIGN KEY(etu_id) REFERENCES Etudiant(etu_id),
+   FOREIGN KEY(id_semestre) REFERENCES Semestre(id_semestre),
+   FOREIGN KEY(id_annee) REFERENCES Annee(id_annee)
+);
+
+CREATE TABLE moyenne_eleve(
+   etu_id INT,
+   id_bin INT,
+   id_annee INT,
+   moyenne DECIMAL(4,2) NOT NULL,
+   PRIMARY KEY(etu_id, id_bin, id_annee),
+   FOREIGN KEY(etu_id) REFERENCES Etudiant(etu_id),
+   FOREIGN KEY(id_bin) REFERENCES Bin(id_bin),
+   FOREIGN KEY(id_annee) REFERENCES Annee(id_annee)
 );
