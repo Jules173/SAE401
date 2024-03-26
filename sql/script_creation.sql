@@ -1,6 +1,6 @@
 CREATE TABLE Etudiant(
    etu_id INT,
-   codenip VARCHAR(50) NOT NULL UNIQUE,
+   codenip INT NOT NULL UNIQUE,
    rang SERIAL NOT NULL,
    civ VARCHAR(4) NOT NULL,
    nom VARCHAR(50) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE Etudiant(
 );
 
 CREATE TABLE Semestre(
-   id_semestre VARCHAR(50),
+   id_semestre INT,
    nom_semestre VARCHAR(50) NOT NULL,
    PRIMARY KEY(id_semestre)
 );
@@ -27,30 +27,32 @@ CREATE TABLE Semestre(
 CREATE TABLE Users(
    id_compte INT,
    username VARCHAR(50) NOT NULL,
-   password VARCHAR(50) NOT NULL,
+   mdp VARCHAR(50) NOT NULL,
    PRIMARY KEY(id_compte)
 );
 
 CREATE TABLE Competence(
    id_competence VARCHAR(50),
    nom_comp VARCHAR(50) NOT NULL,
-   id_semestre VARCHAR(50) NOT NULL,
+   id_semestre INT NOT NULL,
    PRIMARY KEY(id_competence),
    FOREIGN KEY(id_semestre) REFERENCES Semestre(id_semestre)
 );
 
 CREATE TABLE Bin(
-   id_bin VARCHAR(50),
+   id_bin INT,
    nom_bin VARCHAR(50),
+   id_competence INT
    id_semestre VARCHAR(50) NOT NULL,
    PRIMARY KEY(id_bin),
-   FOREIGN KEY(id_semestre) REFERENCES Semestre(id_semestre)
+   FOREIGN KEY(id_semestre) REFERENCES Semestre(id_semestre),
+   FOREIGN KEY(id_competence) REFERENCES Competence(id_competence)
 );
 
 CREATE TABLE moyene_competence(
    etu_id INT,
-   codenip VARCHAR(50),
-   id_competence VARCHAR(50),
+   codenip INT,
+   id_competence INT,
    moyenne DECIMAL(4,2) NOT NULL,
    PRIMARY KEY(etu_id, codenip, id_competence),
    FOREIGN KEY(etu_id, codenip) REFERENCES Etudiant(etu_id, codenip),
@@ -59,8 +61,8 @@ CREATE TABLE moyene_competence(
 
 CREATE TABLE moyenne_eleve(
    etu_id INT,
-   codenip VARCHAR(50),
-   id_bin VARCHAR(50),
+   codenip INT,
+   id_bin INT,
    moyenne DECIMAL(4,2) NOT NULL,
    decision VARCHAR(50) NOT NULL,
    bonus DECIMAL(4,2) NOT NULL DEFAULT ,
@@ -71,8 +73,8 @@ CREATE TABLE moyenne_eleve(
 
 CREATE TABLE validation(
    etu_id INT,
-   codenip VARCHAR(50),
-   id_semestre VARCHAR(50),
+   codenip INT,
+   id_semestre INT,
    uevalide VARCHAR(50) NOT NULL,
    moyenne DECIMAL(4,2) NOT NULL,
    absence INT NOT NULL DEFAULT 0,
