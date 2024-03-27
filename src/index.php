@@ -10,7 +10,16 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 }
 
 if (isset($_POST['display'])) {
-	$html = var_dump_ret($_SERVER);
+	//$html = var_dump_ret($_SERVER);
+	// class='selected'
+	$html = "
+	<div id='display-container'>
+		<header id='display-header'>
+			<button id='promotion-btn'>Promotion<div class='bottom-border stop-animation'></div></button>
+			<button id='studient-btn'>Étudiant<div class='bottom-border stop-animation'></div></button>
+		</header>
+		<section id=''></section>
+	</div>";
 }
 
 if (isset($_POST['import'])) {
