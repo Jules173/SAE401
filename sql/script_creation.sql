@@ -12,6 +12,12 @@ CREATE TABLE Etudiant(
    UNIQUE(codenip)
 );
 
+CREATE TABLE Bin(
+   id_bin INT,
+   nom_bin VARCHAR(50),
+   PRIMARY KEY(id_bin)
+);
+
 CREATE TABLE Semestre(
    id_semestre INT,
    semestre VARCHAR(50) NOT NULL,
@@ -43,20 +49,11 @@ CREATE TABLE Competence(
    FOREIGN KEY(id_semestre) REFERENCES Semestre(id_semestre)
 );
 
-CREATE TABLE Bin(
-   id_bin INT,
-   nom_bin VARCHAR(50),
-   id_competence INT NOT NULL,
-   PRIMARY KEY(id_bin),
-   FOREIGN KEY(id_competence) REFERENCES Competence(id_competence)
-);
-
-CREATE TABLE moyene_competence(
+CREATE TABLE moyenne_competence(
    etu_id INT,
    id_competence INT,
-   moyenne DECIMAL(4,2) NOT NULL DEFAULT -1,
    bonus DECIMAL(4,2) NOT NULL DEFAULT 0,
-   decision VARCHAR(50),
+   decision VARCHAR(50) DEFAULT 'ADM',
    PRIMARY KEY(etu_id, id_competence),
    FOREIGN KEY(etu_id) REFERENCES Etudiant(etu_id),
    FOREIGN KEY(id_competence) REFERENCES Competence(id_competence)
@@ -65,7 +62,7 @@ CREATE TABLE moyene_competence(
 CREATE TABLE validation(
    etu_id INT,
    id_semestre INT,
-   decision VARCHAR(50),
+   decision VARCHAR(50) DEFAULT 'ADM',
    passage VARCHAR(50),
    motif VARCHAR(50) DEFAULT 'Modifier decision',
    type_adm VARCHAR(50),
@@ -75,10 +72,19 @@ CREATE TABLE validation(
    FOREIGN KEY(id_semestre) REFERENCES Semestre(id_semestre)
 );
 
+CREATE TABLE Attribution(
+   id_competence INT,
+   id_bin INT,
+   coeff INT NOT NULL,
+   PRIMARY KEY(id_competence, id_bin),
+   FOREIGN KEY(id_competence) REFERENCES Competence(id_competence),
+   FOREIGN KEY(id_bin) REFERENCES Bin(id_bin)
+);
+
 CREATE TABLE moyenne_eleve(
    etu_id INT,
    id_bin INT,
-   moyenne DECIMAL(4,2) NOT NULL DEFAULT -1,
+   moyenne DECIMAL(4,2) NOT NULL,
    PRIMARY KEY(etu_id, id_bin),
    FOREIGN KEY(etu_id) REFERENCES Etudiant(etu_id),
    FOREIGN KEY(id_bin) REFERENCES Bin(id_bin)
@@ -87,8 +93,8 @@ CREATE TABLE moyenne_eleve(
 CREATE TABLE Promotion(
    etu_id INT,
    id_semestre INT,
+   nom_status VARCHAR(50) NOT NULL DEFAULT 'Initial',
    annee VARCHAR(50) NOT NULL,
-   nom_status VARCHAR(50) NOT NULL DEFAULT 'Etudiant',
    PRIMARY KEY(etu_id, id_semestre),
    FOREIGN KEY(etu_id) REFERENCES Etudiant(etu_id),
    FOREIGN KEY(id_semestre) REFERENCES Semestre(id_semestre)
