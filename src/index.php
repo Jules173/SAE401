@@ -10,15 +10,25 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 }
 
 if (isset($_POST['display'])) {
-	//$html = var_dump_ret($_SERVER);
-	// class='selected'
 	$html = "
 	<div id='display-container'>
 		<header id='display-header'>
 			<button id='promotion-btn'>Promotion<div class='bottom-border stop-animation'></div></button>
-			<button id='studient-btn'>Étudiant<div class='bottom-border stop-animation'></div></button>
+			<button id='student-btn'>Étudiant<div class='bottom-border stop-animation'></div></button>
 		</header>
-		<section id=''></section>
+		<section id='display-table-container'>
+			<div id='promotion-table'></div>
+			<div id='student-table'>
+				<div id='search-filter-container'>
+					<div id='search-bar-wrapper'>
+						<input type='search' id='student-search-bar' name='searchbar' placeholder='Rechercher un étudiant...'>
+					</div>
+					<button id='filter-btn'>
+						<img src='./images/settings.svg' width='24' height='40' alt='Filtre'>
+					</button>
+				</div>
+			</div>
+		</section>
 	</div>";
 }
 
