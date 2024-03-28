@@ -90,8 +90,9 @@
 	display: flex;
 	flex-direction: row;
 	align-items: flex-end;
-	column-gap: 63px;
-	padding: 0 0 0 63px;
+	/* column-gap: 63px; */
+	padding: 0 200px 0 60px;
+	justify-content: space-around;
 }
 
 button {
@@ -158,6 +159,15 @@ button {
 	}
 }
 
+@keyframes smoothDisplay {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
 .stop-animation {
 	animation-duration: 0s !important;
 }
@@ -180,8 +190,10 @@ button {
 	animation-timing-function: ease-in-out;
 }
 
-#display-table-container > div {
+#display-data-container > div {
 	display: none;
+	opacity: 0;
+	animation: smoothDisplay ease-in-out 0.25s forwards;
 }
 
 #filter-btn {
@@ -189,8 +201,8 @@ button {
 	height: auto;
 }
 
-#student-table {
-	padding: 17px 0 0 0;
+#student-table-container {
+	/* padding: 17px 0 0 0; */
 	flex-direction: column;
 	align-items: center;
 	flex-wrap: wrap;
@@ -199,7 +211,7 @@ button {
 #student-search-bar {
 	width: 470px;
 	height: 23px;
-	padding: 0px 50px;
+	padding: 0 0 0 50px;
 	border-radius: 8px;
 	outline: none;
 	border: 1px solid #BE4F23;
@@ -264,4 +276,53 @@ button {
 
 #filter-btn > img {
 	clip-path: polygon(0 12px, 24px 12px, 24px 28px, 0 28px);
+}
+
+input[type=search]::-webkit-search-cancel-button {
+	cursor: pointer;
+}
+
+#student-semesters-selector {
+	margin-top: 1em;
+}
+
+.semester-button {
+	width: 100px;
+	height: 37px;
+	border: none;
+	background-color: transparent;
+	color: #BE4F23;
+	border-radius: 3px;
+	transition-duration: 0.25s;
+}
+
+#semesters-buttons {
+	border-bottom: 1px solid #BE4F23;
+}
+
+.semester-button:hover:not(.selected) {
+	background-color: #d9d9d994;
+}
+
+.semester-button.selected {
+	background-color: #BE4F23;
+	color: white;
+	transition-duration: 0.25s;
+}
+
+.semester-button.selected:hover {
+	opacity: 0.9;
+}
+
+#display-data-container {
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+#display-data-container > div {
+	position: relative;
+	height: calc(100% - 17px);
+	width: 100%;
+	padding: 17px 0 0 0;
 }

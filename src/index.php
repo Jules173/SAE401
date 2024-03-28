@@ -13,12 +13,13 @@ if (isset($_POST['display'])) {
 	$html = "
 	<div id='display-container'>
 		<header id='display-header'>
-			<button id='promotion-btn'>Promotion<div class='bottom-border stop-animation'></div></button>
-			<button id='student-btn'>Étudiant<div class='bottom-border stop-animation'></div></button>
+			<button id='promotion-btn' class='display-info-button'>Promotion<div class='bottom-border stop-animation'></div></button>
+			<button id='student-btn' class='display-info-button'>Étudiant<div class='bottom-border stop-animation'></div></button>
+			<button id='commission-btn' class='display-info-button'>Commission<div class='bottom-border stop-animation'></div></button>
 		</header>
-		<section id='display-table-container'>
-			<div id='promotion-table'></div>
-			<div id='student-table'>
+		<section id='display-data-container'>
+			<div id='promotion-table-container'></div>
+			<div id='student-table-container'>
 				<div id='search-filter-container'>
 					<div id='search-bar-wrapper'>
 						<input type='search' id='student-search-bar' name='searchbar' placeholder='Rechercher un étudiant...'>
@@ -27,7 +28,19 @@ if (isset($_POST['display'])) {
 						<img src='./images/settings.svg' width='24' height='40' alt='Filtre'>
 					</button>
 				</div>
+				<div id='student-semesters-selector'>
+					<div id='semesters-buttons'>
+						<button id='semester1' class='semester-button'>Semestre 1</button>
+						<button id='semester2' class='semester-button'>Semestre 2</button>
+						<button id='semester3' class='semester-button'>Semestre 3</button>
+						<button id='semester4' class='semester-button'>Semestre 4</button>
+						<button id='semester5' class='semester-button'>Semestre 5</button>
+						<button id='semester6' class='semester-button'>Semestre 6</button>
+					</div>
+					<div>
+				</div>
 			</div>
+			<div id='commission-table-container'></div>
 		</section>
 	</div>";
 }
