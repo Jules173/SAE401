@@ -36,10 +36,10 @@ INSERT INTO Semestre VALUES
 	(6, 'S6');
 
 INSERT INTO Administration VALUES
-	(1, 3, 0, 8860, '2023-2024'),
-	(2, 2, 1, 8810, '2023-2024'),
-	(3, 3, 0, 8918, '2023-2024'),
-	(4, 2, 0, 8811, '2023-2024');
+	(1, 3, 0, '2023-2024', 8860),
+	(2, 2, 1, '2023-2024', 8810),
+	(3, 3, 0, '2023-2024', 8918),
+	(4, 2, 0, '2023-2024', 8811);
 
 INSERT INTO Competence VALUES
 	(1, 'BIN11', 1),
@@ -88,7 +88,7 @@ INSERT INTO Attribution VALUES
 	(6, 9 , 12),
 	(6, 10, 12),
 	(6, 11, 12),
-	(6, 11, 6);
+	(6, 12, 6);
 
 INSERT INTO moyenne_eleve VALUES
 	(8860, 1, 16.28),
@@ -98,7 +98,7 @@ INSERT INTO moyenne_eleve VALUES
 	(8860, 2, 16.20),
 	(8810, 2, 17.87),
 	(8918, 2, 19.12),
-	(8811, 2, 17.18),
+	(8811, 2, 17.18);
 
 INSERT INTO Promotion VALUES
 	(8860, 1, 'Initial', '2023-2024'),
