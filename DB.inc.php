@@ -29,7 +29,7 @@
 			catch (PDOException $e) {
 				echo $e;
 			}
-				} //fin IF
+				}
 			$obj = self::$instance;
 
 			if (($obj->connect) == null) {
@@ -258,85 +258,6 @@
 			$tparam = array($ncli);
 			return $this->execMaj($requete,$tparam);
 		}
-
-		/*Fonctions table Produit*/
-			public function getProduit($choixTri) {
-				$requete = 'select * from produit ';
-				switch ($choixTri) {
-					case 'np':
-						$requete .= 'order by np';
-						break;
-					
-					case 'lib':
-						$requete .= 'order by lib';
-						break;
-
-					case 'coul':
-						$requete .= 'order by coul';
-						break;
-					
-					case 'qs':
-						$requete .= 'order by qs';	
-						break;
-				}
-				return $this->execQuery($requete,null,'Produit');
-			}    
-
-			public function insertProduit($np,$lib,$coul,$qs) {
-				$requete = 'insert into produit values(?,?,?,?)';
-				$tparam = array($np,$lib,$coul,$qs);
-				return $this->execMaj($requete,$tparam);
-			}
-
-			public function deleteProduit($np) {
-				$requete = 'delete from produit where np = ?';
-				$tparam = array($np);
-				return $this->execMaj($requete,$tparam);
-			}
-
-			public function updateProduit($np, $lib, $coul, $qs){
-				$requete = 'update produit set lib = ? , coul = ? , qs = ? where np = ?';
-				$tparam = array($lib, $coul, $qs, $np);
-				return $this->execMaj($requete,$tparam);
-			}
-
-			/*Fonctions table Achat*/
-			public function getAchat($choixTri) {
-				$requete = 'select * from achat ';
-				switch ($choixTri) {					
-					case 'ncli':
-						$requete .= 'Order by ncli';
-						break;
-
-					case 'np':
-						$requete .= 'Order by np';
-						break;
-					
-					case 'qa':
-						$requete .= 'Order by qa';
-						break;
-				}
-
-				return $this->execQuery($requete,null,'Achat');
-			}   
-
-			public function insertAchat($ncli,$np,$qa) {
-				$requete = 'insert into achat values(?,?,?)';
-				$tparam = array($ncli,$np,$qa);
-				return $this->execMaj($requete,$tparam);
-			}
-
-			public function deleteAchat($ncli, $np) {
-				$requete = 'delete from achat where ncli = ? and np = ?';
-				$tparam = array($ncli,$np);
-				return $this->execMaj($requete,$tparam);
-			}
-
-			public function updateAchat($ncli, $np, $qa){
-				$requete = 'update produit set qa = ? where ncli = ? and np = ?';
-				$tparam = array($qa, $ncli, $np);
-				return $this->execMaj($requete,$tparam);
-			}
 
 
 	} //fin classe DB
