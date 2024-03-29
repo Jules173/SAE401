@@ -42,6 +42,7 @@ if (isset($_POST['display'])) {
 									<th>C5</th>
 									<th>C6</th>
 									<th>Validé</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -54,12 +55,251 @@ if (isset($_POST['display'])) {
 									<td>ADM | 12</td>
 									<td>ADM | 12</td>
 									<td>ADM</td>
+									<td>
+										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+									</td>
+								</tr>
+								<tr>
+									<td>etud1</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 11</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM</td>
+									<td>
+										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+									</td>
+								</tr>
+								<tr>
+									<td>etud1</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 11</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM</td>
+									<td>
+										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+									</td>
+								</tr>
+								<tr>
+									<td>etud1</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 11</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM</td>
+									<td>
+										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+									</td>
+								</tr>
+								<tr>
+									<td>etud1</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 11</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM</td>
+									<td>
+										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+									</td>
+								</tr>
+								<tr>
+									<td>etud1</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 11</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM</td>
+									<td>
+										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+									</td>
+								</tr>
+								<tr>
+									<td>etud1</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 11</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM</td>
+									<td>
+										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+									</td>
+								</tr>
+								<tr>
+									<td>etud1</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 11</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM</td>
+									<td>
+										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+									</td>
+								</tr>
+								<tr>
+									<td>etud1</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 11</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM</td>
+									<td>
+										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+									</td>
+								</tr>
+								<tr>
+									<td>etud1</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 11</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM</td>
+									<td>
+										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+									</td>
+								</tr>
+								<tr>
+									<td>etud1</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 11</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM</td>
+									<td>
+										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+									</td>
+								</tr>
+								<tr>
+									<td>etud1</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 11</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM</td>
+									<td>
+										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+									</td>
+								</tr>
+								<tr>
+									<td>etud1</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 11</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM</td>
+									<td>
+										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+									</td>
+								</tr>
+								<tr>
+									<td>etud1</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 11</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM</td>
+									<td>
+										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+									</td>
+								</tr>
+								<tr>
+									<td>etud1</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 11</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM</td>
+									<td>
+										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+									</td>
+								</tr>
+								<tr>
+									<td>etud1</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 11</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM</td>
+									<td>
+										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 				</div>
-				<div id='promotion-filter'></div>
+				<form id='promotion-filter'>
+					<span class='default-text'>Affichage</span>
+					<div id='display-mode'>
+						<div>
+							<input type='radio' id='year-display' name='display-mode' value='year' checked>
+							<label for='year-display'>Année</label>
+						</div>
+						<div>
+							<input type='radio' id='semester-display' name='display-mode' value='semester'>
+							<label for='semester-display'>Semestre</label>
+						</div>
+					</div>
+					<div id='skills-display-container'>
+						<span>Compétences :</span>
+						<div id='skills-display-wrapper'>
+							<div>
+								<input type='checkbox' id='c1' name='c1' value='c1'>
+								<label for='c1'>C1</label>
+							</div>
+							<div>
+								<input type='checkbox' id='c2' name='c2' value='c2'>
+								<label for='c2'>C2</label>
+							</div>
+							<div>
+								<input type='checkbox' id='c3' name='c3' value='c3'>
+								<label for='c3'>C3</label>
+							</div>
+							<div>
+								<input type='checkbox' id='c4' name='c4' value='c4'>
+								<label for='c4'>C4</label>
+							</div>
+							<div>
+								<input type='checkbox' id='c5' name='c5' value='c5'>
+								<label for='c5'>C5</label>
+							</div>
+							<div>
+								<input type='checkbox' id='c6' name='c6' value='c6'>
+								<label for='c6'>C6</label>
+							</div>
+						</div>
+					</div>
+				</form>
 			</div>
 			<div id='student-table-container' data-display='flex'>
 				<div id='search-filter-container'>
