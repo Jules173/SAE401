@@ -249,17 +249,6 @@
 			return $this->execMaj($requete,$tparam);
 		}
 
-		  /*-------*/
-		 /*Deletes*/
-		/*-------*/
-
-		public function deleteClient($ncli) {
-			$requete = 'delete from client where ncli = ?';
-			$tparam = array($ncli);
-			return $this->execMaj($requete,$tparam);
-		}
-
-
 	} //fin classe DB
 
 ?>
