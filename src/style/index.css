@@ -121,7 +121,7 @@ button {
 }
 
 #display-header > button.selected > .bottom-border {
-	border-bottom: 1px solid #BE4F23;
+	border-bottom: 2px solid #BE4F23;
 	width: 100%;
 	left: 0;
 }
@@ -135,12 +135,12 @@ button {
 
 @keyframes displayBtnHover {
 	from {
-		border-bottom: 1px solid transparent;
+		border-bottom: 2px solid transparent;
 		left: 50%;
 		width: 0;
 	}
 	to {
-		border-bottom: 1px solid #BE4F23;
+		border-bottom: 2px solid #BE4F23;
 		left: 0;
 		width: 100%;
 	}
@@ -287,7 +287,7 @@ input[type=search]::-webkit-search-cancel-button {
 }
 
 .semester-button {
-	width: 100px;
+	width: 150px;
 	height: 37px;
 	border: none;
 	background-color: transparent;
@@ -297,7 +297,7 @@ input[type=search]::-webkit-search-cancel-button {
 }
 
 #semesters-buttons {
-	border-bottom: 1px solid #BE4F23;
+	border-bottom: 2px solid #BE4F23;
 }
 
 .semester-button:hover:not(.selected) {
@@ -325,4 +325,62 @@ input[type=search]::-webkit-search-cancel-button {
 	height: calc(100% - 17px);
 	width: 100%;
 	padding: 17px 0 0 0;
+}
+
+#promotion-table-container {
+	grid-template-columns: auto 250px;
+}
+
+#promotion-semester-select-wrapper {
+	padding: 0 200px 0 100px;
+	width: auto;
+}
+
+#promotion-semester-select {
+	border: none;
+	border-bottom: 2px solid #BE4F23;
+	width: 100%;
+	font-size: 20px;
+	color: #BE4F23;
+	padding: 10px 0 10px 15px;
+	cursor: pointer;
+	outline: none;
+}
+
+@media screen and (max-width: 1240px) {
+	.semester-button {
+		width: fit-content;
+	}
+}
+
+#promotion-table-wrapper {
+	display: flex;
+	height: calc(100% - 45.5px);
+}
+
+#promotion-table {
+	margin: auto;
+	width: 80%;
+	height: 90%;
+	border-radius: 3px;
+	border: 1px solid #BE4F23;
+	border-spacing: 0;
+}
+
+#promotion-list {
+	height: 100%;
+}
+
+#promotion-table thead tr th {
+	padding: 10px;
+	color: white;
+	background-color: #BE4F23;
+	font-weight: normal;
+}
+
+#promotion-table thead tr th:first-child { border-radius: 3px 0 0 0; }
+#promotion-table thead tr th:last-child {border-radius: 0 3px 0 0;}
+
+#promotion-table thead tr {
+	border-radius: 3px 3px 0 0;
 }

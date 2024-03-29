@@ -6,7 +6,8 @@ $(document).ready(function() {
 		$("#display-data-container > div").hide();
 		const id = $(e.currentTarget).attr("id");
 		const name = id.substr(0, id.indexOf("-"));
-		$("#display-data-container > div[id=" + name + "-table-container]").css("display", "flex");
+		const displayValue = $("#" + name + "-table-container").data("display");
+		$("#" + name + "-table-container").css("display", displayValue);
 	});
 	$(".semester-button").on("click", function(e) {
 		$(".semester-button").removeClass("selected");

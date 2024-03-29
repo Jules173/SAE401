@@ -54,11 +54,11 @@ if (isset($_POST['login'])) {
 							</span>
 						</div>
 						<div id="username-wrapper">
-							<input type="text" id="username" name="username" placeholder="Nom d'utilisateur" autocomplete="username">
+							<input type="text" id="username" name="username" placeholder="Nom d'utilisateur" autocomplete="username" required>
 						</div>
 						<?php echo $userMsg; ?>
 						<div id="password-wrapper">
-							<input type="password" id="password" name="password" placeholder="Mot de passe" autocomplete="current-password">
+							<input type="password" id="password" name="password" placeholder="Mot de passe" autocomplete="current-password" required>
 						</div>
 						<?php echo $passwordMsg; ?>
 						<div id="submit-wrapper">

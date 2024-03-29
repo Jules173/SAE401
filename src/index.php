@@ -18,8 +18,50 @@ if (isset($_POST['display'])) {
 			<button id='commission-btn' class='display-info-button'>Commission<div class='bottom-border stop-animation'></div></button>
 		</header>
 		<section id='display-data-container'>
-			<div id='promotion-table-container'></div>
-			<div id='student-table-container'>
+			<div id='promotion-table-container' data-display='grid'>
+				<div id='promotion-list'>
+					<div id='promotion-semester-select-wrapper'>
+						<select id='promotion-semester-select'>
+							<option value='Semestre 1'>Semestre 1</option>
+							<option value='Semestre 2'>Semestre 2</option>
+							<option value='Semestre 3'>Semestre 3</option>
+							<option value='Semestre 4'>Semestre 4</option>
+							<option value='Semestre 5'>Semestre 5</option>
+							<option value='Semestre 6'>Semestre 6</option>
+						</select>
+					</div>
+					<div id='promotion-table-wrapper'>
+						<table id='promotion-table'>
+							<thead>
+								<tr>
+									<th>Étudiant</th>
+									<th>C1</th>
+									<th>C2</th>
+									<th>C3</th>
+									<th>C4</th>
+									<th>C5</th>
+									<th>C6</th>
+									<th>Validé</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>etud1</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 11</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM | 12</td>
+									<td>ADM</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div id='promotion-filter'></div>
+			</div>
+			<div id='student-table-container' data-display='flex'>
 				<div id='search-filter-container'>
 					<div id='search-bar-wrapper'>
 						<input type='search' id='student-search-bar' name='searchbar' placeholder='Rechercher un étudiant...'>
@@ -40,7 +82,7 @@ if (isset($_POST['display'])) {
 					<div>
 				</div>
 			</div>
-			<div id='commission-table-container'></div>
+			<div id='commission-table-container' data-display='flex'></div>
 		</section>
 	</div>";
 }

@@ -61,43 +61,52 @@
 		#promotion-year {
 			height: 15px;
 			width: 130px;
+			text-align: center;
+		}
+		
+		.lone-text-input {
 			border: 4px solid;
 			border-radius: 5px;
-			text-align: center;
+		}
+		
+		#chief-name {
+			height: 30px;
+			width: 210px;
+			padding: 0 15px;
 		}
 		
 		#promotion-year::-webkit-input-placeholder {
 			text-align: center;
 		}
-		div[id*=-image-wrapper] {
+		.image-container {
 			cursor: pointer;
 			border: 1px #4E81BD dashed;
 			position: relative;
 		}
-		div[id*=-image-wrapper]:has(> .remove-image-button:hover) {
+		.image-container:has(> .remove-image-button:hover) {
 			background-color: transparent;
 		}
-		div[id*=-image-wrapper]:hover {
+		.image-container:hover {
 			background-color: lightblue;
 		}
-		div[id*=-image-wrapper]:hover > span {
+		.image-container:hover > span {
 			color: white;
 		}
-		div[id*=-image-wrapper]:has(> .remove-image-button:hover) > span {
+		.image-container:has(> .remove-image-button:hover) > span {
 			color: lightblue;
 		}
-		div[id*=-image-wrapper]:has(> span) {
+		.image-container:has(> span) {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 		}
-		div[id*=-image-wrapper] > span {
+		.image-container > span {
 			width: 100%;
 			height: auto;
 			text-align: center;
 			color: lightblue;
 		}
-		div[id*=-image-wrapper] > img {
+		.image-container > img {
 			width: inherit;
 			height: inherit;
 			object-fit: contain;
@@ -155,13 +164,13 @@
 			background-color: transparent;
 			border: none;
 		}
-		#skills-table, #skills-table > thead, #skills-table > thead > tr {
+		[id*=skills-table], [id*=skills-table] > thead, [id*=skills-table] > thead > tr {
 			border: none;
 		}
-		#skills-table > tbody td {
+		[id*=skills-table] > tbody td {
 			padding: 2.5px 8px;
 		}
-		#skills-table {
+		[id*=skills-table] {
 			margin: 10px 0 30px 0;
 			width: -webkit-fill-available;
 		}
@@ -192,6 +201,20 @@
 			background-color: #f6a29b;
 			border-radius: 50%;
 		}
+		#signature {
+			display: flex;
+			margin: 1.5em 4.5em 0 0;
+			flex-direction: column;
+			align-items: flex-end;
+		}
+		#chief-signature-wrapper {
+			height: 90px;
+			width: 245px;
+			margin-top: 2em;
+		}
+		#chief-signature {
+			display: none;
+		}
 		</style>
 		<script src="./script/jquery-3.7.0.min.js"></script>
 	</head>
@@ -199,7 +222,7 @@
 		<form id="commission-container">
 			<header id="commission-header">
 				<div id="images-container">
-					<div id="left-image-wrapper">
+					<div id="left-image-wrapper" class="image-container">
 						<div class="remove-image-button" data-id="left-image-path">
 							<img src="./images/cross.png" alt="Cross">
 						</div>
@@ -208,7 +231,7 @@
 					</div>
 					<input type="file" id="left-image" name="left-image" accept="image/*">
 					<input type="hidden" id="left-image-path" name="left-image-path" value>
-					<div id="right-image-wrapper">
+					<div id="right-image-wrapper" class="image-container">
 						<div class="remove-image-button" data-id="right-image-path">
 							<img src="./images/cross.png" alt="Cross">
 						</div>
@@ -219,7 +242,7 @@
 					<input type="hidden" id="right-image-path" name="right-image-path" value>
 				</div>
 				<div id="commission-title">
-					<h1>Fiche Avis Poursuite d'Études - Promotion <input type="text" id="promotion-year" name="year" placeholder="Année de promotion" maxlength="16"></h1>
+					<h1>Fiche Avis Poursuite d'Études - Promotion <input type="text" id="promotion-year" class="lone-text-input" name="year" placeholder="Année de promotion" maxlength="16"></h1>
 					<h1>Département Informatique IUT Le Havre</h1>
 				</div>
 			</header>
@@ -488,19 +511,39 @@
 						<tr>
 							<td rowspan="2">Nombre d'avis pour la promotion (total : 52)</td>
 							<td>En école d'ingénieurs</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>
+								<input type="number" id="very-fav-engineer-count" name="very-fav-engineer-count" min="0" max="3" value>
+							</td>
+							<td>
+								<input type="number" id="fav-engineer-count" name="fav-engineer-count" min="0" max="3" value>
+							</td>
+							<td>
+								<input type="number" id="bit-fav-engineer-count" name="bit-fav-engineer-count" min="0" max="3" value>
+							</td>
+							<td>
+								<input type="number" id="no-thought-engineer-count" name="no-thought-engineer-count" min="0" max="3" value>
+							</td>
+							<td>
+								<input type="number" id="reserved-engineer-count" name="reserved-engineer-count" min="0" max="3" value>
+							</td>
 						</tr>
 						<tr>
 							<td>En master</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>
+								<input type="number" id="very-fav-master-count" name="very-fav-master-count" min="0" max="3" value>
+							</td>
+							<td>
+								<input type="number" id="fav-master-count" name="fav-master-count" min="0" max="3" value>
+							</td>
+							<td>
+								<input type="number" id="bit-fav-master-count" name="bit-fav-master-count" min="0" max="3" value>
+							</td>
+							<td>
+								<input type="number" id="no-thought-master-count" name="no-thought-master-count" min="0" max="3" value>
+							</td>
+							<td>
+								<input type="number" id="reserved-master-count" name="reserved-master-count" min="0" max="3" value>
+							</td>
 						</tr>
 						<tr>
 							<td>Commentaire</td>
@@ -511,9 +554,19 @@
 					</tbody>
 				</table>
 			</section>
-			<input type="text" id="chief-name" name="department-head-name">
-			<input type="file" id="chief-signature-input" name="department-head-signature" accept="image/*">
-			<input type="hidden" id="chief-signature" name="department-head-signature-path" value>
+			<section id="signature">
+				<span>Signature du Chef du Département</span>
+				<input type="text" id="chief-name" class="lone-text-input" name="department-head-name" placeholder="Nom du chef de Dépt." maxlength="64" value>
+				<div id="chief-signature-wrapper" class="image-container">
+					<div class="remove-image-button" data-id="chief-signature-path">
+						<img src="./images/cross.png" alt="Cross">
+					</div>
+					<span>Signature et cachet du Dept</span>
+					<img src="" alt="Image 1" onload="$(this).prev().hide(); $(this).show();" onerror="$(this).hide(); $(this).prev().show();">
+				</div>
+				<input type="file" id="chief-signature" name="chief-signature" accept="image/*">
+				<input type="hidden" id="chief-signature-path" name="chief-signature-path" value>
+			</section>
 		</form>
 		<script>
 		async function uploadImage(name) {
@@ -532,7 +585,7 @@
 			$("#" + id).val("");
 			e.stopPropagation();
 		});
-		$("#left-image, #right-image").on("change", async function(e) {
+		$("#left-image, #right-image, #chief-signature").on("change", async function(e) {
 			const id = $(this).attr("id");
 			let filePath = await uploadImage(id);
 			filePath = filePath[id + "-path"];
@@ -545,6 +598,7 @@
 		});
 		$("#left-image-wrapper").on("click", () => $("#left-image").click());
 		$("#right-image-wrapper").on("click", () => $("#right-image").click());
+		$("#chief-signature-wrapper").on("click", () => $("#chief-signature").click());
 		</script>
 	</body>
 </html>
