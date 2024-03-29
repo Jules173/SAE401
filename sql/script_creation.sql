@@ -40,7 +40,7 @@ CREATE TABLE Users(
    id_compte SERIAL,
    username VARCHAR(50),
    mdp VARCHAR(50),
-   admin LOGICAL DEFAULT FALSE,
+   admin BOOLEAN DEFAULT FALSE,
    PRIMARY KEY(id_compte)
 );
 
