@@ -1,30 +1,35 @@
 @import "./login.css";
 @import "./index.css";
 
-html, body {
-	margin: 0;
-	font-family: Arial;
-	height: 100%;
-	width: 100%;
-	position: relative;
+html,
+body {
+  margin: 0;
+  font-family: Arial;
+  height: 100%;
+  width: 100%;
+  position: relative;
 }
 
 #body-wrapper {
-	display: flex;
-	height: 100%;
-	width: 100%;
-	flex-direction: column;
-	align-items: flex-start;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 #logo {
-	margin: 10px 0 10px 10px;
-	height: auto;
-	width: 214px;
+  margin: 10px 0 10px 10px;
+  height: auto;
+  width: 214px;
 }
 
 @media screen and (max-width: 214px) {
-	#logo {
-		width: 100%;
-	}
+  #logo {
+    width: 100%;
+  }
+}
+
+#page-content {
+  padding-left: 250px;
 }
