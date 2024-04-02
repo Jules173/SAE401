@@ -359,5 +359,14 @@ td:nth-child(2n) {
   border-bottom: 1px solid #be4f23; /* Ajoute une bordure inférieure */
   background-color: transparent; /* Rend l'arrière-plan transparent */
   width: 50px; /* Définit la largeur de l'input */
-  text-size-adjust: 50px; /* Ajuste la taille du texte */
+}
+
+.valider {
+  background-color: #be4f23;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 60vh;
 }

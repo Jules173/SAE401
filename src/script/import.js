@@ -25,7 +25,7 @@ $(document).on("change", 'input[type="file"]', function () {
       if (checkAllFilesSelected()) {
         // Tous les champs de fichier sont remplis, effectuer une action
         $.ajax({
-          url: "test2.php", // Le script PHP qui change la valeur de la variable
+          url: "index.php", // Le script PHP qui change la valeur de la variable
           type: "POST",
           data: { newValue: "Nouvelle valeur" }, // La nouvelle valeur pour la variable
 
@@ -74,33 +74,4 @@ $(document).on("change", 'input[type="file"]', function () {
       }
     }
   });
-});
-
-$(document).ready(function () {
-  $(".drop-zone").on("dragover", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    $(this).addClass("hover");
-  });
-
-  $(".drop-zone").on("dragleave", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    $(this).removeClass("hover");
-  });
-
-  $(".drop-zone").on("drop", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    $(this).removeClass("hover");
-
-    var files = e.originalEvent.dataTransfer.files;
-    // Vous pouvez maintenant traiter les fichiers ici
-    handleFiles(files);
-  });
-
-  function handleFiles(files) {
-    // Code de traitement des fichiers ici
-    console.log(files);
-  }
 });

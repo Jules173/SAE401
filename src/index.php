@@ -46,26 +46,48 @@ if (isset($_POST['display'])) {
 }
 
 if (isset($_POST['import'])) {
-	$html = "
-	<div id='import-form-container'>
-		<form id='import-form' method='POST'>
-			<div id='form-content-wrapper'>
-				<div id='grades-import-container'>
-					<label for='grade-input-file'>Fichier Excel des moyennes :</label>
-					<input type='file' id='grade-input-file' name='grades'>
-				</div>
-				<div id='jury-import-container'>
-					<label for='jury-input-file'>Fichier Excel des jury :</label>
-					<input type='file' id='jury-input-file' name='jury'>
-				</div>
-			</div>
-		</form>
-	</div>";
+	$html = " 
+	<form method='POST'>
+		<table>
+			<tr>
+				<td>
+					<div id='import-box'>
+						<h2>
+							Année du semestre :
+							<input type='number' id='int-input' name='year' value='2024' />
+						</h2>
+						<h3>
+							Semestre <input type='number' id='int-input'/>
+						</h3>
+						<div id='import'>
+							<div id='grades-import-container'>
+							<label for='grade-input-file'>
+								Fichier Excel des moyennes : </label
+							><br />
+							<input type='file' id='grade-input-file' name='grades' />
+							</div>
+							<div id='jury-import-container'>
+							<label for='jury-input-file'>Fichier Excel des jury :</label
+							><br />
+							<input type='file' id='jury-input-file' name='jury' />
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<button class='valider' type='submit' name='validate'>Valider</button>
+	</form>";
 }
 
 if (isset($_POST['disconnect'])) {
 	session_destroy();
 	header("Location: ./login.php");
+	exit();
+}
+
+if (isset($_POST['newValue'])) {
+	header("Refresh:0");
 	exit();
 }
 
@@ -78,6 +100,7 @@ if (isset($_POST['disconnect'])) {
 		<title>Page d'accueil</title>
 		<link rel="stylesheet" href="./style/all.css" media="all" type="text/css">
 		<script src="./script/jquery-3.7.0.min.js"></script>
+		<script src="./script/import.js"></script>
 	</head>
 	<body>
 		<div id="body-container">
@@ -89,13 +112,11 @@ if (isset($_POST['disconnect'])) {
 					<button class="nav-button <?php echo isset($_POST['display']) ? "selected" : ""; ?>" name="display">Affichage</button>
 				</form>
 				<?php
-				
 				if ($_SESSION['isAdmin'] === true) {
 					echo '<form method="POST" class="ghost-element ">
 							<button class="nav-button ' . (isset($_POST['import']) ? "selected" : "") . '" name="import">Importer</button>
 						</form>';
 				}
-				
 				?>
 				<form method="POST" class="ghost-element">
 					<button class="nav-button" name="disconnect">Déconnexion</button>
@@ -108,3 +129,4 @@ if (isset($_POST['disconnect'])) {
 		<script src="./script/all.js"></script>
 	</body>
 </html>
+
