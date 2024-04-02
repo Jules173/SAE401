@@ -46,214 +46,25 @@ if (isset($_POST['display'])) {
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>etud1</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 11</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM</td>
-									<td>
-										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-									</td>
-								</tr>
-								<tr>
-									<td>etud1</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 11</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM</td>
-									<td>
-										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-									</td>
-								</tr>
-								<tr>
-									<td>etud1</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 11</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM</td>
-									<td>
-										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-									</td>
-								</tr>
-								<tr>
-									<td>etud1</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 11</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM</td>
-									<td>
-										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-									</td>
-								</tr>
-								<tr>
-									<td>etud1</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 11</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM</td>
-									<td>
-										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-									</td>
-								</tr>
-								<tr>
-									<td>etud1</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 11</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM</td>
-									<td>
-										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-									</td>
-								</tr>
-								<tr>
-									<td>etud1</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 11</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM</td>
-									<td>
-										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-									</td>
-								</tr>
-								<tr>
-									<td>etud1</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 11</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM</td>
-									<td>
-										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-									</td>
-								</tr>
-								<tr>
-									<td>etud1</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 11</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM</td>
-									<td>
-										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-									</td>
-								</tr>
-								<tr>
-									<td>etud1</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 11</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM</td>
-									<td>
-										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-									</td>
-								</tr>
-								<tr>
-									<td>etud1</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 11</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM</td>
-									<td>
-										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-									</td>
-								</tr>
-								<tr>
-									<td>etud1</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 11</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM</td>
-									<td>
-										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-									</td>
-								</tr>
-								<tr>
-									<td>etud1</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 11</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM</td>
-									<td>
-										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-									</td>
-								</tr>
-								<tr>
-									<td>etud1</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 11</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM</td>
-									<td>
-										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-									</td>
-								</tr>
-								<tr>
-									<td>etud1</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 11</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM</td>
-									<td>
-										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-									</td>
-								</tr>
-								<tr>
-									<td>etud1</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 11</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM | 12</td>
-									<td>ADM</td>
-									<td>
-										<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-									</td>
-								</tr>
+								";
+								
+								for ($i = 0; $i < 50; $i++)
+									$html .= "
+									<tr>
+										<td>etud1</td>
+										<td>ADM | 12</td>
+										<td>ADM | 12</td>
+										<td>ADM | 11</td>
+										<td>ADM | 12</td>
+										<td>ADM | 12</td>
+										<td>ADM | 12</td>
+										<td>ADM</td>
+										<td>
+											<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+										</td>
+									</tr>";
+								
+								$html .= "
 							</tbody>
 						</table>
 					</div>
@@ -274,31 +85,49 @@ if (isset($_POST['display'])) {
 						<span>Compétences :</span>
 						<div id='skills-display-wrapper'>
 							<div>
-								<input type='checkbox' id='c1' name='c1' value='c1'>
+								<input type='checkbox' id='c1' name='c1' value='c1' checked>
 								<label for='c1'>C1</label>
 							</div>
 							<div>
-								<input type='checkbox' id='c2' name='c2' value='c2'>
+								<input type='checkbox' id='c2' name='c2' value='c2' checked>
 								<label for='c2'>C2</label>
 							</div>
 							<div>
-								<input type='checkbox' id='c3' name='c3' value='c3'>
+								<input type='checkbox' id='c3' name='c3' value='c3' checked>
 								<label for='c3'>C3</label>
 							</div>
 							<div>
-								<input type='checkbox' id='c4' name='c4' value='c4'>
+								<input type='checkbox' id='c4' name='c4' value='c4' checked>
 								<label for='c4'>C4</label>
 							</div>
 							<div>
-								<input type='checkbox' id='c5' name='c5' value='c5'>
+								<input type='checkbox' id='c5' name='c5' value='c5' checked>
 								<label for='c5'>C5</label>
 							</div>
 							<div>
-								<input type='checkbox' id='c6' name='c6' value='c6'>
+								<input type='checkbox' id='c6' name='c6' value='c6' checked>
 								<label for='c6'>C6</label>
 							</div>
 						</div>
 					</div>
+					<div id='semester-details-container'>
+						<input type='checkbox' id='semester-details' name='semester-details'>
+						<label for='semester-details'>Affichage des ressources</label>
+					</div>
+					<div id='semester-validation-container'>
+						<input type='checkbox' id='semester-validation' name='semester-validation'>
+						<label for='semester-validation'>Semestre validé</label>
+					</div>
+					<div id='timestamp-container'>
+						<span>Années d'études :</span>
+						<div id='timestamp-wrapper'>
+							<label for='start-date'>De :</label>
+							<input type='number' id='start-date' name='start-date' min='1980' max='2400'>
+							<label for='end-date'>À :</label>
+							<input type='number' id='end-date' name='end-date' min='1980' max='2400'>
+						</div>
+					</div>
+					<button id='export-btn' class='type-2-button uppercase'>Exporter</button>
 				</form>
 			</div>
 			<div id='student-table-container' data-display='flex'>

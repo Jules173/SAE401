@@ -3,11 +3,11 @@
 session_start();
 
 $users = [
-	[ "username"=>"toto", "password"=>"zuzu", "admin"=>false ],
-	[ "username"=>"admin", "password"=>"toor", "admin"=>true ]
+	[ "username"=>"toto", "password"=>'$2y$10$Bt1fPpRPq7MEr/o3.i4Gv.ZkFUKhQyxKSpb6wXK6rdif5aUrlyFKS', "admin"=>false ],
+	[ "username"=>"admin", "password"=>'$2y$10$GA2VY4335So2bWRmsTMBtOe8QPhh4vU/tSzemcxKqvwmypEd7dDV.', "admin"=>true ]
 ];
 
-if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
+if (isset($_SESSION['username'])) {
 	header("Location: ./index.php");
 	exit();
 }
@@ -18,14 +18,14 @@ $passwordMsg = "";
 if (isset($_POST['login'])) {
 	$accountExists = false;
 	foreach ($users as $user) {
-		if ($user['username'] === $_POST['username'] && $user['password'] === $_POST['password']) {
+		if ($user['username'] === $_POST['username'] && password_verify($_POST['password'], $user['password'])) {
 			$_SESSION['username'] = $user['username'];
-			$_SESSION['password'] = $user['password'];
 			$_SESSION['isAdmin'] = $user['admin'];
 			header("Location: ./index.php");
 			exit();
 		} else if ($user['username'] === $_POST['username']) {
 			$accountExists = true;
+			unset($_SESSION['username']);
 		}
 	}
 	if ($accountExists) {
