@@ -554,3 +554,63 @@ input[type=checkbox]:checked::before {
 	height: fit-content;
 	margin: auto;
 }
+
+/* TEST */
+
+#import-wrapper {
+	height: 100%;
+	width: 100%;
+	display: flex;
+}
+
+#import-container {
+	width: 100%;
+	margin: 50px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	align-items: start;
+}
+
+.import-box h2,
+.import-box h3 {
+	color: #be4f23;
+}
+
+.import-box {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 10px;
+}
+
+.import-files {
+	background-color: lightgray;
+	padding: 20px;
+	border-radius: 10px;
+	margin-top: 20px;
+	margin-right: auto; /* Pousse l'élément vers la droite */
+	margin-left: 0; /* Assure que l'élément est aligné à droite */
+	width: 75%; /* Définit une largeur pour l'élément */
+	display: block; /* Assure que l'élément est traité comme un bloc */
+}
+
+.import-box .semester,
+.import-box .semester-year {
+	border: none; /* Supprime la bordure par défaut */
+	border-bottom: 1px solid #be4f23; /* Ajoute une bordure inférieure */
+	background-color: transparent; /* Rend l'arrière-plan transparent */
+	width: 50px; /* Définit la largeur de l'input */
+	text-size-adjust: 50px; /* Ajuste la taille du texte */
+}
+
+#add-semester-button-container {
+	height: 266.5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#add-semester-button {
+	margin: auto;
+}

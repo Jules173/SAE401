@@ -158,19 +158,34 @@ if (isset($_POST['display'])) {
 
 if (isset($_POST['import'])) {
 	$html = "
-	<div id='import-form-container'>
-		<form id='import-form' method='POST'>
-			<div id='form-content-wrapper'>
-				<div id='grades-import-container'>
-					<label for='grade-input-file'>Fichier Excel des moyennes :</label>
-					<input type='file' id='grade-input-file' name='grades'>
-				</div>
-				<div id='jury-import-container'>
-					<label for='jury-input-file'>Fichier Excel des jury :</label>
-					<input type='file' id='jury-input-file' name='jury'>
+	<div id='import-wrapper'>
+		<div id='import-container'>
+			<div class='import-box'>
+				<h2>
+					Année du semestre :
+					<input type='number' class='semester-year' name='year' value='2024'>
+				</h2>
+				<h3>
+					Semestre
+					<input type='number' class='semester'>
+				</h3>
+				<div class='import-files'>
+					<div class='grades-import-container'>
+						<label for='grade-input-file'>Fichier Excel des moyennes :</label>
+						<br>
+						<input type='file' id='grade-input-file' name='grades' accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
+					</div>
+					<div class='jury-import-container'>
+						<label for='jury-input-file'>Fichier Excel des jury :</label>
+						<br>
+						<input type='file' id='jury-input-file' name='jury' accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
+					</div>
 				</div>
 			</div>
-		</form>
+			<div id='add-semester-button-container'>
+				<button id='add-semester-button'>Ajouter un semestre</button>
+			</div>
+		</div>
 	</div>";
 }
 
