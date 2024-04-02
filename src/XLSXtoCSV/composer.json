@@ -1,8 +1,0 @@
-{
-    "name": "project/autoload",
-    "description": "load un fichier xlsx et le transforme en csv",
-    "type": "project",
-    "require": {
-        "phpoffice/phpspreadsheet": "^2.0"
-    }
-}
