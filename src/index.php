@@ -4,7 +4,7 @@ session_start();
 
 require_once "./fc.inc.php";
 
-if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
+if (!isset($_SESSION['username'])) {
 	header("Location: ./login.php");
 	exit();
 }
@@ -140,22 +140,74 @@ if (isset($_POST['display'])) {
 					</button>
 				</div>
 				<div id='student-table-container' data-display='flex'>
-					
 					<div id='student-semesters-selector'>
 						<div id='semesters-buttons'>
-							<button id='semester1' class='semester-button'>Semestre 1</button>
-							<button id='semester2' class='semester-button'>Semestre 2</button>
-							<button id='semester3' class='semester-button'>Semestre 3</button>
-							<button id='semester4' class='semester-button'>Semestre 4</button>
-							<button id='semester5' class='semester-button'>Semestre 5</button>
-							<button id='semester6' class='semester-button'>Semestre 6</button>
+							<button id='semester1-btn' class='semester-button'>Semestre 1</button>
+							<button id='semester2-btn' class='semester-button'>Semestre 2</button>
+							<button id='semester3-btn' class='semester-button'>Semestre 3</button>
+							<button id='semester4-btn' class='semester-button'>Semestre 4</button>
+							<button id='semester5-btn' class='semester-button'>Semestre 5</button>
+							<button id='semester6-btn' class='semester-button'>Semestre 6</button>
 						</div>
-						<div></div>
+					</div>
+					<div id='student-table-button-container'>
+						<div id='student-table-wrapper'>
+							<div id='semester1'>
+								<div class='collapsible-body'>
+									<div class='collapsible-show'>BIN11</div>
+									<div class='collapsible-content hidden'>
+									test
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id='student-button-container'>
+						</div>
 					</div>
 				</div>
-				<div id='commission-table-container' data-display='flex'></div>
+				<div id='commission-table-container' data-display='grid'>
+					<form id='fields-form'>
+						<fieldset id='logo-1-set' class='default-fieldset'>
+							<label for='logo-1-input' class='default-text'>Logo n°1</label>
+							<div class='default-box'>
+								<input type='file' id='logo-1-input' class='file-input' data-before='Aucun fichier choisi' name='logo1' accept='image/*'>
+							</div>
+						</fieldset>
+						<fieldset id='logo-2-set' class='default-fieldset'>
+							<label for='logo-2-input' class='default-text'>Logo n°2</label>
+							<div class='default-box'>
+								<input type='file' id='logo-2-input' class='file-input' data-before='Aucun fichier choisi' name='logo2' accept='image/*'>
+							</div>
+						</fieldset>
+						<fieldset id='signature-set' class='default-fieldset'>
+							<label for='signature-input' class='default-text'>Signature et cachet</label>
+							<div class='default-box'>
+								<input type='file' id='signature-input' class='file-input' data-before='Aucun fichier choisi' name='signature' accept='image/*'>
+							</div>
+						</fieldset>
+						<fieldset id='year-set' class='default-fieldset'>
+							<label for='year-input' class='default-text'>Année de promotion</label>
+							<div class='default-box'>
+								<input type='number' id='year-input' name='year'>
+							</div>
+						</fieldset>
+						<fieldset id='department-head-set' class='default-fieldset'>
+							<label for='department-head-input' class='default-text'>Nom du chef de Dept.</label>
+							<div class='default-box'>
+								<input type='text' id='department-head-input' name='department-head'>
+							</div>
+						</fieldset>
+					</form>
+					<div id='commission-button-container'>
+						<span class='student-name' default-text'></span>
+						<div id='commission-button-container-2'>
+							<button id='visualize-commission-button' class='type-2-button'>Visualiser</button>
+							<button id='confirm-commission-button' class='type-2-button'>Valider</button>
+						</div>
+					</div>
+					<div></div>
+				</div>
 			</div>
-			
 		</section>
 	</div>";
 }
@@ -176,16 +228,16 @@ if (isset($_POST['import'])) {
 				<div class='import-files'>
 					<div class='grades-import-container'>
 						<label for='grade-input-file-1'>Fichier Excel des moyennes :</label>
-						<input type='file' id='grade-input-file-1' class='excel-file-input' data-before='Aucun fichier choisi' name='grades' accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
+						<input type='file' id='grade-input-file-1' class='file-input' data-before='Aucun fichier choisi' name='grades' accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
 					</div>
 					<div class='jury-import-container'>
 						<label for='jury-input-file-1'>Fichier Excel des jury :</label>
-						<input type='file' id='jury-input-file-1' class='excel-file-input' data-before='Aucun fichier choisi' name='jury' accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
+						<input type='file' id='jury-input-file-1' class='file-input' data-before='Aucun fichier choisi' name='jury' accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
 					</div>
 				</div>
 			</div>
 			<div id='add-semester-button-container'>
-				<button id='add-semester-button'>Ajouter un semestre</button>
+				<button id='add-semester-button' class='type-2-button'>Ajouter un semestre</button>
 			</div>
 		</div>
 	</div>";

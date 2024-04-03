@@ -203,9 +203,11 @@ button {
 
 #student-table-container {
 	/* padding: 17px 0 0 0; */
+	height: calc(100% - 24px);
+	width: 100%;
 	flex-direction: column;
 	align-items: center;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 }
 
 #student-search-bar {
@@ -295,6 +297,7 @@ input[type=search]::-webkit-search-cancel-button {
 	color: #BE4F23;
 	border-radius: 3px;
 	transition-duration: 0.25s;
+	font-weight: bold;
 }
 
 #semesters-buttons {
@@ -323,7 +326,7 @@ input[type=search]::-webkit-search-cancel-button {
 
 #display-data-container > div {
 	position: relative;
-	height: calc(100% - 17px);
+	height: 100%;
 	width: 100%;
 	padding: 17px 0 0 0;
 }
@@ -586,7 +589,7 @@ input[type=checkbox]:checked::before {
 }
 
 .import-files {
-	background-color: lightgray;
+	background-color: #D9D9D9;
 	padding: 20px;
 	border-radius: 10px;
 	/* margin-top: 20px; */
@@ -605,6 +608,7 @@ input[type=checkbox]:checked::before {
 	border-bottom: 1px solid #be4f23; /* Ajoute une bordure inférieure */
 	background-color: transparent; /* Rend l'arrière-plan transparent */
 	width: 50px; /* Définit la largeur de l'input */
+	outline: none;
 	text-size-adjust: 50px; /* Ajuste la taille du texte */
 }
 
@@ -620,13 +624,13 @@ input[type=checkbox]:checked::before {
 	margin: auto;
 }
 
-.excel-file-input {
+.file-input {
 	position: relative;
 	visibility: hidden;
 	height: 30px;
 }
 
-.excel-file-input::before {
+.file-input::before {
 	content: attr(data-before);
 	height: 30px;
 	width: 200px;
@@ -643,7 +647,7 @@ input[type=checkbox]:checked::before {
 	cursor: pointer;
 }
 
-.excel-file-input:hover::before {
+.file-input:hover::before {
 	background-color: #f0ecec;
 }
 
@@ -653,4 +657,145 @@ input[type=checkbox]:checked::before {
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
+}
+
+#commission-table-container {
+	width: 100%;
+	height: calc(100% - 24px);
+	grid-template-columns: auto 300px;
+	grid-template-rows: 1fr;
+}
+
+#fields-form {
+	width: auto;
+	height: 100%;
+	padding-top: 50px;
+	display: grid;
+	grid-template-areas:
+		"logo1 year"
+		"logo2 name"
+		"signature empty";
+	padding: 0 0 0 300px;
+	justify-items: center;
+	align-items: center;
+}
+
+.default-fieldset {
+	all: initial;
+	font-family: inherit;
+	display: flex;
+	flex-direction: column;
+}
+
+.default-box {
+	background-color: #D9D9D9;
+	padding: 15px 60px 15px 15px;
+	margin-top: 10px;
+}
+
+#fields-form > fieldset > label {
+	font-weight: bold;
+}
+
+#logo-1-set {
+	grid-area: logo1;
+}
+
+#logo-2-set {
+	grid-area: logo2;
+}
+
+#signature-set {
+	grid-area: signature;
+}
+
+#year-set {
+	grid-area: year;
+}
+
+#department-head-set {
+	grid-area: name;
+}
+
+#fields-form .default-fieldset {
+	width: 274px;
+}
+
+.default-fieldset > .default-box {
+	width: inherit;
+	height: 60px;
+}
+
+#fields-form .default-fieldset input[type=text],
+#fields-form .default-fieldset input[type=number] {
+	border: none;
+	border-bottom: 1px solid #be4f23;
+	background-color: transparent;
+	width: 150px;
+	outline: none;
+}
+
+#commission-button-container {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 45px;
+}
+
+#commission-button-container button {
+	width: 100px;
+	text-align: center;
+}
+
+#student-table-button-container {
+	height: 100%;
+	width: 100%;
+	display: grid;
+	grid-template-columns: auto 300px;
+}
+
+#commission-button-container-2 {
+	display: flex;
+	flex-direction: column;
+	row-gap: 15px;
+}
+
+.bin-collapside {
+	border: none;
+	
+	color: #BE4F23;
+	
+	cursor: pointer;
+	outline: none;
+}
+
+.collapsible-content {
+	opacity: 0;
+	border: 2px solid gray;
+	border-radius: 10px;
+	background-color: whitesmoke;
+	padding: 10px;
+	transform-origin: top;
+	clear: both;
+}
+
+.collapsible-show {
+	color: #BE4F23;
+	cursor: pointer;
+	display: inline-block;
+	user-select: none;
+	border-bottom: 2px solid #BE4F23;
+	width: 100%;
+	font-size: 20px;
+	padding: 10px 0 10px 15px;
+}
+
+.hidden {
+	display: none !important;
+}
+
+#student-table-wrapper {
+	padding: 0 0 0 300px;
 }

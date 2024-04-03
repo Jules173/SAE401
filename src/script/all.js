@@ -13,7 +13,10 @@ $(document).ready(function() {
 	});
 	$(".semester-button").on("click", function(e) {
 		$(".semester-button").removeClass("selected");
-		$(this).addClass("selected");
+		if ($(this).hasClass("selected"))
+			$(this).removeClass("selected");
+		else
+			$(this).addClass("selected");
 	});
 	$("#skills-display-wrapper input[type=checkbox]").on("change", function(e) {
 		const id = parseInt($(this).attr("id")?.substr(1)) + 1;
@@ -101,11 +104,11 @@ $("#add-semester-button").on("click", function(e) {
 		<div class="import-files">
 			<div class="grades-import-container">
 				<label for="grade-input-file-${index}">Fichier Excel des moyennes : </label>
-				<input type="file" id="grade-input-file-${index}" class='excel-file-input' data-before='Aucun fichier choisi' name="grades" accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
+				<input type="file" id="grade-input-file-${index}" class='file-input' data-before='Aucun fichier choisi' name="grades" accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
 			</div>
 			<div class="jury-import-container">
 				<label for="jury-input-file-${index}">Fichier Excel des jury :</label>
-				<input type="file" id="jury-input-file-${index}" class='excel-file-input' data-before='Aucun fichier choisi' name="jury" accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
+				<input type="file" id="jury-input-file-${index}" class='file-input' data-before='Aucun fichier choisi' name="jury" accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
 			</div>
 		</div>
 	</div>`));
@@ -119,6 +122,12 @@ function excelInputEvent(e) {
 }
 
 $(".excel-file-input").on("change", excelInputEvent);
+
+$("#visualize-commission-button").on("click", function(e) {
+	e.preventDefault();
+	e.stopPropagation();
+	window.open("./commission.php", "_BLANK");
+});
 
 $(document).on("keyleft", 'input[type="file"]', function () {
   // Sélection de tous les champs de fichier
