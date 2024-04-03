@@ -6,7 +6,7 @@ INSERT INTO Etudiant (etu_id, codenip, civ, nom, prenom, grpTD, grpTP, bac) VALU
 	(8860, 8860, 'Mme.', 'GAROU'        , 'Lou'        , 'A', 'A1', 'NBGE'),
 	(8810, 8810, 'M.'  , 'PASDECEINTURE', 'Jean-Michel', 'B', 'B1', 'NBGE'),
 	(8918, 8918, 'Mme.', 'DELAFORET'    , 'Sylvie'     , 'B', 'B2', 'NBGE'),
-	(8811, 8811, 'M.'  , 'ABBE'         , 'Cedric'     , 'C', 'C1', 'NBGE'),
+	(8811, 8811, 'M.'  , 'ABBOULOCHE Eléonore'         , 'Cedric'     , 'C', 'C1', 'NBGE'),
 
 INSERT INTO Bin VALUES
 	(1 , "BINR101"),
