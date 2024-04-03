@@ -130,7 +130,7 @@ if (isset($_POST['display'])) {
 					<button id='export-btn' class='type-2-button uppercase'>Exporter</button>
 				</form>
 			</div>
-			<div id='student-table-container' data-display='flex'>
+			<div id='student-commission-container'>
 				<div id='search-filter-container'>
 					<div id='search-bar-wrapper'>
 						<input type='search' id='student-search-bar' name='searchbar' placeholder='Rechercher un étudiant...'>
@@ -139,19 +139,23 @@ if (isset($_POST['display'])) {
 						<img src='./images/settings.svg' width='24' height='40' alt='Filtre'>
 					</button>
 				</div>
-				<div id='student-semesters-selector'>
-					<div id='semesters-buttons'>
-						<button id='semester1' class='semester-button'>Semestre 1</button>
-						<button id='semester2' class='semester-button'>Semestre 2</button>
-						<button id='semester3' class='semester-button'>Semestre 3</button>
-						<button id='semester4' class='semester-button'>Semestre 4</button>
-						<button id='semester5' class='semester-button'>Semestre 5</button>
-						<button id='semester6' class='semester-button'>Semestre 6</button>
+				<div id='student-table-container' data-display='flex'>
+					
+					<div id='student-semesters-selector'>
+						<div id='semesters-buttons'>
+							<button id='semester1' class='semester-button'>Semestre 1</button>
+							<button id='semester2' class='semester-button'>Semestre 2</button>
+							<button id='semester3' class='semester-button'>Semestre 3</button>
+							<button id='semester4' class='semester-button'>Semestre 4</button>
+							<button id='semester5' class='semester-button'>Semestre 5</button>
+							<button id='semester6' class='semester-button'>Semestre 6</button>
+						</div>
+						<div></div>
 					</div>
-					<div>
 				</div>
+				<div id='commission-table-container' data-display='flex'></div>
 			</div>
-			<div id='commission-table-container' data-display='flex'></div>
+			
 		</section>
 	</div>";
 }
@@ -171,14 +175,12 @@ if (isset($_POST['import'])) {
 				</h3>
 				<div class='import-files'>
 					<div class='grades-import-container'>
-						<label for='grade-input-file'>Fichier Excel des moyennes :</label>
-						<br>
-						<input type='file' id='grade-input-file' name='grades' accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
+						<label for='grade-input-file-1'>Fichier Excel des moyennes :</label>
+						<input type='file' id='grade-input-file-1' class='excel-file-input' data-before='Aucun fichier choisi' name='grades' accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
 					</div>
 					<div class='jury-import-container'>
-						<label for='jury-input-file'>Fichier Excel des jury :</label>
-						<br>
-						<input type='file' id='jury-input-file' name='jury' accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
+						<label for='jury-input-file-1'>Fichier Excel des jury :</label>
+						<input type='file' id='jury-input-file-1' class='excel-file-input' data-before='Aucun fichier choisi' name='jury' accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
 					</div>
 				</div>
 			</div>

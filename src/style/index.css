@@ -249,6 +249,7 @@ button {
 	flex-direction: row;
 	flex-wrap: wrap;
 	column-gap: 10px;
+	justify-content: center;
 }
 
 #filter-btn {
@@ -574,6 +575,7 @@ input[type=checkbox]:checked::before {
 .import-box h2,
 .import-box h3 {
 	color: #be4f23;
+	text-align: center;
 }
 
 .import-box {
@@ -587,11 +589,14 @@ input[type=checkbox]:checked::before {
 	background-color: lightgray;
 	padding: 20px;
 	border-radius: 10px;
-	margin-top: 20px;
-	margin-right: auto; /* Pousse l'élément vers la droite */
-	margin-left: 0; /* Assure que l'élément est aligné à droite */
-	width: 75%; /* Définit une largeur pour l'élément */
+	/* margin-top: 20px; */
+	/* margin-right: auto; */ /* Pousse l'élément vers la droite */
+	/* margin-left: 0; */ /* Assure que l'élément est aligné à droite */
+	/* width: 75%; */ /* Définit une largeur pour l'élément */
 	display: block; /* Assure que l'élément est traité comme un bloc */
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
 }
 
 .import-box .semester,
@@ -604,7 +609,7 @@ input[type=checkbox]:checked::before {
 }
 
 #add-semester-button-container {
-	height: 266.5px;
+	height: 230px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -613,4 +618,39 @@ input[type=checkbox]:checked::before {
 
 #add-semester-button {
 	margin: auto;
+}
+
+.excel-file-input {
+	position: relative;
+	visibility: hidden;
+	height: 30px;
+}
+
+.excel-file-input::before {
+	content: attr(data-before);
+	height: 30px;
+	width: 200px;
+	background-color: white;
+	visibility: visible;
+	display: inline;
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-weight: bold;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.excel-file-input:hover::before {
+	background-color: #f0ecec;
+}
+
+.import-files > div {
+	display: flex;
+	column-gap: 5px;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
 }

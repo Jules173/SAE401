@@ -1,13 +1,15 @@
 $(document).ready(function() {
 	setTimeout(() => $(".stop-animation").removeClass("stop-animation"), 500);
 	$(".display-info-button").on("click", function(e) {
+		$("#student-commission-container").hide();
+		$("[id*=-table-container][data-display]").hide();
 		$(".display-info-button.selected").removeClass("selected");
 		$(e.currentTarget).addClass("selected");
 		$("#display-data-container > div").hide();
 		const id = $(e.currentTarget).attr("id");
 		const name = id.substr(0, id.indexOf("-"));
 		const displayValue = $("#" + name + "-table-container").data("display");
-		$("#" + name + "-table-container").css("display", displayValue);
+		$("#" + name + "-table-container").css("display", displayValue).parent("#student-commission-container").show();
 	});
 	$(".semester-button").on("click", function(e) {
 		$(".semester-button").removeClass("selected");
@@ -85,6 +87,7 @@ function resetPromotionTable() {
 }
 
 $("#add-semester-button").on("click", function(e) {
+	const index = $(".import-box").length + 1;
 	$(this).parent().before($.parseHTML(`
 	<div class="import-box">
 		<h2>
@@ -97,18 +100,25 @@ $("#add-semester-button").on("click", function(e) {
 		</h3>
 		<div class="import-files">
 			<div class="grades-import-container">
-				<label for="grade-input-file">Fichier Excel des moyennes : </label>
-				<br>
-				<input type="file" id="grade-input-file" name="grades" accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
+				<label for="grade-input-file-${index}">Fichier Excel des moyennes : </label>
+				<input type="file" id="grade-input-file-${index}" class='excel-file-input' data-before='Aucun fichier choisi' name="grades" accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
 			</div>
 			<div class="jury-import-container">
-				<label for="jury-input-file">Fichier Excel des jury :</label>
-				<br>
-				<input type="file" id="jury-input-file" name="jury" accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
+				<label for="jury-input-file-${index}">Fichier Excel des jury :</label>
+				<input type="file" id="jury-input-file-${index}" class='excel-file-input' data-before='Aucun fichier choisi' name="jury" accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
 			</div>
 		</div>
 	</div>`));
+	$(".excel-file-input").off("change");
+	$(".excel-file-input").on("change", excelInputEvent);
 });
+
+function excelInputEvent(e) {
+	const file = $(this).prop("files")[0];
+	$(this)[0].dataset['before'] = file?.name || "Aucun fichier choisi";
+}
+
+$(".excel-file-input").on("change", excelInputEvent);
 
 $(document).on("keyleft", 'input[type="file"]', function () {
   // Sélection de tous les champs de fichier
