@@ -5,26 +5,10 @@ session_start();
 require_once "./fc.inc.php";
 
 if (!isset($_SESSION['username'])) {
-	http_response_code(303);
+	http_response_code(401);
 	header("Location: ./login.php");
 	exit();
 }
-
-/*
-<tr>
-	<td>etud1</td>
-	<td>ADM | 12</td>
-	<td>ADM | 12</td>
-	<td>ADM | 11</td>
-	<td>ADM | 12</td>
-	<td>ADM | 12</td>
-	<td>ADM | 12</td>
-	<td>ADM</td>
-	<td>
-		<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
-	</td>
-</tr>
-*/
 
 if (isset($_POST['disconnect'])) {
 	session_destroy();
@@ -80,7 +64,7 @@ if (isset($_POST['disconnect'])) {
 										</select>
 									</div>
 									<div id='promotion-table-wrapper'>
-										<table id='promotion-table'>
+										<table id='promotion-table' class="type-1-table">
 											<thead>
 												<tr>
 													<th>Étudiant</th>
@@ -185,37 +169,151 @@ if (isset($_POST['disconnect'])) {
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN11</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R1.01</th>
+																	<th>R1.02</th>
+																	<th>R1.10</th>
+																	<th>S1.01</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN12</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R1.01</th>
+																	<th>R1.06</th>
+																	<th>R1.07</th>
+																	<th>S1.02</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN13</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R1.03</th>
+																	<th>R1.04</th>
+																	<th>R1.10</th>
+																	<th>S1.03</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN14</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R1.05</th>
+																	<th>R1.06</th>
+																	<th>R1.09</th>
+																	<th>S1.04</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN15</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R1.01</th>
+																	<th>R1.02</th>
+																	<th>R1.05</th>
+																	<th>R1.08</th>
+																	<th>R1.11</th>
+																	<th>S1.05</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN16</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R1.01</th>
+																	<th>R1.02</th>
+																	<th>R1.08</th>
+																	<th>R1.09</th>
+																	<th>R1.10</th>
+																	<th>R1.11</th>
+																	<th>R1.12</th>
+																	<th>S1.06</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 											</div>
@@ -223,37 +321,177 @@ if (isset($_POST['disconnect'])) {
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN21</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R2.01</th>
+																	<th>R2.02</th>
+																	<th>R2.03</th>
+																	<th>R2.13</th>
+																	<th>S2.01</th>
+																	<th>P2.01</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN22</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R2.01</th>
+																	<th>R2.07</th>
+																	<th>R2.09</th>
+																	<th>R2.13</th>
+																	<th>S2.02</th>
+																	<th>P2.01</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN23</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R2.01</th>
+																	<th>R2.04</th>
+																	<th>R2.05</th>
+																	<th>R2.07</th>
+																	<th>R2.09</th>
+																	<th>R2.12</th>
+																	<th>R2.13</th>
+																	<th>S2.03</th>
+																	<th>P2.01</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN24</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R2.02</th>
+																	<th>R2.06</th>
+																	<th>R2.08</th>
+																	<th>R2.10</th>
+																	<th>R2.12</th>
+																	<th>S2.04</th>
+																	<th>P2.01</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN25</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R2.02</th>
+																	<th>R2.03</th>
+																	<th>R2.07</th>
+																	<th>R2.10</th>
+																	<th>R2.12</th>
+																	<th>R2.13</th>
+																	<th>S2.05</th>
+																	<th>P2.01</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN26</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R2.02</th>
+																	<th>R2.11</th>
+																	<th>R2.12</th>
+																	<th>R2.13</th>
+																	<th>R2.14</th>
+																	<th>S2.06</th>
+																	<th>P2.01</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 											</div>
@@ -261,37 +499,179 @@ if (isset($_POST['disconnect'])) {
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN31</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R3.01</th>
+																	<th>R3.02</th>
+																	<th>R3.03</th>
+																	<th>R3.04</th>
+																	<th>R3.11</th>
+																	<th>R3.13</th>
+																	<th>S3.01</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN32</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R3.01</th>
+																	<th>R3.02</th>
+																	<th>R3.03</th>
+																	<th>R3.06</th>
+																	<th>R3.08</th>
+																	<th>R3.09</th>
+																	<th>R3.12</th>
+																	<th>S3.01</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN33</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R3.01</th>
+																	<th>R3.05</th>
+																	<th>R3.06</th>
+																	<th>R3.07</th>
+																	<th>R3.09</th>
+																	<th>R3.12</th>
+																	<th>S3.01</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN34</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R3.01</th>
+																	<th>R3.07</th>
+																	<th>R3.08</th>
+																	<th>R3.09</th>
+																	<th>R3.10</th>
+																	<th>R3.11</th>
+																	<th>S3.01</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN35</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R3.02</th>
+																	<th>R3.03</th>
+																	<th>R3.04</th>
+																	<th>R3.10</th>
+																	<th>R3.11</th>
+																	<th>R3.12</th>
+																	<th>R3.13</th>
+																	<th>S3.01</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN36</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R3.04</th>
+																	<th>R3.09</th>
+																	<th>R3.10</th>
+																	<th>R3.12</th>
+																	<th>R3.13</th>
+																	<th>R3.14</th>
+																	<th>S3.01</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 											</div>
@@ -299,37 +679,177 @@ if (isset($_POST['disconnect'])) {
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN41</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R4.01</th>
+																	<th>R4.02</th>
+																	<th>R4.10</th>
+																	<th>R4.11</th>
+																	<th>S4.01</th>
+																	<th>P4.01</th>
+																	<th>S4.ST</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN42</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R4.04</th>
+																	<th>R4.05</th>
+																	<th>R4.09</th>
+																	<th>R4.10</th>
+																	<th>R4.11</th>
+																	<th>R4.12</th>
+																	<th>S4.01</th>
+																	<th>P4.01</th>
+																	<th>S4.ST</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN43</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R4.01</th>
+																	<th>R4.08</th>
+																	<th>R4.12</th>
+																	<th>S4.01</th>
+																	<th>P4.01</th>
+																	<th>S4.ST</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN44</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R4.03</th>
+																	<th>R4.06</th>
+																	<th>R4.10</th>
+																	<th>R4.11</th>
+																	<th>S4.01</th>
+																	<th>P4.01</th>
+																	<th>S4.ST</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN45</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R4.02</th>
+																	<th>R4.09</th>
+																	<th>R4.10</th>
+																	<th>R4.11</th>
+																	<th>S4.01</th>
+																	<th>P4.01</th>
+																	<th>S4.ST</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN46</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R4.01</th>
+																	<th>R4.05</th>
+																	<th>R4.06</th>
+																	<th>R4.07</th>
+																	<th>S4.01</th>
+																	<th>P4.01</th>
+																	<th>S4.ST</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 											</div>
@@ -337,19 +857,99 @@ if (isset($_POST['disconnect'])) {
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN51</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R5.04</th>
+																	<th>R5.05</th>
+																	<th>R5.06</th>
+																	<th>R5.07</th>
+																	<th>R5.08</th>
+																	<th>R5.09</th>
+																	<th>R5.10</th>
+																	<th>R5.13</th>
+																	<th>R5.14</th>
+																	<th>S5.01</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN52</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R5.04</th>
+																	<th>R5.05</th>
+																	<th>R5.06</th>
+																	<th>R5.08</th>
+																	<th>R5.09</th>
+																	<th>R5.10</th>
+																	<th>R5.11</th>
+																	<th>R5.12</th>
+																	<th>R5.14</th>
+																	<th>S5.01</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN56</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R5.01</th>
+																	<th>R5.02</th>
+																	<th>R5.03</th>
+																	<th>R5.06</th>
+																	<th>R5.07</th>
+																	<th>R5.13</th>
+																	<th>R5.14</th>
+																	<th>S5.01</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 											</div>
@@ -357,19 +957,82 @@ if (isset($_POST['disconnect'])) {
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN61</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R6.05</th>
+																	<th>R6.06</th>
+																	<th>S6.01</th>
+																	<th>P6.01</th>
+																	<th>S6.ST</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN62</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R6.05</th>
+																	<th>R6.06</th>
+																	<th>S6.01</th>
+																	<th>P6.01</th>
+																	<th>S6.ST</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 												<div class='collapsible-body'>
 													<div class='collapsible-show'>BIN66</div>
 													<div class='collapsible-content hidden'>
-													test
+														<table class="type-1-table">
+															<thead>
+																<tr>
+																	<th>R6.01</th>
+																	<th>R6.02</th>
+																	<th>R6.03</th>
+																	<th>R6.04</th>
+																	<th>R6.05</th>
+																	<th>S6.01</th>
+																	<th>P6.01</th>
+																	<th>S6.ST</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												</div>
 											</div>
@@ -424,10 +1087,10 @@ if (isset($_POST['disconnect'])) {
 						</section>
 					</div>
 				</div>
-			<?php
-			if ($_SESSION['isAdmin'] === true)
-				echo getImportPage();
-			?>
+				<?php
+				if ($_SESSION['isAdmin'] === true)
+					echo getImportPage();
+				?>
 			</div>
 		</div>
 		<script src="./script/all.js"></script>

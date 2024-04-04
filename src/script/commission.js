@@ -7,6 +7,7 @@ async function uploadImage(name) {
 	});
 	return await request.json();
 }
+
 $(".remove-image-button").on("click", function(e) {
 	$(this).hide();
 	$(this).siblings("img").attr("src", "");
@@ -14,6 +15,7 @@ $(".remove-image-button").on("click", function(e) {
 	$("#" + id).val("");
 	e.stopPropagation();
 });
+
 $("#left-image, #right-image, #chief-signature").on("change", async function(e) {
 	const id = $(this).attr("id");
 	let filePath = await uploadImage(id);
@@ -25,6 +27,66 @@ $("#left-image, #right-image, #chief-signature").on("change", async function(e) 
 		console.log(filePath);
 	}
 });
+
 $("#left-image-wrapper").on("click", () => $("#left-image").click());
 $("#right-image-wrapper").on("click", () => $("#right-image").click());
 $("#chief-signature-wrapper").on("click", () => $("#chief-signature").click());
+
+$("#generate-pdf").on("click", function () {
+	// Options de conversion
+	const options = {
+		filename: "document.pdf",
+		image: {
+			type: "jpeg",
+			quality: 1
+		},
+		html2canvas: { // Facteur d'échelle pour la capture d'écran HTML
+			scale: 1,
+			width: 793,
+			height: 1123
+		}, 
+		jsPDF: { // Options pour jsPDF
+			unit: "px",
+			format: "a4",
+			orientation: "portrait"
+		}
+	};
+	// const options = {
+		// margin: 10,
+		// filename: 'document.pdf',
+		// image: {
+			// type: 'jpeg',
+			// quality: 1
+		// },
+		// html2canvas: {
+			// dpi: 300,
+			// letterRendering: true,
+			// scale: 2,
+			// width: 793,
+			// height: 1123
+		// },
+		// jsPDF: {
+			// unit: 'mm',
+			// format: 'a4',
+			// orientation: 'portrait'
+		// },
+		// pagebreak: {
+			// mode: ['avoid-all', 'css']
+		// }
+	// };
+	$("#commission-container")
+	// .css("transform", "scale(0.8)")
+	.css("height", "842pt")
+	.css("width", "595pt");
+	// Convertir HTML en PDF
+	html2pdf().from($("#commission-container")[0])
+	.set(options)
+	.save()
+	.then(() => {
+		$("#commission-container").removeAttr("style");
+		console.clear();
+	})
+	.catch((error) => {
+		console.info(error);
+	});
+});

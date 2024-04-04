@@ -1,5 +1,8 @@
+$(document).on("DOMContentLoaded", function() {
+	$(".stop-animation").removeClass("stop-animation");
+});
+
 $(document).ready(function() {
-	setTimeout(() => $(".stop-animation").removeClass("stop-animation"), 1000);
 	$(".display-info-button").on("click", function(e) {
 		$("#student-commission-container").hide();
 		$("[id*=-table-container][data-display]").hide();
@@ -40,8 +43,10 @@ $(document).ready(function() {
 		$("#page-content > #" + $(this).attr("name") + "-wrapper").css("display", "flex");
 	});
 	$(".collapsible-show").on("click", function(e) {
+		$(this).toggleClass("invert");
 		$(this).next().toggleClass("hidden");
 	});
+	addStudent();
 });
 
 function filterFormHandle(e) {
@@ -99,6 +104,23 @@ function loadPromotionSemester() {
 		$("#promotion-semester-select").children().remove();
 		$("#promotion-semester-select").append($("<option>", {value: "", text: "Aucun semestre"}));
 	}
+}
+
+function addStudent(student) {
+	$("#promotion-table > tbody").append($.parseHTML(`
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td>
+			<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
+		</td>
+	</tr>`));
 }
 
 function resetPromotionTable() {

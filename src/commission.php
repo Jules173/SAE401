@@ -20,6 +20,9 @@ if (!isset($_SESSION['username'])) {
 		<script src="./script/jquery-3.7.0.min.js"></script>
 	</head>
 	<body>
+		<div id="modal-container">
+			<button id="generate-pdf" class="type-2-button">Générer le pdf</button>
+		</div>
 		<form id="commission-container">
 			<header id="commission-header">
 				<div id="images-container">
@@ -370,5 +373,6 @@ if (!isset($_SESSION['username'])) {
 			</section>
 		</form>
 		<script src="./script/commission.js"></script>
+		<script src="./script/html2pdf.bundle.min.js"></script>
 	</body>
 </html>
