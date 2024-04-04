@@ -1,5 +1,7 @@
 <?php
 
+namespace App\
+
 require_once("../../.env.php");
 
 require_once("../Entity/Semestre.php");
@@ -8,10 +10,10 @@ require_once("../Entity/Semestre.php");
 
 /**
  * Classe représentant le contrôleur pour la gestion des semestres depuis la base de données.
- * 
+ *
  * Cette classe permet de récupérer les données sur les semestres depuis la base de données.
  * Elle va nous permettre d'obtenir toutes les informations nécessaires sur les semestres.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
@@ -116,8 +118,8 @@ class SemestreBDD
 		pg_close($ptrBDD);
 
 		// If no semester is found, return NULL
-		if ($res == NULL) { 
-			return NULL; 
+		if ($res == NULL) {
+			return NULL;
 		}
 
 		$tabSemestre = array();
@@ -134,4 +136,3 @@ class SemestreBDD
 		return $tabSemestre;
 	}
 }
-
