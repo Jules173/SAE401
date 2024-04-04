@@ -1,26 +1,20 @@
 <?php
 
+namespace App\Repository;
 
-require_once("../../.env.php");
-
-require_once("../Entity/Competence.php");
-
-require_once("SemestreBDD.php");
-
+use App\Entity\Competence;
+use App\Repository\SemestreBDD;
+use App\Repository\DB.inc;
 
 /**
  * Classe représentant le contrôleur pour la gestion des compétences depuis la base de données.
- * 
+ *
  * Cette classe permet de récupérer les données sur les compétences depuis la base de données.
  * Elle va nous permettre d'obtenir toutes les informations nécessaires sur les compétences.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-
-
-
-
 class CompetenceBDD
 {
 	private $semestre;
@@ -30,13 +24,11 @@ class CompetenceBDD
 		$this->semestre = new SemestreBDD();
 	}
 
-
-
 	// Méthode pour récupérer toutes les compétences depuis la base de données
 	public function getAllCompetence()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer toutes les compétences
 		$query = "SELECT * FROM Competence";
@@ -79,7 +71,7 @@ class CompetenceBDD
 	public function getCompetenceByID(int $id)
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer la compétence par son ID
 		$query = "SELECT * FROM Competence WHERE idComp = $id LIMIT 1";
@@ -107,14 +99,6 @@ class CompetenceBDD
 			$res[0]['code'  ]
 		);
 
-
-
 		return $competence;
 	}
 }
-
-
-$c = new CompetenceBDD();
-print_r($c->getAllCompetence());
-print_r($c->getCompetenceByID(0));
-print_r($c->getCompetenceByID(2));

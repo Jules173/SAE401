@@ -1,31 +1,26 @@
 <?php
 
+namespace App\Repository;
 
-require_once("../../.env.php");
-
-require_once ( "../Entity/User.php" );
-
-
+use App\Entity\User;
+use App\Repository\DB.inc;
 
 /**
  * Classe représentant le contrôleur pour la gestion des utilisateurs depuis la base de données.
- * 
+ *
  * Cette classe permet de récupérer les données sur les utilisateurs depuis la base de données.
  * Elle va nous permettre d'obtenir toutes les informations nécessaires sur les utilisateurs.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-
-
-
 class UserBDD
 {
 	// Méthode pour récupérer tous les utilisateurs depuis la base de données
 	public function getAllUser()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer tous les utilisateurs
 		$query = "SELECT * FROM Users";
@@ -62,7 +57,3 @@ class UserBDD
 		return $res;
 	}
 }
-
-
-$u = new UserBDD();
-print_r($u->getAllUser());

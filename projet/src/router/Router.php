@@ -1,6 +1,6 @@
 <?php
 
- App\Router;
+namespace App\Router;
 
 class Router {
 	protected $routes = [];
@@ -34,3 +34,4 @@ class Router {
 	}
 }
 
+?>

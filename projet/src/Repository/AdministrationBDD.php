@@ -1,29 +1,21 @@
 <?php
 
+namespace App\Repository;
 
-require_once("../../.env.php");
-
-
-require_once("../Entity/Administration.php");
-require_once("../Entity/Etudiant.php");
-
-
-require_once("EtudiantBDD.php");
-
-
+use App\Entity\Administration;
+use App\Entity\Etudiant;
+use App\Repository\EtudiantBDD;
+use App\Repository\DB.inc;
 
 /**
  * Classe représentant le contrôleur pour la gestion des administrations depuis la base de données.
- * 
+ *
  * Cette classe permet de récupérer les données sur les administrations depuis la base de données.
  * Elle va nous permettre d'obtenir toutes les informations nécessaires sur les administrations.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-
-
-
 class AdministrationBDD
 {
 	// Propriétés de la classe
@@ -42,7 +34,7 @@ class AdministrationBDD
 	public function getAllAdministration()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer toutes les administrations
 		$query = "SELECT * FROM Administration";
@@ -82,7 +74,3 @@ class AdministrationBDD
 		return $tabAdministration;
 	}
 }
-
-
-$s = new AdministrationBDD ();
-print_r($s->getAllAdministration());

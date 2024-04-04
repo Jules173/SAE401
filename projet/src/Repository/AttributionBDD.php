@@ -1,28 +1,21 @@
 <?php
 
+namespace App\Repository;
 
-require_once("../../.env.php");
-
-require_once("../Entity/Attribution.php");
-
-require_once("BinBDD.php");
-require_once("CompetenceBDD.php");
-
- 
+use App\Entity\Attribution;
+use App\Repository\BinBDD;
+use App\Repository\CompetenceBDD;
+use App\Repository\DB.inc;
 
 /**
  * Classe représentant le contrôleur pour la gestion des attributions depuis la base de données.
- * 
+ *
  * Cette classe permet de récupérer les données sur les attributions depuis la base de données.
  * Elle va nous permettre d'obtenir toutes les informations nécessaires sur les attributions.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-
-
-
-
 class AttributionBDD
 {
 	private $competence;
@@ -40,7 +33,7 @@ class AttributionBDD
 	public function getAllAttribution()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer toutes les attributions
 		$query = "SELECT * FROM Attribution";
@@ -82,7 +75,7 @@ class AttributionBDD
 	public function getAttByIDComp ( $idComp )
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer toutes les attributions
 		$query = "SELECT * FROM Attribution WHERE idComp = $idComp LIMIT 1";
@@ -124,7 +117,7 @@ class AttributionBDD
 
 	public function getCoeffByIDComp ( $idComp ) {
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer toutes les attributions
 		$query = "SELECT * FROM Attribution WHERE idComp = $idComp LIMIT 1";
@@ -158,8 +151,3 @@ class AttributionBDD
 
 
 }
-
-
-$a = new AttributionBDD();
-print_r($a->getAllAttribution());
-print_r($a->getCoeffByIDComp(0));

@@ -1,31 +1,26 @@
 <?php
 
+namespace App\Repository;
 
-
-require_once("../../.env.php");
-require_once("../Entity/Etudiant.php");
-
-
+use App\Entity\Etudiant;
+use App\Repository\DB.inc;
 
 /**
  * Classe pour interagir avec la base de données pour la table ETUDIANT.
- * 
+ *
  * Cette classe permet de récupérer les données sur les étudiants depuis la base de données.
  * Elle va nous permettre d'obtenir toutes les informations nécessaires sur un étudiant X contenu dans la base.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-
-
-
 class EtudiantBDD
 {
 	// Méthode pour récupérer tous les étudiants depuis la base de données
 	public function getAllEtudiants()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer tous les étudiants
 		$query = "SELECT * FROM Etudiant";
@@ -73,7 +68,7 @@ class EtudiantBDD
 	public function getEtudiantByID(int $id)
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer l'étudiant par son ID
 		$query = "SELECT * FROM Etudiant WHERE idEtu = $id";
@@ -114,7 +109,7 @@ class EtudiantBDD
 	public function getEtudiantByNomPrenom(string $nom, string $prenom)
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer l'étudiant par son nom et prénom
 		$query = "SELECT * FROM Etudiant WHERE nom = '$nom' AND prenom = '$prenom'";
@@ -155,7 +150,7 @@ class EtudiantBDD
 	public function getAllEtudiantsByFiltres ( $semestre, $anneeDebut, $anneeFin, $semestreValide )
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer les étudiants par filtres
 		$query = "SELECT * FROM Etudiant WHERE idEtu IN (SELECT idEtu FROM Validation WHERE idSemestre IN (SELECT idSemestre FROM Semestre WHERE semestre = $semestre AND annee >= $anneeDebut AND annee <= $anneeFin AND decision = '$semestreValide'))";
@@ -196,7 +191,3 @@ class EtudiantBDD
 		return $tabEtud;
 	}
 }
-
-
-
-print_r((new EtudiantBDD())->getAllEtudiants());

@@ -1,27 +1,21 @@
 <?php
 
+namespace App\Repository;
 
-
-require_once("../../.env.php");
-
-require_once("../Entity/MoyenneCompetence.php");
-
-require_once("EtudiantBDD.php");
-require_once("CompetenceBDD.php");
-
+use App\Entity\MoyenneCompetence;
+use App\Repository\EtudiantBDD;
+use App\Repository\CompetenceBDD;
+use App\Repository\DB.inc;
 
 /**
  * Classe représentant le contrôleur pour la gestion des moyennes des compétences depuis la base de données.
- * 
+ *
  * Cette classe permet de récupérer les données sur les moyennes des compétences depuis la base de données.
  * Elle va nous permettre d'obtenir toutes les informations nécessaires sur les moyennes des compétences.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-
-
-
 class MoyenneCompetenceBDD
 {
 	private $etudiant;
@@ -39,7 +33,7 @@ class MoyenneCompetenceBDD
 	public function getAllMoyenneCompetence()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer toutes les moyennes des compétences
 		$query = "SELECT * FROM MoyenneCompetence";
@@ -77,7 +71,3 @@ class MoyenneCompetenceBDD
 		return $tabMoyenneCompetence;
 	}
 }
-
-
-$c = new MoyenneCompetenceBDD();
-print_r($c->getAllMoyenneCompetence());

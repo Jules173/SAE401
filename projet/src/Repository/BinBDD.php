@@ -1,34 +1,26 @@
 <?php
 
+namespace App\Repository;
 
-require_once("../../.env.php");
-
-
-require_once("../Entity/Bin.php");
-
-
-
-
+use App\Entity\Bin;
+use App\Repository\DB.inc;
 
 /**
  * Classe représentant le contrôleur pour la gestion des bacs depuis la base de données.
- * 
+ *
  * Cette classe permet de récupérer les données sur les bacs depuis la base de données.
  * Elle va nous permettre d'obtenir toutes les informations nécessaires sur les bacs.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-
-
-
 class BinBDD
 {
 	// Méthode pour récupérer tous les bacs depuis la base de données
 	public function getAllBin()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer tous les bacs
 		$query = "SELECT * FROM Bin";
@@ -71,7 +63,7 @@ class BinBDD
 	public function getBinByID(int $id)
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer le bac par son ID
 		$query = "SELECT * FROM Bin WHERE idBin = $id LIMIT 1";
@@ -104,8 +96,3 @@ class BinBDD
 	}
 
 }
-
-
-$b = new BinBDD();
-print_r($b->getAllBin());
-print_r($b->getBinByID(1));
