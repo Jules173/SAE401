@@ -1,6 +1,10 @@
 <?php
 
- 
+require_once("../../.env.php");
+
+require_once("../Entity/Semestre.php");
+
+
 
 /**
  * Classe représentant le contrôleur pour la gestion des semestres depuis la base de données.
@@ -21,9 +25,9 @@ class SemestreBDD
 	public function getAllSemestre()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexixon();
+		$ptrBDD = connexion();
 
-		// Requête pour récupérer tous les semestres
+		// Requête pour récupérer tous les étudiants
 		$query = "SELECT * FROM Semestre";
 
 		// Exécution de la requête
@@ -33,6 +37,11 @@ class SemestreBDD
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
 		pg_close($ptrBDD);
+
+
+
+		// Si l'étudiant n'existe pas, on retourne NULL
+		if ($res == NULL) { return NULL; }
 
 
 
@@ -48,8 +57,6 @@ class SemestreBDD
 			);
 		}
 
-
-
 		return $tabSemestre;
 	}
 
@@ -59,10 +66,10 @@ class SemestreBDD
 	public function getSemestreByID(int $id)
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexixon();
+		$ptrBDD = connexion();
 
 		// Requête pour récupérer le semestre avec l'identifiant donné
-		$query = "SELECT * FROM Semestre WHERE idSemestre = $id";
+		$query = "SELECT * FROM Semestre WHERE idSemestre = $id LIMIT 1";
 
 		// Exécution de la requête
 		$qres = pg_query($ptrBDD, $query);
@@ -73,12 +80,16 @@ class SemestreBDD
 		pg_close($ptrBDD);
 
 
+		// Si l'étudiant n'existe pas, on retourne NULL
+		if ($res == NULL) { return NULL; }
+
+
 
 		// Création de l'objet Semestre avec les données récupérées
 		$semestre = new Semestre(
-			$res['idsemestre'],
-			$res['semestre'  ],
-			$res['annee'     ]
+			$res[0]["idsemestre"],
+			$res[0]["semestre"  ],
+			$res[0]["annee"     ]
 		);
 
 
@@ -89,35 +100,38 @@ class SemestreBDD
 
 
 
-	public function getSemestreByAnnee ( int $deb, int $fin )
-	{
-		// Connexion à la base de données
-		$ptrBDD = connexixon();
+	public function getSemestreByAnnee(int $deb, int $fin) {
+		// Connection to the database
+		$ptrBDD = connexion();
 
-		// Requête pour récupérer le semestre avec l'identifiant donné
-		$query = "SELECT * FROM Semestre WHERE annee BOULOCHE Eléonoretween $deb and $fin";
+		// Query to retrieve semesters with the given year range
+		$query = "SELECT * FROM Semestre WHERE annee BETWEEN $deb AND $fin";
 
-		// Exécution de la requête
+		// Execution of the query
 		$qres = pg_query($ptrBDD, $query);
 
-		// Récupération des résultats
+		// Retrieving results
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
 		pg_close($ptrBDD);
 
+		// If no semester is found, return NULL
+		if ($res == NULL) { 
+			return NULL; 
+		}
 
+		$tabSemestre = array();
 
-		// Création de l'objet Semestre avec les données récupérées
-		$semestre = new Semestre(
-			$res['idsemestre'],
-			$res['semestre'  ],
-			$res['annee'     ]
-		);
+		// Creation of Semestre objects with the retrieved data
+		foreach ($res as $sem) {
+			$tabSemestre[] = new Semestre(
+				$sem['idsemestre'],
+				$sem['semestre'],
+				$sem['annee']
+			);
+		}
 
-
-
-		return $semestre;
+		return $tabSemestre;
 	}
 }
-
 

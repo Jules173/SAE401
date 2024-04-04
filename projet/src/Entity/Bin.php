@@ -15,7 +15,7 @@
 
 
 
-class Etudiant
+class Bin
 {
 	// Propriétés de la classe
 	private $idBin;

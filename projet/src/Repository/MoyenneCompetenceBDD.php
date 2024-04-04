@@ -1,6 +1,14 @@
 <?php
 
- 
+
+
+require_once("../../.env.php");
+
+require_once("../Entity/MoyenneCompetence.php");
+
+require_once("EtudiantBDD.php");
+require_once("CompetenceBDD.php");
+
 
 /**
  * Classe représentant le contrôleur pour la gestion des moyennes des compétences depuis la base de données.
@@ -31,7 +39,7 @@ class MoyenneCompetenceBDD
 	public function getAllMoyenneCompetence()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexixon();
+		$ptrBDD = connexion();
 
 		// Requête pour récupérer toutes les moyennes des compétences
 		$query = "SELECT * FROM MoyenneCompetence";
@@ -43,6 +51,11 @@ class MoyenneCompetenceBDD
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
 		pg_close($ptrBDD);
+
+
+
+		// Si la moyenne de la compétence n'existe pas, on retourne NULL
+		if ($res == NULL) { return NULL; }
 
 
 
@@ -66,3 +79,5 @@ class MoyenneCompetenceBDD
 }
 
 
+$c = new MoyenneCompetenceBDD();
+print_r($c->getAllMoyenneCompetence());

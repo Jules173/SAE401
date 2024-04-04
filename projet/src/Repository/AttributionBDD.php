@@ -1,5 +1,13 @@
 <?php
 
+
+require_once("../../.env.php");
+
+require_once("../Entity/Attribution.php");
+
+require_once("BinBDD.php");
+require_once("CompetenceBDD.php");
+
  
 
 /**
@@ -32,7 +40,7 @@ class AttributionBDD
 	public function getAllAttribution()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexixon();
+		$ptrBDD = connexion();
 
 		// Requête pour récupérer toutes les attributions
 		$query = "SELECT * FROM Attribution";
@@ -44,6 +52,11 @@ class AttributionBDD
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
 		pg_close($ptrBDD);
+
+
+
+		// Si l'attribution n'existe pas, on retourne NULL
+		if ($res == NULL) { return NULL; }
 
 
 
@@ -69,10 +82,10 @@ class AttributionBDD
 	public function getAttByIDComp ( $idComp )
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexixon();
+		$ptrBDD = connexion();
 
 		// Requête pour récupérer toutes les attributions
-		$query = "SELECT * FROM Attribution WHERE idComp = $idComp";
+		$query = "SELECT * FROM Attribution WHERE idComp = $idComp LIMIT 1";
 
 		// Exécution de la requête
 		$qres = pg_query($ptrBDD, $query);
@@ -84,15 +97,20 @@ class AttributionBDD
 
 
 
+		// Si l'attribution n'existe pas, on retourne NULL
+		if ($res == NULL) { return NULL; }
+
+
+
 		// Tableau pour stocker les attributions récupérées
 		$tabAttribution = array();
 
 		// Parcours des résultats et création des objets Attribution
 		foreach ($res as $att) {
 			$tabAttribution[] = new Attribution(
-				$this->competence->getCompetenceByID($att['idcomp']),
-				$this->bin->getBinByID($att['idbin']),
-				$att['coeff']
+				$this->competence->getCompetenceByID($att[0]['idcomp']),
+				$this->bin->getBinByID($att[0]['idbin']),
+				$att[0]['coeff']
 			);
 		}
 
@@ -106,10 +124,10 @@ class AttributionBDD
 
 	public function getCoeffByIDComp ( $idComp ) {
 		// Connexion à la base de données
-		$ptrBDD = connexixon();
+		$ptrBDD = connexion();
 
 		// Requête pour récupérer toutes les attributions
-		$query = "SELECT * FROM Attribution WHERE idComp = $idComp";
+		$query = "SELECT * FROM Attribution WHERE idComp = $idComp LIMIT 1";
 
 		// Exécution de la requête
 		$qres = pg_query($ptrBDD, $query);
@@ -121,10 +139,15 @@ class AttributionBDD
 
 
 
+		// Si l'attribution n'existe pas, on retourne NULL
+		if ($res == NULL) { return NULL; }
+
+
+
 		$attribution = new Attribution(
-			$this->competence->getCompetenceByID($att['idcomp']),
-			$this->bin->getBinByID($att['idbin']),
-			$att['coeff']
+			$this->competence->getCompetenceByID($res[0]['idcomp']),
+			$this->bin->getBinByID($res[0]['idbin']),
+			$res[0]['coeff']
 		);
 
 
@@ -134,32 +157,9 @@ class AttributionBDD
 
 
 
-	public function getBinByIDComp ($idComp) {
-		// Connexion à la base de données
-		$ptrBDD = connexixon();
-
-		// Requête pour récupérer toutes les attributions
-		$query = "SELECT * FROM Attribution WHERE idComp = $idComp";
-
-		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
-
-		// Récupération des résultats
-		$res = pg_fetch_all($qres);
-		pg_free_result($qres);
-		pg_close($ptrBDD);
-
-
-
-		$tabBin = array();
-		foreach ($res as $att) {
-			$tabBin[] = $this->bin->getBinByID($att['idbin']);
-		}
-
-
-
-		return $tabBin;
-	}
 }
 
 
+$a = new AttributionBDD();
+print_r($a->getAllAttribution());
+print_r($a->getCoeffByIDComp(0));

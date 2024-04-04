@@ -1,6 +1,11 @@
 <?php
 
- 
+
+require_once("../../.env.php");
+
+require_once ( "../Entity/User.php" );
+
+
 
 /**
  * Classe représentant le contrôleur pour la gestion des utilisateurs depuis la base de données.
@@ -20,10 +25,10 @@ class UserBDD
 	public function getAllUser()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexixon();
+		$ptrBDD = connexion();
 
 		// Requête pour récupérer tous les utilisateurs
-		$query = "SELECT * FROM User";
+		$query = "SELECT * FROM Users";
 
 		// Exécution de la requête
 		$qres = pg_query($ptrBDD, $query);
@@ -35,17 +40,29 @@ class UserBDD
 
 
 
+		// Si l'utilisateur n'existe pas, on retourne NULL
+		if ($res == NULL) { return NULL; }
+
+
+
+		$tabUser= array();
+
 		// Création de l'objet User avec les données récupérées
-		$user = new User(
-			$User['idusr' ],
-			$User['nom'   ],
-			$User['statut']
-		);
+		foreach ( $res as $user )
+		{
+			$tabUser[] = new User(
+				$user['idusr' ],
+				$user['nom'   ],
+				$user['statut']
+			);
+		}
 
 
 
-		return $user;
+		return $res;
 	}
 }
 
 
+$u = new UserBDD();
+print_r($u->getAllUser());

@@ -1,6 +1,14 @@
 <?php
 
- 
+
+require_once("../../.env.php");
+
+
+require_once("../Entity/Bin.php");
+
+
+
+
 
 /**
  * Classe représentant le contrôleur pour la gestion des bacs depuis la base de données.
@@ -20,7 +28,7 @@ class BinBDD
 	public function getAllBin()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexixon();
+		$ptrBDD = connexion();
 
 		// Requête pour récupérer tous les bacs
 		$query = "SELECT * FROM Bin";
@@ -32,6 +40,11 @@ class BinBDD
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
 		pg_close($ptrBDD);
+
+
+
+		// Si l'administration n'existe pas, on retourne NULL
+		if ($res == NULL) { return NULL; }
 
 
 
@@ -58,10 +71,10 @@ class BinBDD
 	public function getBinByID(int $id)
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexixon();
+		$ptrBDD = connexion();
 
 		// Requête pour récupérer le bac par son ID
-		$query = "SELECT * FROM Bin WHERE id = $id";
+		$query = "SELECT * FROM Bin WHERE idBin = $id LIMIT 1";
 
 		// Exécution de la requête
 		$qres = pg_query($ptrBDD, $query);
@@ -73,11 +86,16 @@ class BinBDD
 
 
 
+		// Si le bac n'existe pas, on retourne NULL
+		if ($res == NULL) { return NULL; }
+
+
+
 		// Création de l'objet Bin avec les données récupérées
 		$bin = new Bin(
-			$res['idbin'  ],
-			$res['nombin' ],
-			$res['codebin']
+			$res[0]['idbin'  ],
+			$res[0]['nombin' ],
+			$res[0]['codebin']
 		);
 
 
@@ -88,3 +106,6 @@ class BinBDD
 }
 
 
+$b = new BinBDD();
+print_r($b->getAllBin());
+print_r($b->getBinByID(1));

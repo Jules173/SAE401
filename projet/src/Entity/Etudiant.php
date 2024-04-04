@@ -90,17 +90,6 @@ class Etudiant
 	}
 }
 
-$etud = new Etudiant (1, 1, 1, 1, 1, 1, 1, 1, 1);
-
-echo ( $etud->getIdEtu() );
-echo ( $etud->getCodenip() );
-echo ( $etud->getCiv() );
-echo ( $etud->getNom() );
-echo ( $etud->getPrenom() );
-echo ( $etud->getGrpTD() );
-echo ( $etud->getGrpTP() );
-echo ( $etud->getBac() );
-echo ( $etud->getSpecialite() );
 
 
 

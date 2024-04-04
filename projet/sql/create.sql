@@ -119,7 +119,7 @@ CREATE TABLE Validation (
 
 
 
-CREATE TABLE User(
+CREATE TABLE Users(
 	idUsr  serial PRIMARY KEY,
 	nom    varchar(50) NOT NULL,
 	mdp    varchar(50) NOT NULL,

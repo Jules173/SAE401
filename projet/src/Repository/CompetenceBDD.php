@@ -1,6 +1,12 @@
 <?php
 
- 
+
+require_once("../../.env.php");
+
+require_once("../Entity/Competence.php");
+
+require_once("SemestreBDD.php");
+
 
 /**
  * Classe représentant le contrôleur pour la gestion des compétences depuis la base de données.
@@ -30,7 +36,7 @@ class CompetenceBDD
 	public function getAllCompetence()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexixon();
+		$ptrBDD = connexion();
 
 		// Requête pour récupérer toutes les compétences
 		$query = "SELECT * FROM Competence";
@@ -42,6 +48,11 @@ class CompetenceBDD
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
 		pg_close($ptrBDD);
+
+
+
+		// Si la compétence n'existe pas, on retourne NULL
+		if ($res == NULL) { return NULL; }
 
 
 
@@ -68,10 +79,10 @@ class CompetenceBDD
 	public function getCompetenceByID(int $id)
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexixon();
+		$ptrBDD = connexion();
 
 		// Requête pour récupérer la compétence par son ID
-		$query = "SELECT * FROM Competence WHERE id = $id";
+		$query = "SELECT * FROM Competence WHERE idComp = $id LIMIT 1";
 
 		// Exécution de la requête
 		$qres = pg_query($ptrBDD, $query);
@@ -83,12 +94,17 @@ class CompetenceBDD
 
 
 
+		// Si la compétence n'existe pas, on retourne NULL
+		if ($res == NULL) { return NULL; }
+
+
+
 		// Création de l'objet Competence avec les données récupérées
 		$competence = new Competence(
-			$this->semestre->getSemestreByID($res['idsemestre']),
-			$res['idcomp'],
-			$res['nom'   ],
-			$res['code'  ]
+			$this->semestre->getSemestreByID($res[0]['idsemestre']),
+			$res[0]['idcomp'],
+			$res[0]['nom'   ],
+			$res[0]['code'  ]
 		);
 
 
@@ -98,3 +114,7 @@ class CompetenceBDD
 }
 
 
+$c = new CompetenceBDD();
+print_r($c->getAllCompetence());
+print_r($c->getCompetenceByID(0));
+print_r($c->getCompetenceByID(2));

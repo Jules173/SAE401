@@ -1,6 +1,16 @@
 <?php
 
- 
+
+	require_once("../../.env.php");
+
+require_once("../Entity/MoyenneEleve.php");
+
+require_once("../Repository/EtudiantBDD.php");
+require_once("../Repository/BinBDD.php");
+
+
+
+
 
 /**
  * Classe représentant le contrôleur pour la gestion des moyennes des élèves depuis la base de données.
@@ -31,7 +41,7 @@ class MoyenneEleveBDD
 	public function getAllMoyenneEleve()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexixon();
+		$ptrBDD = connexion();
 
 		// Requête pour récupérer toutes les moyennes des élèves
 		$query = "SELECT * FROM MoyenneEleve";
@@ -43,6 +53,11 @@ class MoyenneEleveBDD
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
 		pg_close($ptrBDD);
+
+
+
+		// Si la moyenne de l'élève n'existe pas, on retourne NULL
+		if ($res == NULL) { return NULL; }
 
 
 
@@ -63,6 +78,32 @@ class MoyenneEleveBDD
 
 		return $tabMoyenneEleve;
 	}
+
+
+
+	public function getMoyenneByBin ($idBin, $idEtu)
+	{
+		// Connexion à la base de données
+		$ptrBDD = connexion();
+
+		// Requête pour récupérer la moyenne de l'élève pour un bin donné
+		$query = "SELECT * FROM MoyenneEleve WHERE idbin = $idBin and idEtu = $idEtu LIMIT 1";
+
+		// Exécution de la requête
+		$qres = pg_query($ptrBDD, $query);
+
+		// Récupération des résultats
+		$res = pg_fetch_all($qres);
+		pg_free_result($qres);
+		pg_close($ptrBDD);
+
+
+
+		// Si la moyenne de l'élève n'existe pas, on retourne NULL
+		if ($res == NULL) { return NULL; }
+
+
+
+		return res[0]['moyenne'];
+	}
 }
-
-

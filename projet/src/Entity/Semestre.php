@@ -14,8 +14,10 @@
 
 
 
+// Semestre class
 class Semestre
 {
+
 	// Propriétés de la classe
 	private $idSemestre;
 	private $semestre;
@@ -24,11 +26,12 @@ class Semestre
 
 
 	// Constructeur de la classe
-	public function construct($idSemestre, $semestre, $annee) {
+	public function __construct($idSemestre, $semestre, $annee) {
 		$this->idSemestre = $idSemestre;
-		$this->semestre   = $semestre;
-		$this->annee      = $annee;
+		$this->semestre = $semestre;
+		$this->annee = $annee;
 	}
+
 
 
 	// Méthodes pour obtenir les valeurs des propriétés de l'objet

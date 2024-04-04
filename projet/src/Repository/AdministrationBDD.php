@@ -1,6 +1,16 @@
 <?php
 
- 
+
+require_once("../../.env.php");
+
+
+require_once("../Entity/Administration.php");
+require_once("../Entity/Etudiant.php");
+
+
+require_once("EtudiantBDD.php");
+
+
 
 /**
  * Classe représentant le contrôleur pour la gestion des administrations depuis la base de données.
@@ -32,7 +42,7 @@ class AdministrationBDD
 	public function getAllAdministration()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexixon();
+		$ptrBDD = connexion();
 
 		// Requête pour récupérer toutes les administrations
 		$query = "SELECT * FROM Administration";
@@ -44,6 +54,11 @@ class AdministrationBDD
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
 		pg_close($ptrBDD);
+
+
+
+		// Si l'administration n'existe pas, on retourne NULL
+		if ($res == NULL) { return NULL; }
 
 
 
@@ -69,3 +84,5 @@ class AdministrationBDD
 }
 
 
+$s = new AdministrationBDD ();
+print_r($s->getAllAdministration());

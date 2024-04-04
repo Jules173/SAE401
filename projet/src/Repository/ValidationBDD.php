@@ -1,6 +1,15 @@
 <?php
 
- 
+
+require_once("../../.env.php");
+
+require_once ( "../Entity/Validation.php" );
+
+require_once ( "../Repository/EtudiantBDD.php" );
+require_once ( "../Repository/SemestreBDD.php" );
+
+
+
 
 /**
  * Classe représentant le contrôleur pour la gestion des validations depuis la base de données.
@@ -11,7 +20,6 @@
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-
 
 
 
@@ -35,7 +43,7 @@ class ValidationBDD
 	public function getAllValidation()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexixon();
+		$ptrBDD = connexion();
 
 		// Requête pour récupérer toutes les validations
 		$query = "SELECT * FROM Validation";
@@ -50,6 +58,11 @@ class ValidationBDD
 
 
 
+		// Si la validation n'existe pas, on retourne NULL
+		if ($res == NULL) { return NULL; }
+
+
+
 		// Tableau pour stocker les validations récupérées
 		$tabValidation = array();
 
@@ -57,7 +70,7 @@ class ValidationBDD
 		foreach ($res as $valid) {
 			$tabValidation[] = new Validation(
 				$this->etudiant->getEtudiantByID($valid['idetu']     ),
-				$this->etudiant->getSemestreByID($valid['idsemestre']),
+				$this->semestre->getSemestreByID($valid['idsemestre']),
 				$valid['decision'],
 				$valid['motif'   ],
 				$valid['typeadm' ],
@@ -75,7 +88,7 @@ class ValidationBDD
 	public function getDebutAnneeEtudes ($idEtu)
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexixon();
+		$ptrBDD = connexion();
 
 		// Requête pour récupérer toutes les validations
 		$query = "SELECT annee FROM Validation WHERE idEtu = $idEtu ORDER BY annee ASC LIMIT 1";
@@ -89,7 +102,7 @@ class ValidationBDD
 		pg_close($ptrBDD);
 
 
-		return $res;
+		return $res[0]['annee'];
 	}
 
 
@@ -97,7 +110,7 @@ class ValidationBDD
 	public function getFinAnneeEtudes ($idEtu)
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexixon();
+		$ptrBDD = connexion();
 
 		// Requête pour récupérer toutes les validations
 		$query = "SELECT annee FROM Validation WHERE idEtu = $idEtu ORDER BY annee DESC LIMIT 1";
@@ -111,7 +124,14 @@ class ValidationBDD
 		pg_close($ptrBDD);
 
 
-		return $res;
+		return $res[0]['annee'];
 	}
 }
 
+
+
+$v = new ValidationBDD ();
+
+print_r($v->getAllValidation());
+print_r($v->getFinAnneeEtudes(1));
+print_r($v->getDebutAnneeEtudes(1));
