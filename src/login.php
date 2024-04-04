@@ -8,6 +8,7 @@ $users = [
 ];
 
 if (isset($_SESSION['username'])) {
+	http_response_code(303);
 	header("Location: ./index.php");
 	exit();
 }

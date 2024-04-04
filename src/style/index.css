@@ -16,6 +16,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column;
+	row-gap: 15px;
 }
 
 #logo-container > #logo {
@@ -37,6 +38,7 @@
 	width: 100%;
 	color: white;
 	cursor: pointer;
+	font-size: 16px;
 }
 
 .nav-button:hover:not(.selected) {
@@ -93,6 +95,7 @@
 	/* column-gap: 63px; */
 	padding: 0 200px 0 60px;
 	justify-content: space-around;
+	width: 100%;
 }
 
 button {
@@ -524,6 +527,7 @@ input[type=checkbox]:checked::before {
 	border-radius: 5px;
 	padding: 10px 50px;
 	cursor: pointer;
+	user-select: none;
 }
 
 .uppercase {
@@ -565,6 +569,7 @@ input[type=checkbox]:checked::before {
 	height: 100%;
 	width: 100%;
 	display: flex;
+	position: relative;
 }
 
 #import-container {
@@ -628,6 +633,7 @@ input[type=checkbox]:checked::before {
 	position: relative;
 	visibility: hidden;
 	height: 30px;
+	width: 200px;
 }
 
 .file-input::before {
@@ -645,6 +651,7 @@ input[type=checkbox]:checked::before {
 	line-height: 30px;
 	border-radius: 5px;
 	cursor: pointer;
+	text-overflow: ellipsis;
 }
 
 .file-input:hover::before {
@@ -678,6 +685,7 @@ input[type=checkbox]:checked::before {
 	padding: 0 0 0 300px;
 	justify-items: center;
 	align-items: center;
+	transform: scale(0.9);
 }
 
 .default-fieldset {
@@ -762,17 +770,7 @@ input[type=checkbox]:checked::before {
 	row-gap: 15px;
 }
 
-.bin-collapside {
-	border: none;
-	
-	color: #BE4F23;
-	
-	cursor: pointer;
-	outline: none;
-}
-
 .collapsible-content {
-	opacity: 0;
 	border: 2px solid gray;
 	border-radius: 10px;
 	background-color: whitesmoke;
@@ -797,5 +795,62 @@ input[type=checkbox]:checked::before {
 }
 
 #student-table-wrapper {
-	padding: 0 0 0 300px;
+	padding: 0 0 0 250px;
+	display: flex;
+	flex-direction: column;
+}
+
+#page-content > div {
+	display: none;
+	height: 100%;
+	width: 100%;
+}
+
+:focus-visible {
+	outline: none;
+}
+
+#semester1,
+#semester2,
+#semester3,
+#semester4,
+#semester5,
+#semester6 {
+	display: none;
+}
+
+#student-table-wrapper > div {
+	height: 100%;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+#page-content {
+	width: 100%;
+}
+
+@media screen and (max-width: 1104px) {
+	#fields-form {
+		padding-left: 10%;
+	}
+	#commission-table-container {
+		grid-template-columns: auto 15%;
+	}
+	#commission-button-container button {
+		width: auto;
+	}
+	.type-2-button {
+		padding: 10px 15px;
+	}
+}
+
+#import-modal-container {
+	position: absolute;
+	bottom: 15px;
+	right: 15px;
+}
+
+.type-2-button:disabled {
+	pointer-events: none;
+	opacity: 0.5;
 }

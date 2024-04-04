@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	setTimeout(() => $(".stop-animation").removeClass("stop-animation"), 500);
+	setTimeout(() => $(".stop-animation").removeClass("stop-animation"), 1000);
 	$(".display-info-button").on("click", function(e) {
 		$("#student-commission-container").hide();
 		$("[id*=-table-container][data-display]").hide();
@@ -13,10 +13,10 @@ $(document).ready(function() {
 	});
 	$(".semester-button").on("click", function(e) {
 		$(".semester-button").removeClass("selected");
-		if ($(this).hasClass("selected"))
-			$(this).removeClass("selected");
-		else
-			$(this).addClass("selected");
+		$(this).addClass("selected");
+		$("#student-table-wrapper > div").removeAttr("style");
+		const id = $(this).attr("id");
+		$("#" + id.substr(0, id.indexOf("-"))).css("display", "flex");
 	});
 	$("#skills-display-wrapper input[type=checkbox]").on("change", function(e) {
 		const id = parseInt($(this).attr("id")?.substr(1)) + 1;
@@ -32,6 +32,16 @@ $(document).ready(function() {
 	});
 	$("#promotion-filter").on("change", filterFormHandle);
 	loadPromotionYear();
+	// Le clic sur les boutons de navigation
+	$(".nav-button").on("click", function(e) {
+		$(".nav-button").removeClass("selected");
+		$(this).addClass("selected");
+		$("#page-content > div").hide();
+		$("#page-content > #" + $(this).attr("name") + "-wrapper").css("display", "flex");
+	});
+	$(".collapsible-show").on("click", function(e) {
+		$(this).next().toggleClass("hidden");
+	});
 });
 
 function filterFormHandle(e) {
@@ -39,6 +49,7 @@ function filterFormHandle(e) {
 	data.get("display-mode") === "year" ? loadPromotionYear() : loadPromotionSemester();
 } 
 
+/** Fonction qui permet de charger les étudiants de la promotion par année */
 function loadPromotionYear() {
 	const startDate = $("#start-date").val();
 	const endDate = $("#end-date").val();
@@ -53,6 +64,8 @@ function loadPromotionYear() {
 		for (let i = min; i <= max; i++)
 			$("#promotion-semester-select").append($("<option>", {value: "" + i, text: "" + i}));
 		
+		// TODO: ajouter fetch de requête à l'api
+		
 	} else {
 		$("#promotion-table").hide();
 		$("#promotion-table").after($("<span>", {class: "no-data", text: "Veuillez sélectionner une année"}));
@@ -62,6 +75,7 @@ function loadPromotionYear() {
 	}
 }
 
+/** Fonction qui permet de charger les étudiants de la promotion par semestre */
 function loadPromotionSemester() {
 	const startDate = $("#start-date").val();
 	const endDate = $("#end-date").val();
@@ -75,6 +89,8 @@ function loadPromotionSemester() {
 		
 		for (let i = 1; i <= 6; i++)
 			$("#promotion-semester-select").append($("<option>", {value: "Semestre " + i, text: "Semestre " + i}));
+		
+		// TODO: ajouter fetch de requête à l'api
 		
 	} else {
 		$("#promotion-table").hide();
@@ -90,6 +106,7 @@ function resetPromotionTable() {
 }
 
 $("#add-semester-button").on("click", function(e) {
+	e.preventDefault();
 	const index = $(".import-box").length + 1;
 	$(this).parent().before($.parseHTML(`
 	<div class="import-box">
@@ -112,127 +129,44 @@ $("#add-semester-button").on("click", function(e) {
 			</div>
 		</div>
 	</div>`));
-	$(".excel-file-input").off("change");
-	$(".excel-file-input").on("change", excelInputEvent);
+	$(".file-input").off("change");
+	$(".file-input").on("change", fileInputEvent);
+	checkInputReady();
 });
 
-function excelInputEvent(e) {
+function fileInputEvent(e) {
 	const file = $(this).prop("files")[0];
 	$(this)[0].dataset['before'] = file?.name || "Aucun fichier choisi";
 }
 
-$(".excel-file-input").on("change", excelInputEvent);
+$(".file-input").on("change", fileInputEvent);
+
+/** Fonction qui sert à vérifier si tout les fichiers sont sélectionnés, active/désactive le */
+function checkInputReady() {
+	let isReady = true;
+	$("#import-container").find(".file-input").each(function(index, input) {
+		if (input.files.length == 0)
+			isReady = false;
+	});
+	$("#submit-import-button").removeAttr("disabled");
+	if (!isReady)
+		$("#submit-import-button").attr("disabled", "");
+}
+
+$("#submit-import-button").on("click", function(e) {
+	e.preventDefault();
+	checkInputReady();
+	const data = new FormData($("#import-container")[0]);
+	console.log(data);
+	// TODO: ajouter fetch de submit à l'api
+})
+
+$(".import-box .file-input").on("change", function(e) {
+	checkInputReady();
+});
 
 $("#visualize-commission-button").on("click", function(e) {
 	e.preventDefault();
 	e.stopPropagation();
 	window.open("./commission.php", "_BLANK");
-});
-
-$(document).on("keyleft", 'input[type="file"]', function () {
-  // Sélection de tous les champs de fichier
-  var fileInputs = $('input[type="file"]');
-
-  // Fonction pour vérifier si tous les champs de fichier sont remplis
-  function checkAllFilesSelected() {
-    var allFilesSelected = true;
-    fileInputs.each(function () {
-      if (!(this.files && this.files.length > 0)) {
-        allFilesSelected = false;
-        return false; // Sort de la boucle .each() dès qu'un champ de fichier vide est trouvé
-      }
-    });
-    return allFilesSelected;
-  }
-
-  // Supprimer tous les gestionnaires d'événements 'change' sur les champs de fichier
-  fileInputs.off("change");
-
-  // Gestionnaire d'événements 'change' pour chaque champ de fichier
-  fileInputs.on("change", function () {
-    // Vérification si un fichier a été sélectionné
-    if (this.files && this.files.length > 0) {
-      // Vérification si tous les champs de fichier sont remplis
-      if (checkAllFilesSelected()) {
-        // Tous les champs de fichier sont remplis, effectuer une action
-        $.ajax({
-          url: "index.php", // Le script PHP qui change la valeur de la variable
-          type: "POST",
-          data: { newValue: "Nouvelle valeur" }, // La nouvelle valeur pour la variable
-
-          success: function () {
-            // Sélection de la dernière ligne de la table
-            var lastRow = $("table tr:last");
-
-            // Comptage du nombre de td dans la dernière ligne
-            var tdCount = lastRow.find("td").length;
-
-            // Ajout dynamique du contenu en fonction du nombre de td dans la dernière ligne
-            var contenuHtml = `
-			<div class="import-box">
-				<h2>
-					Année du semestre :
-					<input type="number" class='semester-year' name="year" value="2024">
-				</h2>
-				<h3>
-					Semestre
-					<input type='number' class='semester'>
-				</h3>
-				<div class="import-files">
-					<div class="grades-import-container">
-						<label for="grade-input-file">Fichier Excel des moyennes : </label>
-						<br>
-						<input type="file" id="grade-input-file" name="grades" accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
-					</div>
-					<div class="jury-import-container">
-						<label for="jury-input-file">Fichier Excel des jury :</label>
-						<br>
-						<input type="file" id="jury-input-file" name="jury" accept='application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.ods'>
-					</div>
-				</div>
-			</div>`;
-			$("#import-container").append($.parseHTML(contenuHtml));
-
-            // Si le nombre de td dans la dernière ligne est pair, ajoute une nouvelle tr
-            // if (tdCount % 2 === 0) {
-              // $("table").append("<tr>" + contenuHtml + "</tr>");
-            // }
-            // Sinon, ajoute simplement une nouvelle td à la dernière ligne
-            // else {
-              // lastRow.append(contenuHtml);
-            // }
-          },
-        });
-      }
-    }
-  });
-});
-
-$(document).ready(function () {
-  $(".drop-zone").on("dragover", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    $(this).addClass("hover");
-  });
-
-  $(".drop-zone").on("dragleave", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    $(this).removeClass("hover");
-  });
-
-  $(".drop-zone").on("drop", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    $(this).removeClass("hover");
-
-    var files = e.originalEvent.dataTransfer.files;
-    // Vous pouvez maintenant traiter les fichiers ici
-    handleFiles(files);
-  });
-
-  function handleFiles(files) {
-    // Code de traitement des fichiers ici
-    console.log(files);
-  }
 });
