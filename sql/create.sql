@@ -18,8 +18,8 @@ CREATE TABLE Etudiant (
 	civ        varchar(4),
 	nom        varchar(50),
 	prenom     varchar(50),
-	grpTD      char,
-	grpTP      char,
+	grpTD      varchar(2),
+	grpTP      varchar(2),
 	bac        varchar(50),
 	specialite varchar(50)
 );
