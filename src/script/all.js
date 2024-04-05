@@ -55,7 +55,7 @@ function filterFormHandle(e) {
 } 
 
 /** Fonction qui permet de charger les étudiants de la promotion par année */
-function loadPromotionYear() {
+async function loadPromotionYear() {
 	const startDate = $("#start-date").val();
 	const endDate = $("#end-date").val();
 	$("#promotion-table-wrapper .no-data").remove();
@@ -70,6 +70,13 @@ function loadPromotionYear() {
 			$("#promotion-semester-select").append($("<option>", {value: "" + i, text: "" + i}));
 		
 		// TODO: ajouter fetch de requête à l'api
+		const studentList = await getAllStudents();
+		
+		studentList.forEach(function(student) {
+			addStudent(student);
+		});
+		
+		// console.log();
 		
 	} else {
 		$("#promotion-table").hide();
@@ -106,10 +113,19 @@ function loadPromotionSemester() {
 	}
 }
 
-function addStudent(student) {
+async function addStudent(student) {
+	console.log(student);
+	const attr = await getAttribution();
+	const skills = await getSkillGrades();
+	console.log(attr, skills);
+	
+	attr.forEach(function(att) {
+		skills.find(o => o.bin === att.bin)
+	});
+	
 	$("#promotion-table > tbody").append($.parseHTML(`
-	<tr>
-		<td></td>
+	<tr data-idetu="${student?.idEtu}">
+		<td>${student?.nom} ${student?.prenom}</td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -192,3 +208,20 @@ $("#visualize-commission-button").on("click", function(e) {
 	e.stopPropagation();
 	window.open("./commission.php", "_BLANK");
 });
+
+/** LES FETCHs */
+
+async function getAllStudents() {
+	const request = await fetch("http://127.0.0.1:8000/etudiants", {method: "GET"});
+	return await request.json();
+}
+
+async function getSkillGrades() {
+	const request = await fetch("http://127.0.0.1:8000/etudiants/moyenne", {method: "GET"});
+	return await request.json();
+}
+
+async function getAttribution() {
+	const request = await fetch("http://127.0.0.1:8000/attributions", {method: "GET"});
+	return await request.json();
+}

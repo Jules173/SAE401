@@ -18,22 +18,36 @@ $passwordMsg = "";
 
 if (isset($_POST['login'])) {
 	$accountExists = false;
-	foreach ($users as $user) {
-		if ($user['username'] === $_POST['username'] && password_verify($_POST['password'], $user['password'])) {
-			$_SESSION['username'] = $user['username'];
-			$_SESSION['isAdmin'] = $user['admin'];
+	$user = file_get_contents("http://127.0.0.1:8000/utilisateurs/{$_POST['username']}");
+	if ($user) {
+		$user = json_decode($user, true);
+		var_dump($user);
+		if (password_verify($_POST['password'], $user['mdp'])) {
+			$_SESSION['username'] = $user['nom'];
+			$_SESSION['isAdmin'] = $user['admin'] === "t" ? true : false;
 			header("Location: ./index.php");
 			exit();
-		} else if ($user['username'] === $_POST['username']) {
-			$accountExists = true;
-			unset($_SESSION['username']);
 		}
-	}
-	if ($accountExists) {
 		$passwordMsg = "<div class='login-failure'>Mot de passe incorrect</div>";
 	} else {
 		$userMsg = "<div class='login-failure'>Ce compte n'existe pas !</div>";
 	}
+	// foreach ($users as $user) {
+		// if ($user['username'] === $_POST['username'] && password_verify($_POST['password'], $user['password'])) {
+			// $_SESSION['username'] = $user['username'];
+			// $_SESSION['isAdmin'] = $user['admin'];
+			// header("Location: ./index.php");
+			// exit();
+		// } else if ($user['username'] === $_POST['username']) {
+			// $accountExists = true;
+			// unset($_SESSION['username']);
+		// }
+	// }
+	// if ($accountExists) {
+		// $passwordMsg = "<div class='login-failure'>Mot de passe incorrect</div>";
+	// } else {
+		// $userMsg = "<div class='login-failure'>Ce compte n'existe pas !</div>";
+	// }
 }
 
 ?>

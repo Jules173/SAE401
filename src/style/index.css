@@ -368,7 +368,7 @@ input[type=search]::-webkit-search-cancel-button {
 #promotion-table {
 	margin: 30px auto auto auto;
 	width: 80%;
-	height: auto;
+	height: fit-content;
 }
 
 .type-1-table {
@@ -405,7 +405,7 @@ input[type=search]::-webkit-search-cancel-button {
 }
 
 #promotion-table > tbody > tr > td:last-child:hover {
-	background-color: red;
+	/* background-color: red; */
 }
 
 #promotion-table > thead > tr {
@@ -414,6 +414,7 @@ input[type=search]::-webkit-search-cancel-button {
 
 .type-1-table > tbody > tr > td {
 	padding: 10px 0;
+	vertical-align: baseline;
 }
 
 @media screen and (max-height: 696px) {
@@ -888,4 +889,12 @@ input[type=checkbox]:checked::before {
 	#student-table-wrapper > div > div:last-child {
 		margin-bottom: 15px;
 	}
+}
+
+#promotion-table tbody tr {
+	height: 64px;
+}
+
+#promotion-table td {
+	vertical-align: middle;
 }
