@@ -119,20 +119,24 @@ async function addStudent(student) {
 	const skills = await getSkillGrades();
 	console.log(attr, skills);
 	
-	attr.forEach(function(att) {
-		skills.find(o => o.bin === att.bin)
-	});
+	// const comps = {
+		// comp1: 
+	// }
+	
+	// attr.forEach(function(att) {
+		// skills.find(o => o.bin === att.bin)
+	// });
 	
 	$("#promotion-table > tbody").append($.parseHTML(`
 	<tr data-idetu="${student?.idEtu}">
 		<td>${student?.nom} ${student?.prenom}</td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td>${Math.floor(Math.random() * 20 * 100) / 100}</td>
+		<td>${Math.floor(Math.random() * 20 * 100) / 100}</td>
+		<td>${Math.floor(Math.random() * 20 * 100) / 100}</td>
+		<td>${Math.floor(Math.random() * 20 * 100) / 100}</td>
+		<td>${Math.floor(Math.random() * 20 * 100) / 100}</td>
+		<td>${Math.floor(Math.random() * 20 * 100) / 100}</td>
+		<td>ADM</td>
 		<td>
 			<img src='./images/draw.svg' alt='pencil' width='24' heigh='24'>
 		</td>
@@ -225,3 +229,14 @@ async function getAttribution() {
 	const request = await fetch("http://127.0.0.1:8000/attributions", {method: "GET"});
 	return await request.json();
 }
+
+/** Importation */
+
+async function importFiles() {
+	const request = await fetch("dhfud", {method: "POST"});
+	return await request.json();
+}
+
+$("#submit-import-button").on("click", function(e) {
+	
+});
