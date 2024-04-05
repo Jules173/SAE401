@@ -79,7 +79,7 @@ class EtudiantBDD {
 			$res['specialite']
 		);
 
-		var_dump($res);
+		// var_dump($res);
 
 		return $res;
 	}
@@ -91,7 +91,7 @@ class EtudiantBDD {
 		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer l'étudiant par son nom et prénom
-		$query = "SELECT * FROM Etudiant WHERE nom LIKE '%$nom%' OR prenom LIKE '%$prenom%'";
+		$query = "SELECT * FROM Etudiant WHERE LOWER(nom) LIKE LOWER('%$nom%') OR LOWER(prenom) LIKE LOWER('%$prenom%')";
 
 		// Exécution de la requête
 		$qres = pg_query($ptrBDD->conn, $query);

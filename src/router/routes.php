@@ -17,7 +17,13 @@ return [
 		['GET', '/moyenne/{idBin}/{idEtu}', ['App\Controleur\EtudiantControleur', 'getMoyByBin']]
 	],
 	'/competences'=>[
-		['GET', '', ['App\Controleur\EtudiantControleur', 'getAllCompetence']]
+		['GET', '', ['App\Controleur\EtudiantControleur', 'getAllCompetences']]
+	],
+	'/bins'=>[
+		['GET', '', ['App\Controleur\PromotionControleur', 'getAllBins']]
+	],
+	'/semestres'=>[
+		['GET', '', ['App\Controleur\PromotionControleur', 'getAllSemestres']]
 	]
 
 ];

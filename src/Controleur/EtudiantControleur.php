@@ -41,7 +41,7 @@ class EtudiantControleur {
 		return $moyenne->getMoyenneByBin($idBin, $idEtu);
 	}
 
-	public function getAllCompetence() {
+	public function getAllCompetences() {
 		$comp = new CompetenceBDD();
 		return $comp->getAllCompetence();
 	}
