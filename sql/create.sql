@@ -41,7 +41,7 @@ CREATE TABLE Administration (
 
 CREATE TABLE Bin (
 	idBin   serial PRIMARY KEY,
-	nomBin  varchar(20),
+	nomBin  varchar(100),
 	codeBin varchar(7)
 );
 
