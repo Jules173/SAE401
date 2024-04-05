@@ -42,7 +42,7 @@ CREATE TABLE Administration (
 CREATE TABLE Bin (
 	idBin   serial PRIMARY KEY,
 	nomBin  varchar(20),
-	codeBin varchar(6)
+	codeBin varchar(7)
 );
 
 
@@ -82,8 +82,8 @@ CREATE TABLE Competence (
 CREATE TABLE MoyenneCompetence (
 	idComp    int NOT NULL,
 	idEtu     int NOT NULL,
-	bonus     float      default 0,
-	decision  varchar(3) default 'ADM',
+	bonus     float      DEFAULT 0,
+	decision  varchar(3) DEFAULT 'ADM',
 
 	PRIMARY KEY (idComp, idEtu),
 	FOREIGN KEY (idComp) REFERENCES Competence (idComp),
@@ -121,7 +121,7 @@ CREATE TABLE Validation (
 
 CREATE TABLE Users(
 	idUsr  serial PRIMARY KEY,
-	nom    varchar(50) NOT NULL,
-	mdp    varchar(50) NOT NULL,
-	statut varchar(5 ) default 'User'
+	nom    varchar(90) NOT NULL,
+	mdp    varchar(90) NOT NULL,
+	admin  boolean DEFAULT FALSE
 );
