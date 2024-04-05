@@ -43,7 +43,7 @@ class ValidationBDD {
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// Si la validation n'existe pas, on retourne NULL
 		if ($res == null)
@@ -77,7 +77,7 @@ class ValidationBDD {
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		return $res[0]['annee'];
 	}
@@ -95,7 +95,7 @@ class ValidationBDD {
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		return $res[0]['annee'];
 	}

@@ -40,7 +40,7 @@ class AttributionBDD {
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// Si l'attribution n'existe pas, on retourne NULL
 		if ($res == null)
@@ -49,8 +49,10 @@ class AttributionBDD {
 		// Parcours des résultats et création des objets Attribution
 		foreach ($res as $att) {
 			$tabAttribution[] = new Attribution(
-				$this->competence->getCompetenceByID($att['idcomp']),
-				$this->bin->getBinByID($att['idbin']),
+				// $this->competence->getCompetenceByID($att['idcomp']),
+				// $this->bin->getBinByID($att['idbin']),
+				$att['idcomp'],
+				$att['idbin'],
 				$att['coeff']
 			);
 		}
@@ -60,29 +62,43 @@ class AttributionBDD {
 
 	public function getAttByIDComp($idComp) {
 		// Connexion à la base de données
+
+		$idComp = $idComp['idComp'];
+
 		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer toutes les attributions
-		$query = "SELECT * FROM Attribution WHERE idComp = $idComp LIMIT 1";
+		$query = "SELECT * FROM Attribution WHERE idComp = $idComp";
 
 		// Exécution de la requête
 		$qres = pg_query($ptrBDD->conn, $query);
 
+		// var_dump($qres, pg_last_error($ptrBDD->conn));
+
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// Si l'attribution n'existe pas, on retourne NULL
 		if ($res == null)
 			return null;
 
+		// var_dump($res);
+
 		// Parcours des résultats et création des objets Attribution
+		// foreach ($res as $att) {
+		// 	$tabAttribution[] = new Attribution(
+		// 		$this->competence->getCompetenceByID($att[0]['idcomp']),
+		// 		$this->bin->getBinByID($att[0]['idbin']),
+		// 		$att[0]['coeff']
+		// 	);
+		// }
 		foreach ($res as $att) {
 			$tabAttribution[] = new Attribution(
-				$this->competence->getCompetenceByID($att[0]['idcomp']),
-				$this->bin->getBinByID($att[0]['idbin']),
-				$att[0]['coeff']
+				$att['idcomp'],
+				$att['idbin'],
+				$att['coeff']
 			);
 		}
 
@@ -102,7 +118,7 @@ class AttributionBDD {
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// Si l'attribution n'existe pas, on retourne NULL
 		if ($res == null)

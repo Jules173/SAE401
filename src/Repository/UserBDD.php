@@ -40,10 +40,39 @@ class UserBDD {
 			$tabUser[] = new User(
 				$user['idusr' ],
 				$user['nom'   ],
+				null,
 				$user['statut']
 			);
 		}
 
 		return $res;
 	}
+
+	public function getUserByName(string $name) {
+		// Connexion à la base de données
+		$ptrBDD = DB::getInstance();
+
+		// Requête pour récupérer tous les utilisateurs
+		$query = "SELECT * FROM Users WHERE nom = '$name'";
+
+		// Exécution de la requête
+		$qres = pg_query($ptrBDD->conn, $query);
+
+		// Récupération des résultats
+		$res = pg_fetch_all($qres);
+		pg_free_result($qres);
+		pg_close($ptrBDD->conn);
+
+		// Si l'utilisateur n'existe pas, on retourne NULL
+		if ($res == null)
+			return null;
+
+		return new User(
+			$res[0]['idusr' ],
+			$res[0]['nom'   ],
+			$res[0]['mdp'],
+			$res[0]['admin']
+		);;
+	}
+
 }

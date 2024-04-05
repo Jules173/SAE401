@@ -40,7 +40,7 @@ class MoyenneEleveBDD {
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// Si la moyenne de l'élève n'existe pas, on retourne NULL
 		if ($res == null)
@@ -49,8 +49,10 @@ class MoyenneEleveBDD {
 		// Parcours des résultats et création des objets MoyenneEleve
 		foreach ($res as $moyEleve) {
 			$tabMoyenneEleve[] = new MoyenneEleve(
-				$this->etudiant->getEtudiantByID($moyEleve['idetu']),
-				$this->bin->getBinByID($moyEleve['idbin']),
+				// $this->etudiant->getEtudiantByID($moyEleve['idetu']),
+				// $this->bin->getBinByID($moyEleve['idbin']),
+				$moyEleve['idetu'],
+				$moyEleve['idbin'],
 				$moyEleve['moyenne'],
 				$moyEleve['annee'  ]
 			);
@@ -73,13 +75,13 @@ class MoyenneEleveBDD {
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// $res = $ptrBDD->connect->query($query);
 
 		// Si la moyenne de l'élève n'existe pas, on retourne NULL
 		if ($res == null)
-			return null
+			return null;
 
 		return $res[0]['moyenne'];
 	}

@@ -16,14 +16,14 @@ class Competence {
 	// Propriétés de la classe
 	public $idComp;
 	public $nom;
-	public $code;
+	public $bonus;
 	public $semestre;
 
 	// Constructeur de la classe
-	public function __construct($idComp, $nom, $code, $semestre) {
+	public function __construct($idComp, $nom, $bonus, $semestre) {
 		$this->idComp   = $idComp;
 		$this->nom      = $nom;
-		$this->code     = $code;
+		$this->bonus     = $bonus;
 		$this->semestre = $semestre;
 	}
 

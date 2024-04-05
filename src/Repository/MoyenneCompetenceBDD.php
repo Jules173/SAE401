@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\MoyenneCompetence;
+use App\Entity\Competence;
 use App\Repository\EtudiantBDD;
 use App\Repository\CompetenceBDD;
 use App\Repository\DB;
@@ -39,8 +40,9 @@ class MoyenneCompetenceBDD {
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
+		// var_dump($res);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// Si la moyenne de la compétence n'existe pas, on retourne NULL
 		if ($res == null)
@@ -49,8 +51,10 @@ class MoyenneCompetenceBDD {
 		// Parcours des résultats et création des objets MoyenneCompetence
 		foreach ($res as $moyCompetence) {
 			$tabMoyenneCompetence[] = new Competence(
-				$this->competence->getCompetenceByID($moyCompetence['idcomp']),
-				$this->etudiant->getEtudiantByID($moyCompetence['idetu']),
+				// $this->competence->getCompetenceByID($moyCompetence['idcomp']),
+				// $this->etudiant->getEtudiantByID($moyCompetence['idetu']),
+				$moyCompetence['idcomp'   ],
+				$moyCompetence['idetu'   ],
 				$moyCompetence['bonus'   ],
 				$moyCompetence['decision']
 			);

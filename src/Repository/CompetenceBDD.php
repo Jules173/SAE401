@@ -37,7 +37,7 @@ class CompetenceBDD {
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// Si la compétence n'existe pas, on retourne NULL
 		if ($res == null)
@@ -70,7 +70,7 @@ class CompetenceBDD {
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// Si la compétence n'existe pas, on retourne NULL
 		if ($res == null)

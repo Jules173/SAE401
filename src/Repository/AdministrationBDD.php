@@ -39,7 +39,7 @@ class AdministrationBDD {
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// Si l'administration n'existe pas, on retourne NULL
 		if ($res == null)

@@ -30,7 +30,7 @@ class SemestreBDD {
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// Si l'étudiant n'existe pas, on retourne NULL
 		if ($res == null)
@@ -62,7 +62,7 @@ class SemestreBDD {
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// Si l'étudiant n'existe pas, on retourne NULL
 		if ($res == null)
@@ -91,7 +91,7 @@ class SemestreBDD {
 		// Retrieving results
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// If no semester is found, return NULL
 		if ($res == null)

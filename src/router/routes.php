@@ -12,18 +12,28 @@ return [
 	// Routes pour les étudiants
 	'/etudiants' => [
 		['GET', '', ['App\Controleur\EtudiantControleur', 'getAllEtudiants']],
-		['GET', '/{id}', ['App\Controleur\EtudiantControleur', 'getInfosEtudByID']],
 		['GET', '/{nom}/{prenom}', ['App\Controleur\EtudiantControleur', 'getInfosEtudByNomPrenom']],
-		['GET', '/moyenne/{idBin}/{idEtu}', ['App\Controleur\EtudiantControleur', 'getMoyByBin']]
+		['GET', '/moyenne', ['App\Controleur\EtudiantControleur', 'getAllMoyenneEtudiant']],
+		['GET', '/{id}', ['App\Controleur\EtudiantControleur', 'getInfosEtudByID']],
+		['GET', '/moyenne/{idBin}/{idEtu}', ['App\Controleur\EtudiantControleur', 'getMoyByBin']],
+		// ['GET', '/moyenne/{idComp}/{idEtu}', ['App\Controleur\EtudiantControleur', 'getMoyByBin']]
 	],
 	'/competences'=>[
-		['GET', '', ['App\Controleur\EtudiantControleur', 'getAllCompetences']]
+		['GET', '', ['App\Controleur\EtudiantControleur', 'getAllCompetences']],
+		['GET', '/moyenne', ['App\Controleur\EtudiantControleur', 'getAllMoyenneCompetence']]
 	],
 	'/bins'=>[
 		['GET', '', ['App\Controleur\PromotionControleur', 'getAllBins']]
 	],
+	'/attributions'=>[
+		['GET', '', ['App\Controleur\EtudiantControleur', 'getAllAttribution']],
+		['GET', '/{idComp}', ['App\Controleur\EtudiantControleur', 'getAttByIDComp']]
+	],
 	'/semestres'=>[
 		['GET', '', ['App\Controleur\PromotionControleur', 'getAllSemestres']]
+	],
+	'/utilisateurs'=>[
+		['GET', '/{nom}', ['App\Controleur\PromotionControleur', 'getUserByName']]
 	]
 
 ];

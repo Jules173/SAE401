@@ -16,15 +16,17 @@ class User {
 	// Propriétés de la classe
 	public $idUsr;
 	public $nom;
-	public $statut;
+	public $mdp;
+	public $admin;
 
 	// Constructeur de la classe
-	public function __construct($idUsr, $nom, $statut) {
+	public function __construct($idUsr, $nom, $mdp, $admin) {
 		$this->idUsr  = $idUsr;
 		$this->nom    = $nom;
-		$this->statut = $statut;
+		$this->mdp    = $mdp;
+		$this->admin = $admin;
 	}
-	
+
 	// Méthodes pour obtenir les valeurs des propriétés de l'objet
 
 	// Méthode pour obtenir l'identifiant de l'utilisateur
@@ -39,6 +41,6 @@ class User {
 
 	// Méthode pour obtenir le statut de l'utilisateur
 	public function getStatut() {
-		return $this->statut;
+		return $this->admin;
 	}
 }

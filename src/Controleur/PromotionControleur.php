@@ -5,6 +5,7 @@ namespace App\Controleur;
 use App\Entity\Etudiant;
 use App\Repository\EtudiantBDD;
 use App\Repository\BinBDD;
+use App\Repository\UserBDD;
 use App\Repository\SemestreBDD;
 
 /**
@@ -34,6 +35,11 @@ class PromotionControleur {
 	public function getAllSemestres() {
 		$sem = new SemestreBDD();
 		return $sem->getAllSemestre();
+	}
+
+	public function getUserByName($name) {
+		$user = new UserBDD();
+		return $user->getUserByName($name['nom']);
 	}
 
 }

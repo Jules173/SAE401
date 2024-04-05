@@ -30,7 +30,7 @@ class EtudiantBDD {
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// Si l'étudiant n'existe pas, on retourne NULL
 		if ($res == null)
@@ -47,7 +47,10 @@ class EtudiantBDD {
 	// Méthode pour obtenir un étudiant par son ID
 	public function getEtudiantByID($id) {
 		// Connexion à la base de données
-		$id = intval($id['id']);
+		// $id = $id['id'];
+
+		if (isset($id['id']))
+			$id = $id['id'];
 
 		$ptrBDD = DB::getInstance();
 
@@ -60,14 +63,13 @@ class EtudiantBDD {
 		// Récupération du résultat
 		$res = pg_fetch_array($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// Si l'étudiant n'existe pas, on retourne NULL
 		if ($res == null)
 			return null;
-
-		// Création de l'objet Etudiant à partir des données récupérées
-		$etudiant = new Etudiant(
+		
+		return new Etudiant(
 			$res['idetu'     ],
 			$res['codenip'   ],
 			$res['civ'       ],
@@ -78,10 +80,6 @@ class EtudiantBDD {
 			$res['bac'       ],
 			$res['specialite']
 		);
-
-		// var_dump($res);
-
-		return $res;
 	}
 
 
@@ -99,7 +97,7 @@ class EtudiantBDD {
 		// Récupération du résultat
 		$res = pg_fetch_array($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// Si l'étudiant n'existe pas, on retourne NULL
 		if ($res == null)
@@ -134,7 +132,7 @@ class EtudiantBDD {
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD->conn);
+		// pg_close($ptrBDD->conn);
 
 		// Si l'étudiant n'existe pas, on retourne NULL
 		if ($res == null)
