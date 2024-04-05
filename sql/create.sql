@@ -1,4 +1,4 @@
-DROP TABLE User             cascade;
+DROP TABLE Users             cascade;
 DROP TABLE Validation        cascade;
 DROP TABLE Attribution       cascade;
 DROP TABLE MoyenneCompetence cascade;
@@ -53,9 +53,9 @@ CREATE TABLE MoyenneEleve (
 	moyenne float,
 	annee   int NOT NULL,
 
-	PRIMARY KEY( idEtu, idBin )
-	FOREIGN KEY (idEtu) REFERENCES Etudiant(idEtu);
-	FOREIGN KEY (idBin) REFERENCES Bin     (idBin);
+	PRIMARY KEY( idEtu, idBin ),
+	FOREIGN KEY (idEtu) REFERENCES Etudiant(idEtu),
+	FOREIGN KEY (idBin) REFERENCES Bin     (idBin)
 );
 
 
@@ -119,7 +119,7 @@ CREATE TABLE Validation (
 
 
 
-CREATE TABLE User(
+CREATE TABLE Users(
 	idUsr  serial PRIMARY KEY,
 	nom    varchar(50) NOT NULL,
 	mdp    varchar(50) NOT NULL,
