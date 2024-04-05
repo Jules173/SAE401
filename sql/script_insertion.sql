@@ -1,14 +1,14 @@
 -- Instructions INSERT pour la table Users
-INSERT INTO Users (nom, mdp, statut) VALUES
-	('compteinvite', 'mdpinvite', 'FALSE'),
-	('compteadmin', 'mdpadmin', 'TRUE');
+INSERT INTO Users (nom, mdp, admin) VALUES
+	('toto', '$2y$10$Bt1fPpRPq7MEr/o3.i4Gv.ZkFUKhQyxKSpb6wXK6rdif5aUrlyFKS', FALSE),
+	('admin', '$2y$10$GA2VY4335So2bWRmsTMBtOe8QPhh4vU/tSzemcxKqvwmypEd7dDV.', TRUE);
 
 -- Instructions INSERT pour la table Etudiant
-INSERT INTO Etudiant (codenip, civ, nom, prenom, grpTD, grpTP, bac) VALUES
-	(8860, 'Mme.', 'GAROU', 'Lou', 'A', 'A1', 'NBGE'),
-	(8810, 'M.', 'PASDECEINTURE', 'Jean-Michel', 'B', 'B1', 'NBGE'),
-	(8918, 'Mme.', 'DELAFORET', 'Sylvie', 'B', 'B2', 'NBGE'),
-	(8811, 'M.', 'ABBE', 'Cedric', 'C', 'C1', 'NBGE');
+INSERT INTO Etudiant (idEtu,codenip, civ, nom, prenom, grpTD, grpTP, bac) VALUES
+	(8860, 8860, 'Mme.', 'GAROU', 'Lou', 'A', 'A1', 'NBGE'),
+	(8810, 8810, 'M.', 'PASDECEINTURE', 'Jean-Michel', 'B', 'B1', 'NBGE'),
+	(8918, 8918, 'Mme.', 'DELAFORET', 'Sylvie', 'B', 'B2', 'NBGE'),
+	(8811, 8811, 'M.', 'ABBE', 'Cedric', 'C', 'C1', 'NBGE');
 
 -- Instructions INSERT pour la table Bin
 INSERT INTO Bin (nomBin, codeBin) VALUES
@@ -32,12 +32,12 @@ INSERT INTO Bin (nomBin, codeBin) VALUES
 
 -- Instructions INSERT pour la table Semestre
 INSERT INTO Semestre (semestre, annee) VALUES
-	(1, 'S1'),
-	(2, 'S2'),
-	(3, 'S3'),
-	(4, 'S4'),
-	(5, 'S5'),
-	(6, 'S6');
+	(1, 2023),
+	(2, 2023),
+	(3, 2023),
+	(4, 2023),
+	(5, 2023),
+	(6, 2023);
 
 -- Instructions INSERT pour la table Competence
 INSERT INTO Competence (nom, code, idSemestre) VALUES
@@ -56,11 +56,11 @@ INSERT INTO MoyenneCompetence (idComp, idEtu, bonus, decision) VALUES
 	(1, 8811, 0, 'ADM');
 
 -- Instructions INSERT pour la table Validation
-INSERT INTO Validation (idEtu, idSemestre, decision, passage) VALUES
-	(8860, 1, 'ADM', 'S2'),
-	(8810, 1, 'ADM', 'S2'),
-	(8918, 1, 'ADM', 'S2'),
-	(8811, 1, 'ADM', 'S2');
+INSERT INTO Validation (idEtu, idSemestre, decision, annee) VALUES
+	(8860, 1, 'ADM', 2023),
+	(8810, 1, 'ADM', 2023),
+	(8918, 1, 'ADM', 2023),
+	(8811, 1, 'ADM', 2023);
 
 -- Instructions INSERT pour la table Attribution
 INSERT INTO Attribution (idComp, idBin, coeff) VALUES
@@ -92,18 +92,17 @@ INSERT INTO Attribution (idComp, idBin, coeff) VALUES
 
 -- Instructions INSERT pour la table MoyenneEleve
 INSERT INTO MoyenneEleve (idEtu, idBin, moyenne, annee) VALUES
-	(8860, 1, 16.28, '2023-2024'),
-	(8810, 1, 17.41, '2023-2024'),
-	(8918, 1, 18.74, '2023-2024'),
-	(8811, 1, 18.85, '2023-2024'),
-	(8860, 2, 16.20, '2023-2024'),
-	(8810, 2, 17.87, '2023-2024'),
-	(8918, 2, 19.12, '2023-2024'),
-	(8811, 2, 17.18, '2023-2024');
+	(8860, 1, 16.28, 2023),
+	(8810, 1, 17.41, 2023),
+	(8918, 1, 18.74, 2023),
+	(8811, 1, 18.85, 2023),
+	(8860, 2, 16.20, 2023),
+	(8810, 2, 17.87, 2023),
+	(8918, 2, 19.12, 2023),
+	(8811, 2, 17.18, 2023);
 
--- Instructions INSERT pour la table Promotion
-INSERT INTO Promotion (idEtu, idSemestre, statut, annee) VALUES
-	(8860, 1, 'Initial', '2023-2024'),
-	(8810, 1, 'Initial', '2023-2024'),
-	(8918, 1, 'Initial', '2023-2024'),
-	(8811, 1, 'Initial', '2023-2024');
+INSERT INTO Administration (absence, nombreAbsenceJustifiees, statut, annee, idEtu) VALUES
+    (3, 0, 'initial', 2023, 8860),
+    (2, 1, 'initial', 2023, 8810),
+    (3, 0, 'initial', 2023, 8918),
+    (2, 0, 'initial', 2023, 8811);
