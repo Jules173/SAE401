@@ -1,26 +1,20 @@
 <?php
 
+namespace App\Controleur;
+
+use App\Entity\Etudiant;
+use App\Repository\EtudiantBDD;
+use App\Repository\AttributionBDD;
+use App\Repository\ValidationBDD;
+use App\Repository\MoyenneEleveBDD;
+use App\Repository\BinBDD;
 
 /**
  * Classe controleur de la partie étudiant.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-
-
- 
-
-require_once ( "../Entity/Etudiant.php"           );
-
-require_once ( "../Repository/EtudiantBDD.php"    );
-require_once ( "../Repository/AttributionBDD.php" );
-require_once ( "../Repository/ValidationBDD.php"  );
-require_once ( "../Repository/MoyenneEleveBDD.php"  );
-require_once ( "../Repository/BinBDD.php"  );
-
-
-
 class EtudiantControleur
 {
 	public function getInfosEtudByID ($etudiantID) {
@@ -40,9 +34,14 @@ class EtudiantControleur
 		return json_encode($etud);
 	}
 
-
-
-
+	public function getAllEtudiants() {
+		$etudBDD = new EtudiantBDD();
+		$etud = $etudBDD->getAllEtudiants();
+		// foreach($etud as $index=>$etud)
+		// 	$etud[$index] = $etud->toJSON();
+		return json_encode($etud);
+		// return $etud;
+	}
 
 	public function getMoyByBin ( $idBin, $idEtu ) {
 		$moyenne = new MoyenneEleveBDD();
@@ -50,9 +49,3 @@ class EtudiantControleur
 	}
 
 }
-
-
-
-
-$e = new EtudiantControleur();
-print_r($e->getMoyByBin(1, 1));

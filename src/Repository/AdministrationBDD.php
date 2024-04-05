@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\Administration;
 use App\Entity\Etudiant;
 use App\Repository\EtudiantBDD;
-use App\Repository\DB.inc;
+use App\Repository\DB;
 
 /**
  * Classe représentant le contrôleur pour la gestion des administrations depuis la base de données.

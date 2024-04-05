@@ -1,14 +1,13 @@
 <?php
 
+namespace App\Controleur;
+
 /**
  * Classe controleur de la partie étudiant.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-
-
-
 class ExportControleur {
 
 	public function uploads () {}

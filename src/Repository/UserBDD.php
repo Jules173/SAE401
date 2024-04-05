@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\User;
-use App\Repository\DB.inc;
+use App\Repository\DB;
 
 /**
  * Classe représentant le contrôleur pour la gestion des utilisateurs depuis la base de données.

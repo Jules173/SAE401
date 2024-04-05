@@ -1,28 +1,21 @@
 <?php
 
+namespace App\Repository;
 
-require_once("../../.env.php");
-
-require_once ( "../Entity/Validation.php" );
-
-require_once ( "../Repository/EtudiantBDD.php" );
-require_once ( "../Repository/SemestreBDD.php" );
-
-
-
+use App\Entity\Validation;
+use App\Repository\EtudiantBDD;
+use App\Repository\SemestreBDD;
+use App\Repository\DB;
 
 /**
  * Classe représentant le contrôleur pour la gestion des validations depuis la base de données.
- * 
+ *
  * Cette classe permet de récupérer les données sur les validations depuis la base de données.
  * Elle va nous permettre d'obtenir toutes les informations nécessaires sur les validations.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-
-
-
 class ValidationBDD
 {
 	// Propriétés de la classe
@@ -43,7 +36,7 @@ class ValidationBDD
 	public function getAllValidation()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer toutes les validations
 		$query = "SELECT * FROM Validation";
@@ -88,7 +81,7 @@ class ValidationBDD
 	public function getDebutAnneeEtudes ($idEtu)
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer toutes les validations
 		$query = "SELECT annee FROM Validation WHERE idEtu = $idEtu ORDER BY annee ASC LIMIT 1";
@@ -110,7 +103,7 @@ class ValidationBDD
 	public function getFinAnneeEtudes ($idEtu)
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer toutes les validations
 		$query = "SELECT annee FROM Validation WHERE idEtu = $idEtu ORDER BY annee DESC LIMIT 1";
@@ -127,11 +120,3 @@ class ValidationBDD
 		return $res[0]['annee'];
 	}
 }
-
-
-
-$v = new ValidationBDD ();
-
-print_r($v->getAllValidation());
-print_r($v->getFinAnneeEtudes(1));
-print_r($v->getDebutAnneeEtudes(1));

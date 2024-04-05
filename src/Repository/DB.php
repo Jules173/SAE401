@@ -13,55 +13,38 @@ use App\Repository\SemestreBDD;
 use App\Repository\UserBDD;
 use App\Repository\ValidationBDD;
 
-/*IL FAUT METTRE LES FICHIERS OBJETS EN REQUIRE*/
-// require 'AdministrationBDD.php';
-// require 'AttributionBDDphp';
-// require 'BinBDD.php';
-// require 'CompetenceBDD.php';
-// require 'EtudiantBDDphp';
-// require 'MoyenneCompetenceBDD.php';
-// require 'MoyenneEleveBDD.php';
-// require 'SemestreBDDphp';
-// require 'UserBDD.php';
-// require 'ValidationBDD.php';
+$_ENV['dbHost']='127.0.0.1';
+$_ENV['dbName']='scodoc';
+$_ENV['dbUser']='postgres';
+$_ENV['dbPasswd']='JK2l!E5R';
 
 class DB {
-    private static $instance = null;
-    private $connect = null;
+
+    private static ?DB $instance = null;
+    public $conn = null;
 
     private function __construct()
     {
-        $connStr = 'pgsql:host=localhost port=5432 dbname=postgres'; // A MODIFIER !
+        // $connStr = "host={$_ENV['dbHost']} port=5432 dbname={$_ENV['dbName']} user={$_ENV['dbUser']} password={$_ENV['dbPasswd']}"; // A MODIFIER !
+        $connStr = "host=127.0.0.1 port=5432 dbname=scodoc user=postgres password='JK2l!E5R'"; // A MODIFIER !
         try {
             // $this->connect = new PDO($connStr, 'postgres', 'toor'); //A MODIFIER !
-            $this->connect = new PDO($connStr, 'postgres', 'JK2l!E5R'); //A MODIFIER !
-            $this->connect->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
-            $this->connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
+            $this->conn = pg_connect($connStr);
+            // $this->connect->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
+            // $this->connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (Exception $e) {
             echo "probleme de connexion :" . $e->getMessage();
-            return null;
         }
     }
 
-    public static function getInstance()
-    {
-        if (is_null(self::$instance)) {
-            try {
-                self::$instance = new DB();
-            } catch (PDOException $e) {
-                echo $e;
-            }
-        }
-        $obj = self::$instance;
-
-        if (($obj->connect) == null) {
-            self::$instance = null;
+    public static function getInstance() {
+        if (self::$instance == null) {
+            self::$instance = new DB();
         }
         return self::$instance;
     }
 
-    public function close()
-    {
+    public function close() {
         $this->connect = null;
     }
 

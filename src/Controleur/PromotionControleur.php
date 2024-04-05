@@ -1,22 +1,16 @@
 <?php
 
+namespace App\Controleur;
+
+use App\Entity\Etudiant;
+use App\Repository\EtudiantBDD;
 
 /**
  * Classe controleur de la partie étudiant.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-
-
-
-include_once ('..\Repository\EtudiantBDD');
-
-
-include_once ( '..\Entity\Etudiant'      );
-
-
-
 class PromotionControleur
 {
 

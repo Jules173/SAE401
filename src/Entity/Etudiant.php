@@ -1,12 +1,13 @@
 <?php
 
+namespace App\Entity;
 
 /**
  * Classe d'un étudiant.
- * 
+ *
  * Cette classe permet de créer des objets représentant des étudiants.
  * Elle va nous permettre d'obtenir toutes les informations nécessaires sur un étudiant X.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
@@ -15,17 +16,15 @@
 class Etudiant
 {
 	// Propriétés de la classe
-	private $idEtu;
-	private $codenip;
-	private $civ;
-	private $nom;
-	private $prenom;
-	private $grpTD;
-	private $grpTP;
-	private $bac;
-	private $specialite;
-
-
+	public $idEtu;
+	public $codenip;
+	public $civ;
+	public $nom;
+	public $prenom;
+	public $grpTD;
+	public $grpTP;
+	public $bac;
+	public $specialite;
 
 	// Constructeur de la classe
 	public function __construct( $idEtu, $codenip, $civ, $nom, $prenom, $grpTD, $grpTP, $bac, $specialite ) {
@@ -39,8 +38,6 @@ class Etudiant
 		$this->bac        = $bac;
 		$this->specialite = $specialite;
 	}
-
-
 
 	// Méthodes pour obtenir les valeurs des propriétés de l'objet
 
@@ -88,8 +85,19 @@ class Etudiant
 	public function getSpecialite() {
 		return $this->specialite;
 	}
+
+	public function toJSON() {
+		return json_encode([
+			'idetu'=>$this->idEtu,
+			'codenip'=>$this->codenip,
+			'civ'=>$this->civ,
+			'nom'=>$this->nom,
+			'prenom'=>$this->prenom,
+			'grpTD'=>$this->grpTD,
+			'grpTP'=>$this->grpTP,
+			'bac'=>$this->bac,
+			'specialite'=>$this->specialite,
+		]);
+	}
+
 }
-
-
-
-

@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Competence;
 use App\Repository\SemestreBDD;
-use App\Repository\DB.inc;
+use App\Repository\DB;
 
 /**
  * Classe représentant le contrôleur pour la gestion des compétences depuis la base de données.
@@ -15,18 +15,16 @@ use App\Repository\DB.inc;
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-class CompetenceBDD
-{
+class CompetenceBDD {
+
 	private $semestre;
 
-	public function __construct()
-	{
+	public function __construct() {
 		$this->semestre = new SemestreBDD();
 	}
 
 	// Méthode pour récupérer toutes les compétences depuis la base de données
-	public function getAllCompetence()
-	{
+	public function getAllCompetence() {
 		// Connexion à la base de données
 		$ptrBDD = DB::getInstance();
 
@@ -40,8 +38,6 @@ class CompetenceBDD
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
 		pg_close($ptrBDD);
-
-
 
 		// Si la compétence n'existe pas, on retourne NULL
 		if ($res == NULL) { return NULL; }

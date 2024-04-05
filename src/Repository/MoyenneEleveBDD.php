@@ -1,29 +1,21 @@
 <?php
 
+namespace App\Repository;
 
-	require_once("../../.env.php");
-
-require_once("../Entity/MoyenneEleve.php");
-
-require_once("../Repository/EtudiantBDD.php");
-require_once("../Repository/BinBDD.php");
-
-
-
-
+use App\Entity\MoyenneEleve;
+use App\Repository\EtudiantBDD;
+use App\Repository\BinBDD;
+use App\Repository\DB;
 
 /**
  * Classe représentant le contrôleur pour la gestion des moyennes des élèves depuis la base de données.
- * 
+ *
  * Cette classe permet de récupérer les données sur les moyennes des élèves depuis la base de données.
  * Elle va nous permettre d'obtenir toutes les informations nécessaires sur les moyennes des élèves.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-
-
-
 class MoyenneEleveBDD
 {
 	private $etudiant;
@@ -41,7 +33,7 @@ class MoyenneEleveBDD
 	public function getAllMoyenneEleve()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer toutes les moyennes des élèves
 		$query = "SELECT * FROM MoyenneEleve";
@@ -84,26 +76,27 @@ class MoyenneEleveBDD
 	public function getMoyenneByBin ($idBin, $idEtu)
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer la moyenne de l'élève pour un bin donné
 		$query = "SELECT * FROM MoyenneEleve WHERE idbin = $idBin and idEtu = $idEtu LIMIT 1";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		var_dump($ptrBDD);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
+		pg_close($ptrBDD->conn);
 
-
+		// $res = $ptrBDD->connect->query($query);
 
 		// Si la moyenne de l'élève n'existe pas, on retourne NULL
 		if ($res == NULL) { return NULL; }
 
 
 
-		return res[0]['moyenne'];
+		return $res[0]['moyenne'];
 	}
 }

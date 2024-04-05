@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Bin;
-use App\Repository\DB.inc;
+use App\Repository\DB;
 
 /**
  * Classe représentant le contrôleur pour la gestion des bacs depuis la base de données.

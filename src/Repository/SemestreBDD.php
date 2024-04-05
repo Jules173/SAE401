@@ -1,12 +1,9 @@
 <?php
 
-namespace App\
+namespace App\Repository;
 
-require_once("../../.env.php");
-
-require_once("../Entity/Semestre.php");
-
-
+use App\Entity\Semestre;
+use App\Repository\DB;
 
 /**
  * Classe représentant le contrôleur pour la gestion des semestres depuis la base de données.
@@ -17,9 +14,6 @@ require_once("../Entity/Semestre.php");
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-
-
-
 class SemestreBDD
 {
 
@@ -27,7 +21,7 @@ class SemestreBDD
 	public function getAllSemestre()
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer tous les étudiants
 		$query = "SELECT * FROM Semestre";
@@ -68,7 +62,7 @@ class SemestreBDD
 	public function getSemestreByID(int $id)
 	{
 		// Connexion à la base de données
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer le semestre avec l'identifiant donné
 		$query = "SELECT * FROM Semestre WHERE idSemestre = $id LIMIT 1";
@@ -104,7 +98,7 @@ class SemestreBDD
 
 	public function getSemestreByAnnee(int $deb, int $fin) {
 		// Connection to the database
-		$ptrBDD = connexion();
+		$ptrBDD = DB::getInstance();
 
 		// Query to retrieve semesters with the given year range
 		$query = "SELECT * FROM Semestre WHERE annee BETWEEN $deb AND $fin";

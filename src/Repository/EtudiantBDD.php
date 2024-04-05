@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Etudiant;
-use App\Repository\DB.inc;
+use App\Repository\DB;
 
 /**
  * Classe pour interagir avec la base de données pour la table ETUDIANT.
@@ -26,39 +26,29 @@ class EtudiantBDD
 		$query = "SELECT * FROM Etudiant";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
+		pg_close($ptrBDD->conn);
 
 
 
 		// Si l'étudiant n'existe pas, on retourne NULL
 		if ($res == NULL) { return NULL; }
 
-
+		// var_dump($res);
 
 		// Tableau pour stocker les étudiants récupérés
-		$tabEtud = array();
+		// $tabEtud = array();
 
 		// Parcours des résultats et création des objets Etudiant
 		foreach ($res as $etud) {
-			$tabEtud[] = new Etudiant(
-				$etud['idetu'     ],
-				$etud['codenip'   ],
-				$etud['civ'       ],
-				$etud['nom'       ],
-				$etud['prenom'    ],
-				$etud['grptd'     ],
-				$etud['grptp'     ],
-				$etud['bac'       ],
-				$etud['specialite']
-			);
+			// echo "HERE!";
+			// var_dump($etud);
+			$tabEtud[] = new Etudiant($etud['idetu'], $etud['codenip'], $etud['civ'], $etud['nom'], $etud['prenom'],$etud['grptd'], $etud['grptp'], $etud['bac'], $etud['specialite']);
 		}
-
-
 
 		return $tabEtud;
 	}

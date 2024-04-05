@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\Attribution;
 use App\Repository\BinBDD;
 use App\Repository\CompetenceBDD;
-use App\Repository\DB.inc;
+use App\Repository\DB;
 
 /**
  * Classe représentant le contrôleur pour la gestion des attributions depuis la base de données.
@@ -16,22 +16,18 @@ use App\Repository\DB.inc;
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-class AttributionBDD
-{
+class AttributionBDD {
+
 	private $competence;
 	private $bin;
 
-	public function __construct()
-	{
+	public function __construct() {
 		$this->competence = new CompetenceBDD();
 		$this->bin        = new BinBDD();
 	}
 
-
-
 	// Méthode pour récupérer toutes les attributions depuis la base de données
-	public function getAllAttribution()
-	{
+	public function getAllAttribution() {
 		// Connexion à la base de données
 		$ptrBDD = DB::getInstance();
 
@@ -46,12 +42,10 @@ class AttributionBDD
 		pg_free_result($qres);
 		pg_close($ptrBDD);
 
-
-
 		// Si l'attribution n'existe pas, on retourne NULL
-		if ($res == NULL) { return NULL; }
-
-
+		if ($res == NULL) {
+			return NULL;
+		}
 
 		// Tableau pour stocker les attributions récupérées
 		$tabAttribution = array();
@@ -65,15 +59,10 @@ class AttributionBDD
 			);
 		}
 
-
-
 		return $tabAttribution;
 	}
 
-
-
-	public function getAttByIDComp ( $idComp )
-	{
+	public function getAttByIDComp($idComp) {
 		// Connexion à la base de données
 		$ptrBDD = DB::getInstance();
 
@@ -88,12 +77,10 @@ class AttributionBDD
 		pg_free_result($qres);
 		pg_close($ptrBDD);
 
-
-
 		// Si l'attribution n'existe pas, on retourne NULL
-		if ($res == NULL) { return NULL; }
-
-
+		if ($res == NULL) {
+			return NULL;
+		}
 
 		// Tableau pour stocker les attributions récupérées
 		$tabAttribution = array();
@@ -107,15 +94,10 @@ class AttributionBDD
 			);
 		}
 
-
-
 		return $tabAttribution;
 	}
 
-
-
-
-	public function getCoeffByIDComp ( $idComp ) {
+	public function getCoeffByIDComp($idComp) {
 		// Connexion à la base de données
 		$ptrBDD = DB::getInstance();
 
@@ -130,12 +112,10 @@ class AttributionBDD
 		pg_free_result($qres);
 		pg_close($ptrBDD);
 
-
-
 		// Si l'attribution n'existe pas, on retourne NULL
-		if ($res == NULL) { return NULL; }
-
-
+		if ($res == NULL) {
+			return NULL;
+		}
 
 		$attribution = new Attribution(
 			$this->competence->getCompetenceByID($res[0]['idcomp']),
@@ -143,11 +123,7 @@ class AttributionBDD
 			$res[0]['coeff']
 		);
 
-
-
 		return $attribution->getCoeff();
 	}
-
-
 
 }

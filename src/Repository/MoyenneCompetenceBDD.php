@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\MoyenneCompetence;
 use App\Repository\EtudiantBDD;
 use App\Repository\CompetenceBDD;
-use App\Repository\DB.inc;
+use App\Repository\DB;
 
 /**
  * Classe représentant le contrôleur pour la gestion des moyennes des compétences depuis la base de données.
