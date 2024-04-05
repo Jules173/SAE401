@@ -16,25 +16,21 @@ use App\Repository\DB;
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-class ValidationBDD
-{
+class ValidationBDD {
+
 	// Propriétés de la classe
 	public $etudiant;
 	public $semestre;
 
 	// Constructeur de la classe
-	public function __construct()
-	{
+	public function __construct() {
 		// Initialisation de l'objet EtudiantBDD et de l'objet SemestreBDD
 		$this->etudiant = new EtudiantBDD();
 		$this->semestre = new SemestreBDD();
 	}
 
-
-
 	// Méthode pour récupérer toutes les validations depuis la base de données
-	public function getAllValidation()
-	{
+	public function getAllValidation() {
 		// Connexion à la base de données
 		$ptrBDD = DB::getInstance();
 
@@ -42,22 +38,16 @@ class ValidationBDD
 		$query = "SELECT * FROM Validation";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
-
-
+		pg_close($ptrBDD->conn);
 
 		// Si la validation n'existe pas, on retourne NULL
-		if ($res == NULL) { return NULL; }
-
-
-
-		// Tableau pour stocker les validations récupérées
-		$tabValidation = array();
+		if ($res == null)
+			return null;
 
 		// Parcours des résultats et création des objets Validation
 		foreach ($res as $valid) {
@@ -71,15 +61,10 @@ class ValidationBDD
 			);
 		}
 
-
-
 		return $tabValidation;
 	}
 
-
-
-	public function getDebutAnneeEtudes ($idEtu)
-	{
+	public function getDebutAnneeEtudes($idEtu) {
 		// Connexion à la base de données
 		$ptrBDD = DB::getInstance();
 
@@ -87,21 +72,17 @@ class ValidationBDD
 		$query = "SELECT annee FROM Validation WHERE idEtu = $idEtu ORDER BY annee ASC LIMIT 1";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
-
+		pg_close($ptrBDD->conn);
 
 		return $res[0]['annee'];
 	}
 
-
-
-	public function getFinAnneeEtudes ($idEtu)
-	{
+	public function getFinAnneeEtudes($idEtu) {
 		// Connexion à la base de données
 		$ptrBDD = DB::getInstance();
 
@@ -109,13 +90,12 @@ class ValidationBDD
 		$query = "SELECT annee FROM Validation WHERE idEtu = $idEtu ORDER BY annee DESC LIMIT 1";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
-
+		pg_close($ptrBDD->conn);
 
 		return $res[0]['annee'];
 	}

@@ -14,11 +14,9 @@ use App\Repository\DB;
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-class UserBDD
-{
+class UserBDD {
 	// Méthode pour récupérer tous les utilisateurs depuis la base de données
-	public function getAllUser()
-	{
+	public function getAllUser() {
 		// Connexion à la base de données
 		$ptrBDD = DB::getInstance();
 
@@ -26,33 +24,25 @@ class UserBDD
 		$query = "SELECT * FROM Users";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
-
-
+		pg_close($ptrBDD->conn);
 
 		// Si l'utilisateur n'existe pas, on retourne NULL
-		if ($res == NULL) { return NULL; }
-
-
-
-		$tabUser= array();
+		if ($res == null)
+			return null;
 
 		// Création de l'objet User avec les données récupérées
-		foreach ( $res as $user )
-		{
+		foreach ($res as $user) {
 			$tabUser[] = new User(
 				$user['idusr' ],
 				$user['nom'   ],
 				$user['statut']
 			);
 		}
-
-
 
 		return $res;
 	}

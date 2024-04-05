@@ -1,29 +1,22 @@
 <?php
 
- 
+namespace App\Entity;
 
 /**
  * Classe représentant un semestre.
- * 
+ *
  * Cette classe permet de créer des objets représentant un semestre.
  * Elle va nous permettre d'obtenir toutes les informations nécessaires sur un semestre X.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-
-
-
-// Semestre class
-class Semestre
-{
+class Semestre {
 
 	// Propriétés de la classe
-	private $idSemestre;
-	private $semestre;
-	private $annee;
-
-
+	public $idSemestre;
+	public $semestre;
+	public $annee;
 
 	// Constructeur de la classe
 	public function __construct($idSemestre, $semestre, $annee) {
@@ -31,9 +24,7 @@ class Semestre
 		$this->semestre = $semestre;
 		$this->annee = $annee;
 	}
-
-
-
+	
 	// Méthodes pour obtenir les valeurs des propriétés de l'objet
 
 	// Méthode pour obtenir l'identifiant du semestre
@@ -51,5 +42,3 @@ class Semestre
 		return $this->annee;
 	}
 }
-
-

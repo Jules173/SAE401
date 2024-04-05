@@ -1,6 +1,6 @@
 <?php
 
-
+namespace App\Entity;
 
 /**
  * Classe d'un étudiant.
@@ -11,16 +11,12 @@
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
+class User {
 
-
-
-class User
-{
 	// Propriétés de la classe
-	private $idUsr;
-	private $nom;
-	private $statut;
-
+	public $idUsr;
+	public $nom;
+	public $statut;
 
 	// Constructeur de la classe
 	public function __construct($idUsr, $nom, $statut) {
@@ -28,8 +24,7 @@ class User
 		$this->nom    = $nom;
 		$this->statut = $statut;
 	}
-
-
+	
 	// Méthodes pour obtenir les valeurs des propriétés de l'objet
 
 	// Méthode pour obtenir l'identifiant de l'utilisateur
@@ -47,5 +42,3 @@ class User
 		return $this->statut;
 	}
 }
-
-

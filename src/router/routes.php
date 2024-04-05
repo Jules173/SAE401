@@ -8,7 +8,7 @@ use App\Controler\EtudiantControleur;
 
 // Code pour définir les routes de l'application
 return [
-	
+
 	// Routes pour les étudiants
 	'/etudiants' => [
 		['GET', '', ['App\Controleur\EtudiantControleur', 'getAllEtudiants']],
@@ -16,7 +16,10 @@ return [
 		['GET', '/{nom}/{prenom}', ['App\Controleur\EtudiantControleur', 'getInfosEtudByNomPrenom']],
 		['GET', '/moyenne/{idBin}/{idEtu}', ['App\Controleur\EtudiantControleur', 'getMoyByBin']]
 	],
-	
+	'/competences'=>[
+		['GET', '', ['App\Controleur\EtudiantControleur', 'getAllCompetence']]
+	]
+
 ];
 
 ?>

@@ -32,20 +32,16 @@ class CompetenceBDD {
 		$query = "SELECT * FROM Competence";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
+		pg_close($ptrBDD->conn);
 
 		// Si la compétence n'existe pas, on retourne NULL
-		if ($res == NULL) { return NULL; }
-
-
-
-		// Tableau pour stocker les compétences récupérées
-		$tabCompetence = array();
+		if ($res == null)
+			return null;
 
 		// Parcours des résultats et création des objets Competence
 		foreach ($res as $competence) {
@@ -57,15 +53,11 @@ class CompetenceBDD {
 			);
 		}
 
-
-
 		return $tabCompetence;
 	}
 
-
 	// Méthode pour récupérer une compétence par son ID depuis la base de données
-	public function getCompetenceByID(int $id)
-	{
+	public function getCompetenceByID(int $id) {
 		// Connexion à la base de données
 		$ptrBDD = DB::getInstance();
 
@@ -73,19 +65,16 @@ class CompetenceBDD {
 		$query = "SELECT * FROM Competence WHERE idComp = $id LIMIT 1";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
-
-
+		pg_close($ptrBDD->conn);
 
 		// Si la compétence n'existe pas, on retourne NULL
-		if ($res == NULL) { return NULL; }
-
-
+		if ($res == null)
+			return null;
 
 		// Création de l'objet Competence avec les données récupérées
 		$competence = new Competence(

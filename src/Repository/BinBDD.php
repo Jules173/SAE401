@@ -14,11 +14,10 @@ use App\Repository\DB;
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-class BinBDD
-{
+class BinBDD {
+
 	// Méthode pour récupérer tous les bacs depuis la base de données
-	public function getAllBin()
-	{
+	public function getAllBin() {
 		// Connexion à la base de données
 		$ptrBDD = DB::getInstance();
 
@@ -26,22 +25,16 @@ class BinBDD
 		$query = "SELECT * FROM Bin";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
-
-
+		pg_close($ptrBDD->conn);
 
 		// Si l'administration n'existe pas, on retourne NULL
-		if ($res == NULL) { return NULL; }
-
-
-
-		// Tableau pour stocker les bacs récupérés
-		$tabBin = array();
+		if ($res == null)
+			return null;
 
 		// Parcours des résultats et création des objets Bin
 		foreach ($res as $bin) {
@@ -52,16 +45,11 @@ class BinBDD
 			);
 		}
 
-
-
 		return $tabBin;
 	}
 
-
-
 	// Méthode pour récupérer un bac par son ID depuis la base de données
-	public function getBinByID(int $id)
-	{
+	public function getBinByID(int $id) {
 		// Connexion à la base de données
 		$ptrBDD = DB::getInstance();
 
@@ -69,19 +57,16 @@ class BinBDD
 		$query = "SELECT * FROM Bin WHERE idBin = $id LIMIT 1";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
-
-
+		pg_close($ptrBDD->conn);
 
 		// Si le bac n'existe pas, on retourne NULL
-		if ($res == NULL) { return NULL; }
-
-
+		if ($res == null)
+			return null;
 
 		// Création de l'objet Bin avec les données récupérées
 		$bin = new Bin(
@@ -89,8 +74,6 @@ class BinBDD
 			$res[0]['nombin' ],
 			$res[0]['codebin']
 		);
-
-
 
 		return $bin;
 	}

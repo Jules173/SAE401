@@ -35,20 +35,16 @@ class AttributionBDD {
 		$query = "SELECT * FROM Attribution";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
+		pg_close($ptrBDD->conn);
 
 		// Si l'attribution n'existe pas, on retourne NULL
-		if ($res == NULL) {
-			return NULL;
-		}
-
-		// Tableau pour stocker les attributions récupérées
-		$tabAttribution = array();
+		if ($res == null)
+			return null;
 
 		// Parcours des résultats et création des objets Attribution
 		foreach ($res as $att) {
@@ -70,20 +66,16 @@ class AttributionBDD {
 		$query = "SELECT * FROM Attribution WHERE idComp = $idComp LIMIT 1";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
+		pg_close($ptrBDD->conn);
 
 		// Si l'attribution n'existe pas, on retourne NULL
-		if ($res == NULL) {
-			return NULL;
-		}
-
-		// Tableau pour stocker les attributions récupérées
-		$tabAttribution = array();
+		if ($res == null)
+			return null;
 
 		// Parcours des résultats et création des objets Attribution
 		foreach ($res as $att) {
@@ -105,17 +97,16 @@ class AttributionBDD {
 		$query = "SELECT * FROM Attribution WHERE idComp = $idComp LIMIT 1";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
+		pg_close($ptrBDD->conn);
 
 		// Si l'attribution n'existe pas, on retourne NULL
-		if ($res == NULL) {
-			return NULL;
-		}
+		if ($res == null)
+			return null;
 
 		$attribution = new Attribution(
 			$this->competence->getCompetenceByID($res[0]['idcomp']),

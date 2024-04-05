@@ -1,28 +1,23 @@
 <?php
 
- 
+namespace App\Entity;
 
 /**
  * Classe représentant la moyenne d'un étudiant pour une compétence donnée.
- * 
+ *
  * Cette classe permet de créer des objets représentant la moyenne d'un étudiant pour une compétence donnée.
  * Elle va nous permettre d'obtenir toutes les informations nécessaires sur la moyenne d'un étudiant X pour une compétence Y.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
+class MoyenneCompetence {
 
-
-
-class MoyenneCompetence
-{
 	// Propriétés de la classe
-	private $competence;
-	private $etudiant;
-	private $bonus;
-	private $decision;
-
-
+	public $competence;
+	public $etudiant;
+	public $bonus;
+	public $decision;
 
 	// Constructeur de la classe
 	public function __construct($competence, $etudiant, $bonus, $decision) {
@@ -31,7 +26,6 @@ class MoyenneCompetence
 		$this->bonus      = $bonus;
 		$this->decision   = $decision;
 	}
-	
 
 	// Méthodes pour obtenir les valeurs des propriétés de l'objet
 
@@ -39,7 +33,7 @@ class MoyenneCompetence
 	public function getCompetence() {
 		return $this->competence;
 	}
-	
+
 	// Méthode pour obtenir l'objet Etudiant associé à la moyenne
 	public function getEtudiant() {
 		return $this->etudiant;
@@ -55,5 +49,3 @@ class MoyenneCompetence
 		return $this->decision;
 	}
 }
-
-

@@ -11,10 +11,7 @@ namespace App\Entity;
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-
-
-class Etudiant
-{
+class Etudiant {
 	// Propriétés de la classe
 	public $idEtu;
 	public $codenip;
@@ -27,7 +24,7 @@ class Etudiant
 	public $specialite;
 
 	// Constructeur de la classe
-	public function __construct( $idEtu, $codenip, $civ, $nom, $prenom, $grpTD, $grpTP, $bac, $specialite ) {
+	public function __construct($idEtu, $codenip, $civ, $nom, $prenom, $grpTD, $grpTP, $bac, $specialite) {
 		$this->idEtu      = $idEtu;
 		$this->codenip    = $codenip;
 		$this->civ        = $civ;
@@ -84,20 +81,6 @@ class Etudiant
 	// Méthode pour obtenir la spécialité de l'étudiant
 	public function getSpecialite() {
 		return $this->specialite;
-	}
-
-	public function toJSON() {
-		return json_encode([
-			'idetu'=>$this->idEtu,
-			'codenip'=>$this->codenip,
-			'civ'=>$this->civ,
-			'nom'=>$this->nom,
-			'prenom'=>$this->prenom,
-			'grpTD'=>$this->grpTD,
-			'grpTP'=>$this->grpTP,
-			'bac'=>$this->bac,
-			'specialite'=>$this->specialite,
-		]);
 	}
 
 }

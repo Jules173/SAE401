@@ -3,29 +3,20 @@
 use App\Router\Router;
 
 spl_autoload_register(function ($className) {
-	
+
 	$className = str_replace('App\\','',$className);
 	$file = '../src/' . str_replace('\\', '/', $className) . '.php';
-	
+
 	if (file_exists($file)) {
 		require_once $file;
 	}
-	
-	// Convertir le nom de la classe en chemin de fichier en remplaçant les antislashs par des barres obliques
-	// $file = '../src/' . str_replace('\\', '/', $class_name) . '.php';
-	// var_dump($class_name, $file);
-	// Vérifier si le fichier de classe existe
-	// if (file_exists($file)) {
-		// Inclure le fichier de classe
-		// include_once $file;
-	// }
 });
 
-
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Content-Type");
 
 // Inclure le fichier de définition des routes
 $routes = require_once '../src/Router/routes.php';
-// $routes = include_once '../src/Router.php';
 
 // Créer une instance du routeur
 $router = new Router();
@@ -45,7 +36,10 @@ $path = $_SERVER['PATH_INFO'] ?? '/';
 try {
 	// Gérer la requête en utilisant le routeur
 	$response = $router->handle($method, $path);
-	var_dump($response);
+
+	header( 'content-type: application/json; charset=utf-8' );
+	echo json_encode($response);
+
 } catch (\Exception $e) {
 	// Afficher une erreur 404 en cas de route non trouvée
 	header("HTTP/1.0 404 Not Found");

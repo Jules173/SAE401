@@ -11,26 +11,17 @@ use App\Repository\EtudiantBDD;
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-class PromotionControleur
-{
-
+class PromotionControleur {
 
 	private $etudiant;
 
-	public function __construct()
-	{
+	public function __construct() {
 		$this->etudiant = new EtudiantBDD();
 	}
 
-
-
-	public function getAllEtudiantByFiltres ( $semestre, $anneeDebut, $anneeFin, $semestreValide )
-	{
-		$etudiant = $this->etudiant->getAllEtudiantByFiltres( $semestre, $anneeDebut, $anneeFin, $semestreValide );
-
+	public function getAllEtudiantByFiltres($semestre, $anneeDebut, $anneeFin, $semestreValide) {
+		$etudiant = $this->etudiant->getAllEtudiantByFiltres($semestre, $anneeDebut, $anneeFin, $semestreValide);
 		return $etudiant;
 	}
-
-
 
 }

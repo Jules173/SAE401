@@ -16,22 +16,18 @@ use App\Repository\DB;
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-class MoyenneCompetenceBDD
-{
+class MoyenneCompetenceBDD {
+
 	private $etudiant;
 	private $competence;
 
-	public function __construct()
-	{
+	public function __construct() {
 		$this->etudiant   = new EtudiantBDD();
 		$this->competence = new CompetenceBDD();
 	}
 
-
-
 	// Méthode pour récupérer toutes les moyennes des compétences depuis la base de données
-	public function getAllMoyenneCompetence()
-	{
+	public function getAllMoyenneCompetence() {
 		// Connexion à la base de données
 		$ptrBDD = DB::getInstance();
 
@@ -39,22 +35,16 @@ class MoyenneCompetenceBDD
 		$query = "SELECT * FROM MoyenneCompetence";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
-
-
+		pg_close($ptrBDD->conn);
 
 		// Si la moyenne de la compétence n'existe pas, on retourne NULL
-		if ($res == NULL) { return NULL; }
-
-
-
-		// Tableau pour stocker les moyennes des compétences récupérées
-		$tabMoyenneCompetence = array();
+		if ($res == null)
+			return null;
 
 		// Parcours des résultats et création des objets MoyenneCompetence
 		foreach ($res as $moyCompetence) {
@@ -65,8 +55,6 @@ class MoyenneCompetenceBDD
 				$moyCompetence['decision']
 			);
 		}
-
-
 
 		return $tabMoyenneCompetence;
 	}

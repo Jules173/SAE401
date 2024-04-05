@@ -1,30 +1,25 @@
 <?php
 
- 
+namespace App\Entity;
 
 /**
  * Classe représentant la validation d'un semestre pour un étudiant.
- * 
+ *
  * Cette classe permet de créer des objets représentant la validation d'un semestre pour un étudiant.
  * Elle va nous permettre d'obtenir toutes les informations nécessaires sur la validation d'un semestre X pour un étudiant Y.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
+class Validation {
 
-
-
-class Validation
-{
 	// Propriétés de la classe
-	private $etudiant;
-	private $semestre;
-	private $decision;
-	private $motif;
-	private $typeAdm;
-	private $annee;
-
-
+	public $etudiant;
+	public $semestre;
+	public $decision;
+	public $motif;
+	public $typeAdm;
+	public $annee;
 
 	// Constructeur de la classe
 	public function __construct($etudiant, $semestre, $decision, $motif, $typeAdm, $annee) {
@@ -36,14 +31,13 @@ class Validation
 		$this->annee    = $annee;
 	}
 
-
 	// Méthodes pour obtenir les valeurs des propriétés de l'objet
 
 	// Méthode pour obtenir l'objet Etudiant associé à la validation
 	public function getEtudiant() {
 		return $this->etudiant;
 	}
-	
+
 	// Méthode pour obtenir l'objet Semestre associé à la validation
 	public function getSemestre() {
 		return $this->semestre;
@@ -69,5 +63,3 @@ class Validation
 		return $this->annee;
 	}
 }
-
-

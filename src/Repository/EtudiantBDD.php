@@ -14,11 +14,10 @@ use App\Repository\DB;
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-class EtudiantBDD
-{
+class EtudiantBDD {
+
 	// Méthode pour récupérer tous les étudiants depuis la base de données
-	public function getAllEtudiants()
-	{
+	public function getAllEtudiants() {
 		// Connexion à la base de données
 		$ptrBDD = DB::getInstance();
 
@@ -33,49 +32,39 @@ class EtudiantBDD
 		pg_free_result($qres);
 		pg_close($ptrBDD->conn);
 
-
-
 		// Si l'étudiant n'existe pas, on retourne NULL
-		if ($res == NULL) { return NULL; }
-
-		// var_dump($res);
-
-		// Tableau pour stocker les étudiants récupérés
-		// $tabEtud = array();
+		if ($res == null)
+			return null;
 
 		// Parcours des résultats et création des objets Etudiant
 		foreach ($res as $etud) {
-			// echo "HERE!";
-			// var_dump($etud);
 			$tabEtud[] = new Etudiant($etud['idetu'], $etud['codenip'], $etud['civ'], $etud['nom'], $etud['prenom'],$etud['grptd'], $etud['grptp'], $etud['bac'], $etud['specialite']);
 		}
 
 		return $tabEtud;
 	}
 
-
 	// Méthode pour obtenir un étudiant par son ID
-	public function getEtudiantByID(int $id)
-	{
+	public function getEtudiantByID($id) {
 		// Connexion à la base de données
+		$id = intval($id['id']);
+
 		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer l'étudiant par son ID
 		$query = "SELECT * FROM Etudiant WHERE idEtu = $id";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération du résultat
 		$res = pg_fetch_array($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
-
+		pg_close($ptrBDD->conn);
 
 		// Si l'étudiant n'existe pas, on retourne NULL
-		if ($res == NULL) { return NULL; }
-
-
+		if ($res == null)
+			return null;
 
 		// Création de l'objet Etudiant à partir des données récupérées
 		$etudiant = new Etudiant(
@@ -90,34 +79,31 @@ class EtudiantBDD
 			$res['specialite']
 		);
 
+		var_dump($res);
 
 		return $res;
 	}
 
 
 	// Méthode pour obtenir un étudiant par son nom et prénom
-	public function getEtudiantByNomPrenom(string $nom, string $prenom)
-	{
+	public function getEtudiantByNomPrenom(string $nom, string $prenom) {
 		// Connexion à la base de données
 		$ptrBDD = DB::getInstance();
 
 		// Requête pour récupérer l'étudiant par son nom et prénom
-		$query = "SELECT * FROM Etudiant WHERE nom = '$nom' AND prenom = '$prenom'";
+		$query = "SELECT * FROM Etudiant WHERE nom LIKE '%$nom%' OR prenom LIKE '%$prenom%'";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération du résultat
 		$res = pg_fetch_array($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
-
-
+		pg_close($ptrBDD->conn);
 
 		// Si l'étudiant n'existe pas, on retourne NULL
-		if ($res == NULL) { return NULL; }
-
-
+		if ($res == null)
+			return null;
 
 		// Création de l'objet Etudiant à partir des données récupérées
 		$etudiant = new Etudiant(
@@ -135,10 +121,7 @@ class EtudiantBDD
 		return $etudiant;
 	}
 
-
-
-	public function getAllEtudiantsByFiltres ( $semestre, $anneeDebut, $anneeFin, $semestreValide )
-	{
+	public function getAllEtudiantsByFiltres($semestre, $anneeDebut, $anneeFin, $semestreValide) {
 		// Connexion à la base de données
 		$ptrBDD = DB::getInstance();
 
@@ -146,22 +129,16 @@ class EtudiantBDD
 		$query = "SELECT * FROM Etudiant WHERE idEtu IN (SELECT idEtu FROM Validation WHERE idSemestre IN (SELECT idSemestre FROM Semestre WHERE semestre = $semestre AND annee >= $anneeDebut AND annee <= $anneeFin AND decision = '$semestreValide'))";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
-
-
+		pg_close($ptrBDD->conn);
 
 		// Si l'étudiant n'existe pas, on retourne NULL
-		if ($res == NULL) { return NULL; }
-
-
-
-		// Tableau pour stocker les étudiants récupérés
-		$tabEtud = array();
+		if ($res == null)
+			return null;
 
 		// Parcours des résultats et création des objets Etudiant
 		foreach ($res as $etud) {

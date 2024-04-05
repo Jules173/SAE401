@@ -11,12 +11,19 @@ class Router {
 
 	public function handle($method, $path) {
 
+		// var_dump($method, $path);
+		// echo "<br>";
+		// var_dump($this->routes[$method]);
+		// echo "<br>";
+
 		foreach ($this->routes[$method] as $route => $handle) {
 			if (preg_match('#^' . $this->patternToRegex($route) . '$#', $path, $matches)) {
 
 				$controllerName  = $handle['controller'];
 				$action = $handle['action'];
 				$params = array_slice($matches, 1);
+
+				// var_dump($params);
 
 				$controller = new $controllerName();
 				return $controller->$action($params);

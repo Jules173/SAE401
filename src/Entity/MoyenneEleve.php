@@ -1,28 +1,23 @@
 <?php
 
- 
+namespace App\Entity;
 
 /**
  * Classe représentant la moyenne d'un étudiant pour un bin donné.
- * 
+ *
  * Cette classe permet de créer des objets représentant la moyenne d'un étudiant pour un bin donné.
  * Elle va nous permettre d'obtenir toutes les informations nécessaires sur la moyenne d'un étudiant X pour un bin Y.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
+class MoyenneEleve {
 
-
-
-class MoyenneEleve
-{
 	// Propriétés de la classe
-	private $etudiant;
-	private $bin;
-	private $moyenne;
-	private $annee;
-
-
+	public $etudiant;
+	public $bin;
+	public $moyenne;
+	public $annee;
 
 	// Constructeur de la classe
 	public function __construct( $etudiant, $bin, $moyenne, $annee ) {
@@ -31,7 +26,6 @@ class MoyenneEleve
 		$this->moyenne = $moyenne;
 		$this->annee   = $annee;
 	}
-	
 
 	// Méthodes pour obtenir les valeurs des propriétés de l'objet
 
@@ -39,7 +33,7 @@ class MoyenneEleve
 	public function getEtudiant() {
 		return $this->etudiant;
 	}
-	
+
 	// Méthode pour obtenir le bin associé à la moyenne
 	public function getBin() {
 		return $this->bin;
@@ -56,5 +50,3 @@ class MoyenneEleve
 	}
 
 }
-
-

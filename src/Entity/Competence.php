@@ -1,26 +1,24 @@
 <?php
 
+namespace App\Entity;
+
 /**
  * Classe représentant une compétence.
- * 
+ *
  * Cette classe permet de créer des objets représentant une compétence.
  * Elle va nous permettre d'obtenir toutes les informations nécessaires sur une compétence X.
- * 
+ *
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
+class Competence {
 
-
-
-class Competence
-{
 	// Propriétés de la classe
-	private $idComp;
-	private $nom;
-	private $code;
-	private $semestre;
+	public $idComp;
+	public $nom;
+	public $code;
+	public $semestre;
 
-	
 	// Constructeur de la classe
 	public function __construct($idComp, $nom, $code, $semestre) {
 		$this->idComp   = $idComp;
@@ -28,7 +26,6 @@ class Competence
 		$this->code     = $code;
 		$this->semestre = $semestre;
 	}
-	
 
 	// Méthodes pour obtenir les valeurs des propriétés de l'objet
 
@@ -52,5 +49,3 @@ class Competence
 		return $this->semestre;
 	}
 }
-
-

@@ -6,6 +6,7 @@ use App\Entity\Etudiant;
 use App\Repository\EtudiantBDD;
 use App\Repository\AttributionBDD;
 use App\Repository\ValidationBDD;
+use App\Repository\CompetenceBDD;
 use App\Repository\MoyenneEleveBDD;
 use App\Repository\BinBDD;
 
@@ -15,37 +16,34 @@ use App\Repository\BinBDD;
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-class EtudiantControleur
-{
-	public function getInfosEtudByID ($etudiantID) {
+class EtudiantControleur {
+
+	public function getInfosEtudByID($etudiantID) {
 		$etudBDD = new EtudiantBDD();
-		$etud = $etudBDD->getEtudiantByID($etudiantID);
-
-
-		return json_encode($etud);
+		return $etudBDD->getEtudiantByID($etudiantID);
 	}
 
-
-	public function getInfosEtudByNomPrenom ($etudiantNom, $etudiantPrenom) {
+	public function getInfosEtudByNomPrenom($params) {
+		$nom = $params['nom'];
+		$prenom = $params['prenom'];
+		// var_dump($etudiantNom);
 		$etudBDD = new EtudiantBDD();
-		$etud = $etudBDD->getEtudiantByNomPrenom($etudiantNom, $etudiantPrenom);
-
-
-		return json_encode($etud);
+		return $etudBDD->getEtudiantByNomPrenom($nom, $prenom);
 	}
 
 	public function getAllEtudiants() {
 		$etudBDD = new EtudiantBDD();
-		$etud = $etudBDD->getAllEtudiants();
-		// foreach($etud as $index=>$etud)
-		// 	$etud[$index] = $etud->toJSON();
-		return json_encode($etud);
-		// return $etud;
+		return $etudBDD->getAllEtudiants();
 	}
 
-	public function getMoyByBin ( $idBin, $idEtu ) {
+	public function getMoyByBin($idBin, $idEtu) {
 		$moyenne = new MoyenneEleveBDD();
 		return $moyenne->getMoyenneByBin($idBin, $idEtu);
+	}
+
+	public function getAllCompetence() {
+		$comp = new CompetenceBDD();
+		return $comp->getAllCompetence();
 	}
 
 }

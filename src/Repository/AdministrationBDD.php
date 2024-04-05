@@ -16,23 +16,17 @@ use App\Repository\DB;
  * @author BOULOCHE Eléonore
  * @version 1.0
  */
-class AdministrationBDD
-{
+class AdministrationBDD {
+
 	// Propriétés de la classe
 	public $etudiant;
 
-
-
-	public function __construct()
-	{
+	public function __construct() {
 		$this->etudiant = new EtudiantBDD();
 	}
 
-
-
 	// Méthode pour récupérer toutes les administrations depuis la base de données
-	public function getAllAdministration()
-	{
+	public function getAllAdministration() {
 		// Connexion à la base de données
 		$ptrBDD = DB::getInstance();
 
@@ -40,22 +34,16 @@ class AdministrationBDD
 		$query = "SELECT * FROM Administration";
 
 		// Exécution de la requête
-		$qres = pg_query($ptrBDD, $query);
+		$qres = pg_query($ptrBDD->conn, $query);
 
 		// Récupération des résultats
 		$res = pg_fetch_all($qres);
 		pg_free_result($qres);
-		pg_close($ptrBDD);
-
-
+		pg_close($ptrBDD->conn);
 
 		// Si l'administration n'existe pas, on retourne NULL
-		if ($res == NULL) { return NULL; }
-
-
-
-		// Tableau pour stocker les administrations récupérées
-		$tabAdministration = array();
+		if ($res == null)
+			return null;
 
 		// Parcours des résultats et création des objets Administration
 		foreach ($res as $admin) {
@@ -68,8 +56,6 @@ class AdministrationBDD
 				$this->etudiant->getEtudiantByID($admin['idetu'])
 			);
 		}
-
-
 
 		return $tabAdministration;
 	}
